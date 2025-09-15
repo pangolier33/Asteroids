@@ -1,0 +1,38 @@
+using UnityEngine;
+
+namespace _Project.Scripts.Components
+{
+    public class Wrap : MonoBehaviour
+    {
+        private Camera mainCamera;
+
+        private void Awake()
+        {
+            mainCamera = Camera.main;
+        }
+        private void FixedUpdate()
+        {
+            Vector3 viewportPosition = mainCamera.WorldToViewportPoint(transform.position);
+
+            Vector3 moveAdjustment = Vector3.zero;
+            if (viewportPosition.x < 0)
+            {
+                moveAdjustment.x += 1;
+            }
+            else if (viewportPosition.x > 1)
+            {
+                moveAdjustment.x -= 1;
+            }
+            else if (viewportPosition.y < 0)
+            {
+                moveAdjustment.x += 1;
+            }
+            else if (viewportPosition.y > 1)
+            {
+                moveAdjustment.y -= 1;
+            }
+
+            transform.position = Camera.main.ViewportToWorldPoint(viewportPosition + moveAdjustment);
+        }
+    }
+}
