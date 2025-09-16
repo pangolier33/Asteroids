@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8011947932829947834}
-  - component: {fileID: 8112083764490543951}
+  - component: {fileID: 7099172283751230748}
   - component: {fileID: -6140962212942132836}
   - component: {fileID: -5533234605249935482}
+  - component: {fileID: 7817022885106915579}
   - component: {fileID: -3292542748547726857}
   - component: {fileID: 143653618991531562}
   - component: {fileID: 8948474297559836942}
@@ -39,7 +40,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8112083764490543951
+--- !u!114 &7099172283751230748
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,15 +49,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6244541114756376502}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cca860dd01c6cd4a96027a48e19886b, type: 3}
+  m_Script: {fileID: 11500000, guid: 18daddf66d3399d49bdf3973c4d70026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tag: Bullet
-  _action:
+  _maxHealth: 1
+  _onDie:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: -5533234605249935482}
-        m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
+        m_TargetAssemblyTypeName: _Project.Scripts.Creatures.Enemy.Enemy, Assembly-CSharp
         m_MethodName: DestroyEnemy
         m_Mode: 1
         m_Arguments:
@@ -67,6 +68,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &-6140962212942132836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,7 +83,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: befbff59641634241a955fc1566e2714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 3
 --- !u!114 &-5533234605249935482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,6 +95,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c2554b460a3b8e47956403a5339f988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7817022885106915579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6244541114756376502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3878a329364a52543969cd1385f57bea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 1
 --- !u!114 &-3292542748547726857
 MonoBehaviour:
   m_ObjectHideFlags: 0

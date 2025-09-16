@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace _Project.Scripts.Creatures.Enemy
 {
-    public class Asteroid : MonoBehaviour
+    public class AsteroidMovement : MonoBehaviour
     {
-        private void Start()
+        private void OnEnable()
         {
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
             Vector2 direction = new Vector2(Random.value, Random.value).normalized;

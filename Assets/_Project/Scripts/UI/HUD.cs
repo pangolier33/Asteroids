@@ -1,3 +1,4 @@
+using _Project.Scripts.Creatures.Player;
 using _Project.Scripts.Creatures.Player.SpaceShipWeapon;
 using TMPro;
 using UnityEngine;
@@ -19,7 +20,7 @@ namespace _Project.Scripts.UI
         
         private void Start()
         {
-            shipRigidbody = _spaceShipMonement.GetRigidbody;
+            shipRigidbody = _spaceShipMonement.GetSpaceShipRigidbody;
         }
 
         private void Update()
@@ -67,7 +68,7 @@ namespace _Project.Scripts.UI
 
         private void UpdateLaserChargesUI()
         {
-            int laserCharges = _spaceShipWeapon.GetLaserCharges();
+            int laserCharges = _spaceShipWeapon._laserCharges;
             _chargesText.text = $"Laser charges: {laserCharges}";
         }
 

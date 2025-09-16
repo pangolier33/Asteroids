@@ -1,3 +1,4 @@
+using _Project.Scripts.Creatures.Player;
 using UnityEngine;
 using UnityEngine.AI;
 

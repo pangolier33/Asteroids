@@ -1,45 +1,46 @@
 using UnityEngine;
-using System.Collections;
-using TMPro;
 
-public class SpaceShipMovement : MonoBehaviour
+namespace _Project.Scripts.Creatures.Player
 {
-    [SerializeField] private float shipAcceleration = 10f;
-    [SerializeField] private float shipMaxVelocity = 10f;
-    [SerializeField] private float shipRotationSpeed = 180f;
-
-    private Rigidbody2D shipRigidbody;
-    private bool isAlive = true;
-    private bool isAccelerating = false;
-
-    public Rigidbody2D GetRigidbody => shipRigidbody;
-
-    private void Awake()
+    public class SpaceShipMovement : MonoBehaviour
     {
-        shipRigidbody = GetComponent<Rigidbody2D>();
-    }
+        [SerializeField] private float shipAcceleration = 10f;
+        [SerializeField] private float shipMaxVelocity = 10f;
+        [SerializeField] private float shipRotationSpeed = 180f;
 
-    private void FixedUpdate()
-    {
-        if (isAlive && isAccelerating)
+        private Rigidbody2D shipRigidbody;
+        private bool isAlive = true;
+        private bool isAccelerating = false;
+
+        public Rigidbody2D GetSpaceShipRigidbody => shipRigidbody;
+
+        private void Awake()
         {
-            shipRigidbody.AddForce(shipAcceleration * transform.up);
-            shipRigidbody.linearVelocity = Vector2.ClampMagnitude(shipRigidbody.linearVelocity, shipMaxVelocity);
+            shipRigidbody = GetComponent<Rigidbody2D>();
         }
-    }
 
-    public void HandleShipAcceleration()
-    {
-        isAccelerating = true;
-    }
+        private void FixedUpdate()
+        {
+            if (isAlive && isAccelerating)
+            {
+                shipRigidbody.AddForce(shipAcceleration * transform.up);
+                shipRigidbody.linearVelocity = Vector2.ClampMagnitude(shipRigidbody.linearVelocity, shipMaxVelocity);
+            }
+        }
 
-    public void HandleShipStopAcceleration()
-    {
-        isAccelerating = false;
-    }
+        public void HandleShipAcceleration()
+        {
+            isAccelerating = true;
+        }
 
-    public void HandleShipRotation(float direction)
-    {
-        shipRigidbody.AddTorque(direction * shipRotationSpeed * Time.deltaTime);
+        public void HandleShipStopAcceleration()
+        {
+            isAccelerating = false;
+        }
+
+        public void HandleShipRotation(float direction)
+        {
+            shipRigidbody.AddTorque(direction * shipRotationSpeed * Time.deltaTime);
+        }
     }
 }

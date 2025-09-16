@@ -14,13 +14,14 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
         [SerializeField] private float _delayBullet = 0.25f;
         [SerializeField] private float _laserDuration = 2f;
         [SerializeField] private float _chargeRechargeTime = 5f;
+        
+        [field: SerializeField] public int _laserCharges { get; private set; }
 
         private PoolBase<Bullet> _bulletPool;
         private float _nextFireTime;
         private float _nextChargeTime;
         private float _laserEndTime;
         private bool _isLaserActive;
-        private int _laserCharges = MAX_LASER_CHARGES;
 
         private void Awake()
         {
@@ -38,6 +39,32 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
             UpdateLaserDuration();
 
             UpdateChargesRecharge();
+        }
+        
+        public void HandleShooting()
+        {
+            if (!IsCooldownReady(_nextFireTime))
+                return;
+
+            ShootBullet();
+            SetCooldown(ref _nextFireTime, _delayBullet);
+        }
+
+        public void HandleLaserActivation()
+        {
+            if (_laserCharges > 0 && !_isLaserActive)
+            {
+                UseLaserCharge();
+                EnableLaser();
+            }
+        }
+        
+        public float GetNextChargeProgress()
+        {
+            if (_laserCharges >= MAX_LASER_CHARGES)
+                return 0f;
+
+            return _nextChargeTime - Time.time;
         }
 
         private void UpdateLaserDuration()
@@ -69,24 +96,6 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
         private void ReturnAllBullets() => _bulletPool.ReturnAll();
 
         private bool IsCooldownReady(float nextTime) => Time.time >= nextTime;
-
-        public void HandleShooting()
-        {
-            if (!IsCooldownReady(_nextFireTime))
-                return;
-
-            ShootBullet();
-            SetCooldown(ref _nextFireTime, _delayBullet);
-        }
-
-        public void HandleLaserActivation()
-        {
-            if (_laserCharges > 0 && !_isLaserActive)
-            {
-                UseLaserCharge();
-                EnableLaser();
-            }
-        }
 
         private void ShootBullet()
         {
@@ -127,15 +136,5 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
         {
             nextTime = Time.time + delay;
         }
-
-        public float GetNextChargeProgress()
-        {
-            if (_laserCharges >= MAX_LASER_CHARGES)
-                return 0f;
-
-            return _nextChargeTime - Time.time;
-        }
-
-        public int GetLaserCharges() => _laserCharges;
     }
 }

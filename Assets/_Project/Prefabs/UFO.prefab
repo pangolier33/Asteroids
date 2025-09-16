@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2302757417981315649}
+  - component: {fileID: 7811448412673582005}
+  - component: {fileID: 8026311209394022606}
   - component: {fileID: 9094332696057755760}
   - component: {fileID: -184873510415367234}
-  - component: {fileID: -2576073183343952119}
   - component: {fileID: 8928415327804870637}
   - component: {fileID: 2556272764233800869}
   - component: {fileID: 3902655006251592706}
@@ -38,6 +39,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7811448412673582005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4247422230158052180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18daddf66d3399d49bdf3973c4d70026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 1
+  _onDie:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -184873510415367234}
+        m_TargetAssemblyTypeName: _Project.Scripts.Creatures.Enemy.Enemy, Assembly-CSharp
+        m_MethodName: DestroyEnemy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &8026311209394022606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4247422230158052180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3878a329364a52543969cd1385f57bea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 1
 --- !u!114 &9094332696057755760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,34 +107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c2554b460a3b8e47956403a5339f988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-2576073183343952119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4247422230158052180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cca860dd01c6cd4a96027a48e19886b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _tag: Bullet
-  _action:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -184873510415367234}
-        m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
-        m_MethodName: DestroyEnemy
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!212 &8928415327804870637
 SpriteRenderer:
   m_ObjectHideFlags: 0
