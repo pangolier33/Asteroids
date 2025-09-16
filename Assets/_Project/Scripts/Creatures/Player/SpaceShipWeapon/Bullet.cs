@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
@@ -13,6 +14,11 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
         private void OnDisable()
         {
             CancelInvoke();
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            Deactivate();
         }
 
         public void Launch(Vector3 direction)

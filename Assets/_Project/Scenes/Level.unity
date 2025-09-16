@@ -2767,6 +2767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefabs:
   - {fileID: 6244541114756376502, guid: cf8ce37fde80eac4a97db259480484e4, type: 3}
+  - {fileID: 4247422230158052180, guid: e35f9c442df6ef144b391d92fde60a17, type: 3}
   spawnOffset: 0.5
 --- !u!4 &1932884517
 Transform:
