@@ -4,43 +4,41 @@ namespace _Project.Scripts.Creatures.Player
 {
     public class SpaceShipMovement : MonoBehaviour
     {
-        [SerializeField] private float shipAcceleration = 10f;
-        [SerializeField] private float shipMaxVelocity = 10f;
-        [SerializeField] private float shipRotationSpeed = 180f;
-
-        private Rigidbody2D shipRigidbody;
-        private bool isAlive = true;
-        private bool isAccelerating = false;
-
-        public Rigidbody2D GetSpaceShipRigidbody => shipRigidbody;
+        public Rigidbody2D ShipRigidbody { get; private set; }
+        
+        [SerializeField] private float _shipAcceleration = 10f;
+        [SerializeField] private float _shipMaxVelocity = 10f;
+        [SerializeField] private float _shipRotationSpeed = 180f;
+        
+        private bool _isAccelerating = false;
 
         private void Awake()
         {
-            shipRigidbody = GetComponent<Rigidbody2D>();
+            ShipRigidbody = GetComponent<Rigidbody2D>();
         }
 
         private void FixedUpdate()
         {
-            if (isAlive && isAccelerating)
+            if (_isAccelerating)
             {
-                shipRigidbody.AddForce(shipAcceleration * transform.up);
-                shipRigidbody.linearVelocity = Vector2.ClampMagnitude(shipRigidbody.linearVelocity, shipMaxVelocity);
+                ShipRigidbody.AddForce(_shipAcceleration * transform.up);
+                ShipRigidbody.linearVelocity = Vector2.ClampMagnitude(ShipRigidbody.linearVelocity, _shipMaxVelocity);
             }
         }
 
         public void HandleShipAcceleration()
         {
-            isAccelerating = true;
+            _isAccelerating = true;
         }
 
         public void HandleShipStopAcceleration()
         {
-            isAccelerating = false;
+            _isAccelerating = false;
         }
 
         public void HandleShipRotation(float direction)
         {
-            shipRigidbody.AddTorque(direction * shipRotationSpeed * Time.deltaTime);
+            ShipRigidbody.AddTorque(direction * _shipRotationSpeed * Time.deltaTime);
         }
     }
 }

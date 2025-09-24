@@ -8,12 +8,7 @@ namespace _Project.Scripts.Creatures.Enemy
         [SerializeField] private GameObject[] enemyPrefabs;
         [SerializeField] private float spawnOffset;
 
-        private void Start()
-        {
-            StartCoroutine(SpawnAsteroids());
-        }
-
-        IEnumerator SpawnAsteroids()
+        public IEnumerator SpawnEnemies()
         {
             while (true)
             {

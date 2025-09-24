@@ -12,15 +12,21 @@ namespace _Project.Scripts.UI
         [SerializeField] private TMP_Text _velocityText;
         [SerializeField] private TMP_Text _chargesText;
         [SerializeField] private TMP_Text _nextLaserText;
-        [SerializeField] private SpaceShipMovement _spaceShipMonement;
-        [SerializeField] private SpaceShipWeapon _spaceShipWeapon;
-
-        private Rigidbody2D shipRigidbody;
+        
+        private SpaceShipMovement _spaceShipMovement;
+        private SpaceShipWeapon _spaceShipWeapon;
+        private Rigidbody2D _shipRigidbody;
         private int _score;
+
+        public void Initialize(SpaceShipMovement spaceShipMovement, SpaceShipWeapon spaceShipWeapon)
+        {
+            _spaceShipMovement = spaceShipMovement;
+            _spaceShipWeapon = spaceShipWeapon;
+        }
         
         private void Start()
         {
-            shipRigidbody = _spaceShipMonement.GetSpaceShipRigidbody;
+            _shipRigidbody = _spaceShipMovement.ShipRigidbody;
         }
 
         private void Update()
@@ -50,19 +56,19 @@ namespace _Project.Scripts.UI
 
         private void UpdateCoordinatesUI()
         {
-            Vector2 position = shipRigidbody.position;
+            Vector2 position = _shipRigidbody.position;
             _coordinatesText.text = $"Position:\nX:{position.x:F1}\nY:{position.y:F1}";
         }
 
         private void UpdateRotationUI()
         {
-            float rotation = NormalizeAngle(shipRigidbody.rotation);
+            float rotation = NormalizeAngle(_shipRigidbody.rotation);
             _rotationText.text = $"Rotation: {rotation:F0}°";
         }
 
         private void UpdateSpeedUI()
         {
-            Vector2 velocity = shipRigidbody.linearVelocity;
+            Vector2 velocity = _shipRigidbody.linearVelocity;
             _velocityText.text = $"Speed: {velocity.magnitude:F1}";
         }
 
