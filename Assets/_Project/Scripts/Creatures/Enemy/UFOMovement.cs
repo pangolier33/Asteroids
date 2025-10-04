@@ -1,7 +1,6 @@
 using System.Collections;
 using _Project.Scripts.Creatures.Player;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace _Project.Scripts.Creatures.Enemy
 {

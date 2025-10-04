@@ -11,7 +11,6 @@ namespace _Project.Scripts
 {
     public class EntryPoint : MonoBehaviour
     {
-        [SerializeField] private Camera _mainCamera;
         [SerializeField] private Canvas _hud;
         [SerializeField] private SpaceShipMovement _spaceShip;
         [SerializeField] private EnemySpawner _enemySpawner;
@@ -24,7 +23,6 @@ namespace _Project.Scripts
 
         private void BindObjects()
         {
-            _mainCamera = Instantiate(_mainCamera);
             _spaceShip = Instantiate(_spaceShip);
             _hud = Instantiate(_hud);
             BindHud();
@@ -36,7 +34,7 @@ namespace _Project.Scripts
             HUD hudComponent = _hud.GetComponent<HUD>();
             SpaceShipWeapon spaceShipWeapon = _spaceShip.GetComponent<SpaceShipWeapon>();
             hudComponent.Initialize(_spaceShip, spaceShipWeapon);
-            _hud.worldCamera = _mainCamera;
+            _hud.worldCamera = Camera.main;
         }
     }
 }

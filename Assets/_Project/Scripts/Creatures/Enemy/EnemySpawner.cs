@@ -15,7 +15,7 @@ namespace _Project.Scripts.Creatures.Enemy
 
         private void Start()
         {
-            _mainCamera = Camera.main;
+            _mainCamera = Camera.main!;
             _spaceShipDeath = GameObject.FindWithTag("SpaceShip")?.GetComponent<SpaceShipDeath>();
         }
 
@@ -54,7 +54,7 @@ namespace _Project.Scripts.Creatures.Enemy
                     break;
             }
 
-            return _mainCamera.ViewportToWorldPoint(viewportPoint);
+            return Camera.main.ViewportToWorldPoint(viewportPoint);
         }
     }
 }
