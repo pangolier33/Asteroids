@@ -1,8 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Creatures.Enemy
@@ -14,9 +11,11 @@ namespace _Project.Scripts.Creatures.Enemy
         [SerializeField] private float _spawnInterval;
 
         private SpaceShipDeath _spaceShipDeath;
+        private Camera _mainCamera;
 
         private void Start()
         {
+            _mainCamera = Camera.main;
             _spaceShipDeath = GameObject.FindWithTag("SpaceShip")?.GetComponent<SpaceShipDeath>();
         }
 
@@ -55,7 +54,7 @@ namespace _Project.Scripts.Creatures.Enemy
                     break;
             }
 
-            return Camera.main.ViewportToWorldPoint(viewportPoint);
+            return _mainCamera.ViewportToWorldPoint(viewportPoint);
         }
     }
 }
