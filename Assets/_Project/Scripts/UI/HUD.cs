@@ -31,6 +31,7 @@ namespace _Project.Scripts.UI
 
         private void Update()
         {
+            if (_shipRigidbody == null) return;
             UpdateShipInfoUI();
         }
 

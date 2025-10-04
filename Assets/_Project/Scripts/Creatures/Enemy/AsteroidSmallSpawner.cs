@@ -28,6 +28,9 @@ namespace _Project.Scripts.Creatures.Enemy
                 {
                     rigidbody2D.AddForce(direction * _spawnForce, ForceMode2D.Impulse);
                 }
+
+                SpaceShipDeath spaceShipDeath = GetComponent<Enemy>()._spaceShipDeath;
+                newAsteroid.GetComponent<Enemy>().Initialize(spaceShipDeath);
             }
         }
     }

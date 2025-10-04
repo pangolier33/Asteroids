@@ -9,15 +9,11 @@ using UnityEngine.Rendering.Universal;
 
 namespace _Project.Scripts
 {
-    public class GameInitiator : MonoBehaviour
+    public class EntryPoint : MonoBehaviour
     {
         [SerializeField] private Camera _mainCamera;
-        [SerializeField] private Light2D _globalLight2D;
         [SerializeField] private Canvas _hud;
-        [SerializeField] private EventSystem _eventSystem;
         [SerializeField] private SpaceShipMovement _spaceShip;
-        [SerializeField] private NavMeshSurface _navMesh;
-        [SerializeField] private NavMeshModifier _navMeshModifier;
         [SerializeField] private EnemySpawner _enemySpawner;
 
         private void Start()
@@ -29,13 +25,9 @@ namespace _Project.Scripts
         private void BindObjects()
         {
             _mainCamera = Instantiate(_mainCamera);
-            _globalLight2D = Instantiate(_globalLight2D);
             _spaceShip = Instantiate(_spaceShip);
             _hud = Instantiate(_hud);
             BindHud();
-            _eventSystem = Instantiate(_eventSystem);
-            _navMesh = Instantiate(_navMesh);
-            _navMeshModifier = Instantiate(_navMeshModifier);
             _enemySpawner = Instantiate(_enemySpawner);
         }
 

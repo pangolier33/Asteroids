@@ -9,7 +9,7 @@ namespace _Project.Scripts.Creatures.Health
         [SerializeField] private UnityEvent _onDie;
         [SerializeField] private UnityEvent<int> _onHealthChanged; 
 
-        private int _currentHealth;
+        [SerializeField] private int _currentHealth;
 
         private void Start()
         {

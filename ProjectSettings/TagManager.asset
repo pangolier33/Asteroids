@@ -7,6 +7,8 @@ TagManager:
   - Bullet
   - Asteroid
   - Enemy
+  - RestartPanel
+  - SpaceShip
   layers:
   - Default
   - TransparentFX
