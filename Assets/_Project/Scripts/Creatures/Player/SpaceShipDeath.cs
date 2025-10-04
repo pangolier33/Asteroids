@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class SpaceShipDeath : MonoBehaviour
 {
-    [SerializeField] private GameObject _restartCanvas;
+    [SerializeField] private RestartPanelUI _restartCanvas;
+    
     private int _score;
     
     public void Death()
     {
-        _restartCanvas = Instantiate(_restartCanvas);
-        RestartPanelUI restartPanelUI = _restartCanvas.GetComponent<RestartPanelUI>();
-        restartPanelUI.SetScore(_score);
+        Instantiate(_restartCanvas.gameObject);
+        _restartCanvas.SetScore(_score);
         Destroy(gameObject);
     }
     

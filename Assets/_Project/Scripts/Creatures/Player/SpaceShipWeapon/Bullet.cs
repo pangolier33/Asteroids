@@ -1,15 +1,17 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
 {
     public class Bullet : MonoBehaviour
     {
-        [SerializeField] private float speed = 15f;
+        [SerializeField] private float _speed = 15f;
+        [SerializeField] private float _bulletLifeTime = 5f;
         
         private void OnEnable()
         {
-            Invoke(nameof(Deactivate), 5f);
+            Invoke(nameof(Deactivate), _bulletLifeTime);
         }
         private void OnDisable()
         {
@@ -25,7 +27,7 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
         {
             direction.Normalize();
             transform.up = direction;
-            GetComponent<Rigidbody2D>().linearVelocity = direction * speed;
+            GetComponent<Rigidbody2D>().linearVelocity = direction * _speed;
         }
 
         private void Deactivate()
