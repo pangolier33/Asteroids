@@ -1,11 +1,9 @@
 using _Project.Scripts.Creatures.Enemy;
 using _Project.Scripts.Creatures.Player;
 using _Project.Scripts.Creatures.Player.SpaceShipWeapon;
+using _Project.Scripts.Services;
 using _Project.Scripts.UI;
-using NavMeshPlus.Components;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Rendering.Universal;
 
 namespace _Project.Scripts
 {
@@ -18,7 +16,6 @@ namespace _Project.Scripts
         private void Start()
         {
             BindObjects();
-            StartCoroutine(_enemySpawner.SpawnEnemies());
         }
 
         private void BindObjects()
@@ -27,6 +24,8 @@ namespace _Project.Scripts
             _hud = Instantiate(_hud);
             BindHud();
             _enemySpawner = Instantiate(_enemySpawner);
+            BindEnemySpawner();
+            StartCoroutine(_enemySpawner.SpawnEnemies());
         }
 
         private void BindHud()
@@ -35,6 +34,11 @@ namespace _Project.Scripts
             SpaceShipWeapon spaceShipWeapon = _spaceShip.GetComponent<SpaceShipWeapon>();
             hudComponent.Initialize(_spaceShip, spaceShipWeapon);
             _hud.worldCamera = Camera.main;
+        }
+
+        private void BindEnemySpawner()
+        {
+            _enemySpawner.Initialize(_spaceShip.GetComponent<ScoreService>());
         }
     }
 }

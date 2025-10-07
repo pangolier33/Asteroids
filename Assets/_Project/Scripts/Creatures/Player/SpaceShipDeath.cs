@@ -1,21 +1,26 @@
+using _Project.Scripts.Services;
 using _Project.Scripts.UI;
 using UnityEngine;
 
-public class SpaceShipDeath : MonoBehaviour
+namespace _Project.Scripts.Creatures.Player
 {
-    [SerializeField] private RestartPanelUI _restartCanvas;
-    
-    private int _score;
-    
-    public void Death()
+    [RequireComponent(typeof(ScoreService))]
+    public class SpaceShipDeath : MonoBehaviour
     {
-        Instantiate(_restartCanvas.gameObject);
-        _restartCanvas.SetScore(_score);
-        Destroy(gameObject);
-    }
+        [SerializeField] private RestartPanelUI _restartCanvas;
     
-    public void IncrementScore()
-    {
-        _score++;
+        private ScoreService _scoreService;
+
+        private void Awake()
+        {
+            _scoreService = GetComponent<ScoreService>();
+        }
+
+        public void Death()
+        {
+            Instantiate(_restartCanvas.gameObject);
+            _restartCanvas.SetScore(_scoreService.Score);
+            Destroy(gameObject);
+        }
     }
 }

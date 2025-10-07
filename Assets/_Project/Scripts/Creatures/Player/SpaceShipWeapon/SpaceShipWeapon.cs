@@ -15,7 +15,7 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
         [SerializeField] private float _laserDuration = 2f;
         [SerializeField] private float _chargeRechargeTime = 5f;
         
-        [field: SerializeField] public int _laserCharges { get; private set; }
+        [field: SerializeField] public int LaserCharges { get; private set; }
 
         private PoolBase<Bullet> _bulletPool;
         private float _nextFireTime;
@@ -52,7 +52,7 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
 
         public void HandleLaserActivation()
         {
-            if (_laserCharges > 0 && !_isLaserActive)
+            if (LaserCharges > 0 && !_isLaserActive)
             {
                 UseLaserCharge();
                 EnableLaser();
@@ -61,7 +61,7 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
         
         public float GetNextChargeProgress()
         {
-            if (_laserCharges >= MAX_LASER_CHARGES)
+            if (LaserCharges >= MAX_LASER_CHARGES)
                 return 0f;
 
             return _nextChargeTime - Time.time;
@@ -77,7 +77,7 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
 
         private void UpdateChargesRecharge()
         {
-            if (_laserCharges < MAX_LASER_CHARGES && Time.time >= _nextChargeTime)
+            if (LaserCharges < MAX_LASER_CHARGES && Time.time >= _nextChargeTime)
             {
                 AddLaserCharge();
                 _nextChargeTime = Time.time + _chargeRechargeTime;
@@ -121,14 +121,14 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
 
         private void UseLaserCharge()
         {
-            _laserCharges--;
+            LaserCharges--;
         }
 
         private void AddLaserCharge()
         {
-            if (_laserCharges < MAX_LASER_CHARGES)
+            if (LaserCharges < MAX_LASER_CHARGES)
             {
-                _laserCharges++;
+                LaserCharges++;
             }
         }
 

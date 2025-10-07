@@ -75,7 +75,7 @@ namespace _Project.Scripts.UI
 
         private void UpdateLaserChargesUI()
         {
-            int laserCharges = _spaceShipWeapon._laserCharges;
+            int laserCharges = _spaceShipWeapon.LaserCharges;
             _chargesText.text = $"Laser charges: {laserCharges}";
         }
 

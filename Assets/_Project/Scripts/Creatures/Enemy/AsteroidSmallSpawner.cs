@@ -1,3 +1,4 @@
+using _Project.Scripts.Services;
 using UnityEngine;
 
 namespace _Project.Scripts.Creatures.Enemy
@@ -8,12 +9,14 @@ namespace _Project.Scripts.Creatures.Enemy
         [SerializeField] private int _spawnCount = 2;
         [SerializeField] private float _spawnForce = 3f;
 
+        private float _spawnOffset = 0.5f;
+
         public void SpawnSmallerAsteroids()
         {
             for (int i = 0; i < _spawnCount; i++)
             {
                 Vector2 direction = Random.insideUnitCircle.normalized;
-                Vector2 spawnPos = (Vector2)transform.position + direction * 0.5f;
+                Vector2 spawnPos = (Vector2)transform.position + direction * _spawnOffset;
 
                 GameObject newAsteroid = Instantiate(
                     _asteroid,
@@ -21,7 +24,7 @@ namespace _Project.Scripts.Creatures.Enemy
                     Quaternion.identity
                 );
 
-                newAsteroid.transform.localScale = 0.5f * Vector3.one;
+                newAsteroid.transform.localScale = _spawnOffset * Vector3.one;
 
                 Rigidbody2D rigidbody2D = newAsteroid.GetComponent<Rigidbody2D>();
                 if (rigidbody2D != null)
@@ -29,8 +32,8 @@ namespace _Project.Scripts.Creatures.Enemy
                     rigidbody2D.AddForce(direction * _spawnForce, ForceMode2D.Impulse);
                 }
 
-                SpaceShipDeath spaceShipDeath = GetComponent<Enemy>()._spaceShipDeath;
-                newAsteroid.GetComponent<Enemy>().Initialize(spaceShipDeath);
+                ScoreService _scoreService = GetComponent<Enemy>()._scoreService;
+                newAsteroid.GetComponent<Enemy>().Initialize(_scoreService);
             }
         }
     }
