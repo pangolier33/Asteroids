@@ -324,7 +324,7 @@ MonoBehaviour:
   _enemyPrefabs:
   - {fileID: -5533234605249935482, guid: cf8ce37fde80eac4a97db259480484e4, type: 3}
   - {fileID: -184873510415367234, guid: e35f9c442df6ef144b391d92fde60a17, type: 3}
-  _spawnOffset: 0
+  _spawnOffset: 1
   _spawnIntervalValue: 5
 --- !u!4 &1932149840
 Transform:

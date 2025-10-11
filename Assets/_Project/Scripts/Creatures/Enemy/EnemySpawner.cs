@@ -8,6 +8,7 @@ namespace _Project.Scripts.Creatures.Enemy
     public class EnemySpawner
     {
         private const int SIDES_SCREEN_COUNT = 4;
+        private const float OFFSET_FOR_SPAWN_BEHIND_THE_SCREEN = 1f;
         
         private Enemy[] _enemyPrefabs;
         private float _spawnOffset;
@@ -44,10 +45,10 @@ namespace _Project.Scripts.Creatures.Enemy
             switch (side)
             {
                 case 0:
-                    viewportPoint = new Vector3(Random.value, 1f + _spawnOffset, _cameraOffsetZ);
+                    viewportPoint = new Vector3(Random.value, OFFSET_FOR_SPAWN_BEHIND_THE_SCREEN + _spawnOffset, _cameraOffsetZ);
                     break;
                 case 1:
-                    viewportPoint = new Vector3(1f + _spawnOffset, Random.value, _cameraOffsetZ);
+                    viewportPoint = new Vector3(OFFSET_FOR_SPAWN_BEHIND_THE_SCREEN + _spawnOffset, Random.value, _cameraOffsetZ);
                     break;
                 case 2:
                     viewportPoint = new Vector3(Random.value, -_spawnOffset, _cameraOffsetZ);
