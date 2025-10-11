@@ -23,34 +23,14 @@ namespace _Project.Scripts.Creatures.Enemy
             _mainCamera = Camera.main;
             _spawnInterval = new WaitForSeconds(_spawnIntervalValue);
         }
-
-        public void Initialize(ScoreService scoreService)
-        {
-            _scoreService = scoreService;
-        }
         
         public IEnumerator SpawnEnemies()
         {
-            // Проверка перед началом спавна
-            if (_scoreService == null)
-            {
-                Debug.LogError("ScoreService not initialized in EnemySpawner!");
-                yield break;
-            }
-
-            if (_enemyPrefabs == null || _enemyPrefabs.Length == 0)
-            {
-                Debug.LogError("No enemy prefabs assigned!");
-                yield break;
-            }
-
             while (true)
             {
                 Vector3 screenPoint = CalculateCoordinatesBehindTheScreen();
                 int enemyIndex = Random.Range(0, _enemyPrefabs.Length);
-                
-                GameObject enemy = Instantiate(_enemyPrefabs[enemyIndex].gameObject, screenPoint, Quaternion.identity);
-                enemy.GetComponent<Enemy>().Initialize(_scoreService);
+                Instantiate(_enemyPrefabs[enemyIndex].gameObject, screenPoint, Quaternion.identity);
                 
                 yield return _spawnInterval;
             }

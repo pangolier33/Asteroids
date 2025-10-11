@@ -31,9 +31,6 @@ namespace _Project.Scripts.Creatures.Enemy
                 {
                     rigidbody2D.AddForce(direction * _spawnForce, ForceMode2D.Impulse);
                 }
-
-                ScoreService _scoreService = GetComponent<Enemy>()._scoreService;
-                newAsteroid.GetComponent<Enemy>().Initialize(_scoreService);
             }
         }
     }

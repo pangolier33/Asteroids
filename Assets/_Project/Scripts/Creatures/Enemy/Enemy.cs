@@ -7,11 +7,7 @@ namespace _Project.Scripts.Creatures.Enemy
     public class Enemy : MonoBehaviour
     {
         public ScoreService _scoreService { get; private set; }
-
-        public void Initialize(ScoreService scoreService)
-        {
-            _scoreService = scoreService;
-        }
+        private int _enemyScoreValue = 1;
         
         public void DestroyEnemy()
         {
@@ -21,7 +17,8 @@ namespace _Project.Scripts.Creatures.Enemy
         
         private void DieEnemy()
         {
-            _scoreService.AddScore();
+            int score = PlayerPrefs.GetInt("CurrentScore");
+            PlayerPrefs.SetInt("CurrentScore", score + _enemyScoreValue);
         }
     }
 }

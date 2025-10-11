@@ -19,7 +19,7 @@ namespace _Project.Scripts.Creatures.Player
         public void Death()
         {
             Instantiate(_restartCanvas.gameObject);
-            _restartCanvas.SetScore(_scoreService.Score);
+            _restartCanvas.SetScore(_scoreService.ShowCurrentScore());
             Destroy(gameObject);
         }
     }

@@ -9,11 +9,12 @@ namespace _Project.Scripts.Services
         private void Start()
         {
             Score = 0;
+            PlayerPrefs.SetInt("CurrentScore", 0);
         }
 
-        public void AddScore()
+        public int ShowCurrentScore()
         {
-            Score++;
+            return PlayerPrefs.GetInt("CurrentScore");
         }
     }
 }
