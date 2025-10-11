@@ -5,23 +5,23 @@ using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Creatures.Enemy
 {
-    public class EnemySpawner : MonoBehaviour
+    public class EnemySpawner
     {
         private const int SIDES_SCREEN_COUNT = 4;
         
-        [SerializeField] private Enemy[] _enemyPrefabs;
-        [SerializeField] private float _spawnOffset;
-        [SerializeField] private float _spawnIntervalValue = 5f;
-
+        private Enemy[] _enemyPrefabs;
+        private float _spawnOffset;
         private ScoreService _scoreService;
         private Camera _mainCamera;
-        private float _cameraOffsetZ = 10f; // Изменил на 10f, так как 0 может быть перед камерой
+        private float _cameraOffsetZ = 10f;
         private WaitForSeconds _spawnInterval;
 
-        private void Start()
+        public EnemySpawner(Enemy[] enemyPrefabs, float spawnOffset, WaitForSeconds spawnInterval, Camera mainCamera)
         {
-            _mainCamera = Camera.main;
-            _spawnInterval = new WaitForSeconds(_spawnIntervalValue);
+            _enemyPrefabs = enemyPrefabs;
+            _spawnOffset = spawnOffset;
+            _spawnInterval = spawnInterval;
+            _mainCamera = mainCamera;
         }
         
         public IEnumerator SpawnEnemies()
@@ -30,7 +30,7 @@ namespace _Project.Scripts.Creatures.Enemy
             {
                 Vector3 screenPoint = CalculateCoordinatesBehindTheScreen();
                 int enemyIndex = Random.Range(0, _enemyPrefabs.Length);
-                Instantiate(_enemyPrefabs[enemyIndex].gameObject, screenPoint, Quaternion.identity);
+                GameObject.Instantiate(_enemyPrefabs[enemyIndex].gameObject, screenPoint, Quaternion.identity);
                 
                 yield return _spawnInterval;
             }
@@ -57,15 +57,7 @@ namespace _Project.Scripts.Creatures.Enemy
                     break;
             }
             
-            if (_mainCamera != null)
-            {
-                return _mainCamera.ViewportToWorldPoint(viewportPoint);
-            }
-            else
-            {
-                Debug.LogWarning("Main camera is null");
-                return Camera.main.ViewportToWorldPoint(viewportPoint);
-            }
+            return _mainCamera.ViewportToWorldPoint(viewportPoint);
         }
     }
 }

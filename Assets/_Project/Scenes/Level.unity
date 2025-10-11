@@ -321,7 +321,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hud: {fileID: 8898424630410890984, guid: ffef11265c472a54392f9b1c20830809, type: 3}
   _spaceShip: {fileID: 3657155057991059965, guid: b6546cd9ee6a03f408466474a594e2af, type: 3}
-  _enemySpawner: {fileID: 3315454061620098538, guid: f5b38ddff912c244c8ef385878659515, type: 3}
+  _enemyPrefabs:
+  - {fileID: -5533234605249935482, guid: cf8ce37fde80eac4a97db259480484e4, type: 3}
+  - {fileID: -184873510415367234, guid: e35f9c442df6ef144b391d92fde60a17, type: 3}
+  _spawnOffset: 0
+  _spawnIntervalValue: 5
 --- !u!4 &1932149840
 Transform:
   m_ObjectHideFlags: 0

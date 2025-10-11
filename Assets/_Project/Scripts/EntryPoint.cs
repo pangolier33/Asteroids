@@ -9,9 +9,18 @@ namespace _Project.Scripts
 {
     public class EntryPoint : MonoBehaviour
     {
+        [Header("Objects to instantiate")]
         [SerializeField] private Canvas _hud;
         [SerializeField] private SpaceShipMovement _spaceShip;
-        [SerializeField] private EnemySpawner _enemySpawner;
+        
+        [Header("Objects to bind enemy spawner")]
+        [SerializeField] private Enemy[] _enemyPrefabs;
+        [SerializeField] private float _spawnOffset;
+        [SerializeField] private float _spawnIntervalValue = 5f;
+        
+        private EnemySpawner _enemySpawner;
+        private Camera _mainCamera;
+        private WaitForSeconds _spawnInterval;
 
         private void Start()
         {
@@ -20,10 +29,12 @@ namespace _Project.Scripts
 
         private void BindObjects()
         {
+            _mainCamera = Camera.main;
             _spaceShip = Instantiate(_spaceShip);
             _hud = Instantiate(_hud);
             BindHud();
-            _enemySpawner = Instantiate(_enemySpawner);
+            _spawnInterval = new WaitForSeconds(_spawnIntervalValue);
+            _enemySpawner = new EnemySpawner(_enemyPrefabs, _spawnOffset, _spawnInterval, _mainCamera);
             
             StartCoroutine(_enemySpawner.SpawnEnemies());
         }
@@ -33,7 +44,7 @@ namespace _Project.Scripts
             HUD hudComponent = _hud.GetComponent<HUD>();
             SpaceShipWeapon spaceShipWeapon = _spaceShip.GetComponent<SpaceShipWeapon>();
             hudComponent.Initialize(_spaceShip, spaceShipWeapon);
-            _hud.worldCamera = Camera.main;
+            _hud.worldCamera = _mainCamera;
         }
     }
 }
