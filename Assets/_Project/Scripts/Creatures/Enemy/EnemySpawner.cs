@@ -31,7 +31,7 @@ namespace _Project.Scripts.Creatures.Enemy
             {
                 Vector3 screenPoint = CalculateCoordinatesBehindTheScreen();
                 int enemyIndex = Random.Range(0, _enemyPrefabs.Length);
-                GameObject.Instantiate(_enemyPrefabs[enemyIndex].gameObject, screenPoint, Quaternion.identity);
+                Object.Instantiate(_enemyPrefabs[enemyIndex].gameObject, screenPoint, Quaternion.identity);
                 
                 yield return _spawnInterval;
             }

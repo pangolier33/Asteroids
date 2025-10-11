@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 namespace _Project.Scripts.Creatures.Health
 {
     public class Health : MonoBehaviour
     {
+        public event Action OnDie;
+        
         [SerializeField] private int _maxHealth = 1;
         [SerializeField] private int _currentHealth;
 
@@ -24,9 +27,9 @@ namespace _Project.Scripts.Creatures.Health
             }
         }
 
-        protected virtual void Die()
+        private void Die()
         {
-            
+            OnDie?.Invoke();
         }
     }
 }

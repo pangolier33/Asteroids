@@ -217,8 +217,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5102484490848054277}
-  - component: {fileID: 7339002705572533819}
   - component: {fileID: 7822595332539349138}
+  - component: {fileID: 1294571154757815895}
   - component: {fileID: 3657155057991059965}
   - component: {fileID: 1118278765636809622}
   - component: {fileID: -3519330663163278001}
@@ -250,20 +250,6 @@ Transform:
   - {fileID: 8840708410700877373}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7339002705572533819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4901976582397744381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1f91d83c6f3ea346ba5733f14aebbe8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 1
-  _currentHealth: 0
 --- !u!114 &7822595332539349138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,6 +264,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spaceShipMovement: {fileID: 3657155057991059965}
   _spaceShipWeapon: {fileID: 1118278765636809622}
+--- !u!114 &1294571154757815895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4901976582397744381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18daddf66d3399d49bdf3973c4d70026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 1
+  _currentHealth: 0
 --- !u!114 &3657155057991059965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,7 +311,7 @@ MonoBehaviour:
   _delayBullet: 0.25
   _laserDuration: 2
   _chargeRechargeTime: 5
-  <_laserCharges>k__BackingField: 3
+  <LaserCharges>k__BackingField: 0
 --- !u!114 &-3519330663163278001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,7 +324,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34ba52e462b92d54dab229dc858a6cb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Score>k__BackingField: 0
 --- !u!114 &-4154236844963271538
 MonoBehaviour:
   m_ObjectHideFlags: 0

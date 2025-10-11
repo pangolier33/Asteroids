@@ -1,21 +1,30 @@
-using _Project.Scripts.Services;
-using _Project.Scripts.UI;
 using UnityEngine;
 
 namespace _Project.Scripts.Creatures.Enemy
 {
     public class Enemy : MonoBehaviour
     {
-        public ScoreService _scoreService { get; private set; }
         private int _enemyScoreValue = 1;
-        
-        public void DestroyEnemy()
+        private Health.Health _health;
+
+        protected virtual void OnEnable()
         {
-            DieEnemy();
+            _health = GetComponent<Health.Health>();
+            _health.OnDie += DestroyEnemy;
+        }
+
+        private void OnDisable()
+        {
+            _health.OnDie -= DestroyEnemy;
+        }
+
+        protected virtual void DestroyEnemy()
+        {
+            IncrementScore();
             Destroy(gameObject);
         }
         
-        private void DieEnemy()
+        private void IncrementScore()
         {
             int score = PlayerPrefs.GetInt("CurrentScore");
             PlayerPrefs.SetInt("CurrentScore", score + _enemyScoreValue);
