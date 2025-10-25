@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace _Project.Scripts.Tools
 {
+    [RequireComponent(typeof(Button))]
     public class RestartButton : MonoBehaviour
     {
         [SerializeField] private int _scene = 0;

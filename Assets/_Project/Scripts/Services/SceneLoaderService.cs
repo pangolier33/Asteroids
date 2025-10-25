@@ -11,18 +11,7 @@ namespace _Project.Scripts.Services
             GameObject loadingScreenPrefab = Resources.Load<GameObject>("LoadingScreen");
             Object.Instantiate(loadingScreenPrefab);
 
-            AsyncOperation loadAsync = SceneManager.LoadSceneAsync(sceneIndex);
-            loadAsync.allowSceneActivation = false;
-        
-            while (!loadAsync.isDone)
-            {
-                if (loadAsync.progress >= 0.9f)
-                {
-                    await Task.Delay(500);
-                    loadAsync.allowSceneActivation = true;
-                }
-                await Task.Yield();
-            }
+            await SceneManager.LoadSceneAsync(sceneIndex);
 
             Object.Destroy(loadingScreenPrefab);
         }

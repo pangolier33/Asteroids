@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Creatures.Player
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public class SpaceShipMovement : MonoBehaviour
     {
         public Rigidbody2D ShipRigidbody { get; private set; }

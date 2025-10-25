@@ -1,43 +1,55 @@
 using System.Collections;
-using _Project.Scripts.Services;
+using _Project.Scripts.Creatures.Enemy;
+using _Project.Scripts.Creatures.Factories;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace _Project.Scripts.Creatures.Enemy
+namespace _Project.Scripts.Spawners
 {
     public class EnemySpawner
     {
         private const int SIDES_SCREEN_COUNT = 4;
         private const float OFFSET_FOR_SPAWN_BEHIND_THE_SCREEN = 1f;
         
-        private Enemy[] _enemyPrefabs;
+        protected WaitForSeconds _spawnInterval;
+        protected SessionData _sessionData;
+        protected BaseFactory<Enemy> _enemyFactory;
+        
+        private Enemy _enemyPrefab;
         private float _spawnOffset;
-        private ScoreService _scoreService;
         private Camera _mainCamera;
         private float _cameraOffsetZ = 10f;
-        private WaitForSeconds _spawnInterval;
+        private int _poolSize;
 
-        public EnemySpawner(Enemy[] enemyPrefabs, float spawnOffset, WaitForSeconds spawnInterval, Camera mainCamera)
+        public EnemySpawner(Enemy enemyPrefab, float spawnOffset, WaitForSeconds spawnInterval, Camera mainCamera, SessionData sessionData, int poolSize)
         {
-            _enemyPrefabs = enemyPrefabs;
+            _enemyPrefab = enemyPrefab;
             _spawnOffset = spawnOffset;
             _spawnInterval = spawnInterval;
             _mainCamera = mainCamera;
+            _sessionData = sessionData;
+            _poolSize = poolSize;
+        }
+
+        public void SetSpawner()
+        {
+            _enemyFactory = new BaseFactory<Enemy>(_enemyPrefab, _poolSize);
+            _enemyFactory.PoolInitialize();
         }
         
-        public IEnumerator SpawnEnemies()
+        public virtual IEnumerator SpawnEnemies()
         {
             while (true)
             {
                 Vector3 screenPoint = CalculateCoordinatesBehindTheScreen();
-                int enemyIndex = Random.Range(0, _enemyPrefabs.Length);
-                Object.Instantiate(_enemyPrefabs[enemyIndex].gameObject, screenPoint, Quaternion.identity);
-                
+                Enemy enemy = _enemyFactory.pool.Get();
+                enemy.OnDisabled += _sessionData.AddKillEvent;
+                enemy.transform.position = screenPoint;
                 yield return _spawnInterval;
             }
         }
 
-        private Vector3 CalculateCoordinatesBehindTheScreen()
+        protected Vector3 CalculateCoordinatesBehindTheScreen()
         {
             int side = Random.Range(0, SIDES_SCREEN_COUNT);
             Vector3 viewportPoint = Vector3.zero;

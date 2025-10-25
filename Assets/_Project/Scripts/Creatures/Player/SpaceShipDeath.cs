@@ -1,3 +1,4 @@
+using _Project.Scripts.Creatures.Health;
 using _Project.Scripts.Services;
 using _Project.Scripts.UI;
 using UnityEngine;
@@ -5,29 +6,21 @@ using UnityEngine;
 namespace _Project.Scripts.Creatures.Player
 {
     [RequireComponent(typeof(ScoreService))]
-    public class SpaceShipDeath : MonoBehaviour
+    public class SpaceShipDeath : MonoBehaviour, ICreatureDeath
     {
         [SerializeField] private RestartPanelUI _restartCanvas;
-    
-        private ScoreService _scoreService;
-        private Health.Health _health;
+        
+        private SessionData _sessionData;
 
-        private void Awake()
+        public void Inizialize(SessionData sessionData)
         {
-            _scoreService = GetComponent<ScoreService>();
-            _health = GetComponent<Health.Health>();
-            _health.OnDie += Death;
+            _sessionData = sessionData;
         }
-
-        private void OnDestroy()
-        {
-            _health.OnDie -= Death;
-        }
-
-        private void Death()
+        
+        public void CreatureDeath()
         {
             Instantiate(_restartCanvas.gameObject);
-            _restartCanvas.SetScore(_scoreService.ShowCurrentScore());
+            _restartCanvas.SetScore(_sessionData._enemyKilledScore);
             Destroy(gameObject);
         }
     }

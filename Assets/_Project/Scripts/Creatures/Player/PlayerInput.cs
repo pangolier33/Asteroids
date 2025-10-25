@@ -1,12 +1,15 @@
+using _Project.Scripts.Creatures.Player.SpaceShipWeapon;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace _Project.Scripts.Creatures.Player
 {
+    [RequireComponent(typeof(SpaceShipMovement))]
     public class PlayerInput : MonoBehaviour
     {
         [SerializeField] private SpaceShipMovement _spaceShipMovement;
-        [SerializeField] private SpaceShipWeapon.SpaceShipWeapon _spaceShipWeapon;
+        [SerializeField] private SpaceShipGun _spaceShipGun;
+        [SerializeField] private SpaceShipLaser _spaceShipLaser;
 
         private InputSystem_Actions _inputSystem;
 
@@ -62,12 +65,12 @@ namespace _Project.Scripts.Creatures.Player
 
         private void OnShootPermormed(InputAction.CallbackContext obj)
         {
-            _spaceShipWeapon.HandleShooting();
+            _spaceShipGun.HandleShooting();
         }
 
         private void OnLaserEnabled(InputAction.CallbackContext obj)
         {
-            _spaceShipWeapon.HandleLaserActivation();
+            _spaceShipLaser.HandleLaserActivation();
         }
     }
 }

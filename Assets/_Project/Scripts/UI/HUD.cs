@@ -14,14 +14,14 @@ namespace _Project.Scripts.UI
         [SerializeField] private TMP_Text _nextLaserText;
         
         private SpaceShipMovement _spaceShipMovement;
-        private SpaceShipWeapon _spaceShipWeapon;
+        private SpaceShipLaser _spaceShipLaser;
         private Rigidbody2D _shipRigidbody;
         private int _score;
 
-        public void Initialize(SpaceShipMovement spaceShipMovement, SpaceShipWeapon spaceShipWeapon)
+        public void Initialize(SpaceShipMovement spaceShipMovement, SpaceShipLaser spaceShipLaser)
         {
             _spaceShipMovement = spaceShipMovement;
-            _spaceShipWeapon = spaceShipWeapon;
+            _spaceShipLaser = spaceShipLaser;
         }
         
         private void Start()
@@ -75,13 +75,13 @@ namespace _Project.Scripts.UI
 
         private void UpdateLaserChargesUI()
         {
-            int laserCharges = _spaceShipWeapon.LaserCharges;
+            int laserCharges = _spaceShipLaser.LaserCharges;
             _chargesText.text = $"Laser charges: {laserCharges}";
         }
 
         private void UpdateNextLaserTimeUI()
         {
-            float nextLaserTime = _spaceShipWeapon.GetNextChargeProgress();
+            float nextLaserTime = _spaceShipLaser.GetNextChargeProgress();
             _nextLaserText.text = $"Next laser time: {nextLaserTime:F0}";
         }
     }

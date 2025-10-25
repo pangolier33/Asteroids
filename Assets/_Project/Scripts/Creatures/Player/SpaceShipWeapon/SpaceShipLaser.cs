@@ -1,53 +1,30 @@
-using _Project.Scripts.Tools;
 using UnityEngine;
 
 namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
 {
-    public class SpaceShipWeapon : MonoBehaviour
+    public class SpaceShipLaser : MonoBehaviour
     {
-        private const int PROJECTILE_PRELOAD_COUNT = 20;
         private const int MAX_LASER_CHARGES = 3;
 
-        [SerializeField] private Transform _firePoint;
-        [SerializeField] private Bullet _bulletPrefab;
         [SerializeField] private GameObject _laser;
-        [SerializeField] private float _delayBullet = 0.25f;
         [SerializeField] private float _laserDuration = 2f;
         [SerializeField] private float _chargeRechargeTime = 5f;
         
         [field: SerializeField] public int LaserCharges { get; private set; }
 
-        private PoolBase<Bullet> _bulletPool;
-        private float _nextFireTime;
         private float _nextChargeTime;
         private float _laserEndTime;
         private bool _isLaserActive;
 
         private void Awake()
         {
-            _bulletPool = new PoolBase<Bullet>(
-                Preload,
-                GetAction,
-                ReturnAction,
-                PROJECTILE_PRELOAD_COUNT);
-
             _laser.SetActive(false);
         }
 
         private void Update()
         {
             UpdateLaserDuration();
-
             UpdateChargesRecharge();
-        }
-        
-        public void HandleShooting()
-        {
-            if (!IsCooldownReady(_nextFireTime))
-                return;
-
-            ShootBullet();
-            SetCooldown(ref _nextFireTime, _delayBullet);
         }
 
         public void HandleLaserActivation()
@@ -84,28 +61,6 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
             }
         }
 
-        private Bullet Preload()
-        {
-            Bullet bullet = Instantiate(_bulletPrefab);
-            bullet.gameObject.SetActive(false);
-            return bullet;
-        }
-
-        private void GetAction(Bullet bullet) => bullet.gameObject.SetActive(true);
-        private void ReturnAction(Bullet bullet) => bullet.gameObject.SetActive(false);
-        private void ReturnAllBullets() => _bulletPool.ReturnAll();
-
-        private bool IsCooldownReady(float nextTime) => Time.time >= nextTime;
-
-        private void ShootBullet()
-        {
-            Bullet bullet = _bulletPool.Get();
-
-            bullet.transform.position = _firePoint.position;
-            bullet.transform.rotation = _firePoint.rotation;
-            bullet.Launch(transform.up);
-        }
-
         private void EnableLaser()
         {
             _laser.SetActive(true);
@@ -130,11 +85,6 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
             {
                 LaserCharges++;
             }
-        }
-
-        private void SetCooldown(ref float nextTime, float delay)
-        {
-            nextTime = Time.time + delay;
         }
     }
 }

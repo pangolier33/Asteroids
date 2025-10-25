@@ -1,33 +1,22 @@
+using System;
+using _Project.Scripts.Creatures.Health;
 using UnityEngine;
 
 namespace _Project.Scripts.Creatures.Enemy
 {
-    public class Enemy : MonoBehaviour
+    public class Enemy : MonoBehaviour, ICreatureDeath
     {
-        private int _enemyScoreValue = 1;
-        private Health.Health _health;
+        public Action OnDisabled;
 
-        protected virtual void OnEnable()
+        public void CreatureDeath()
         {
-            _health = GetComponent<Health.Health>();
-            _health.OnDie += DestroyEnemy;
+            gameObject.SetActive(false);
         }
 
         private void OnDisable()
         {
-            _health.OnDie -= DestroyEnemy;
-        }
-
-        protected virtual void DestroyEnemy()
-        {
-            IncrementScore();
-            Destroy(gameObject);
-        }
-        
-        private void IncrementScore()
-        {
-            int score = PlayerPrefs.GetInt("CurrentScore");
-            PlayerPrefs.SetInt("CurrentScore", score + _enemyScoreValue);
+            if (OnDisabled != null)
+                OnDisabled();
         }
     }
 }
