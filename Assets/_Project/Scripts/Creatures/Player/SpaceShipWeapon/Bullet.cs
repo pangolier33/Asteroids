@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
 {
@@ -6,14 +8,35 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
     {
         [SerializeField] private float _speed = 15f;
         [SerializeField] private float _bulletLifeTime = 5f;
-        
+    
+        private CancellationTokenSource _cancellationTokenSource;
+
         private void OnEnable()
         {
-            Invoke(nameof(Deactivate), _bulletLifeTime);
+            _cancellationTokenSource = new CancellationTokenSource();
+            StartLifeTimer(_cancellationTokenSource.Token);
         }
+
         private void OnDisable()
         {
-            CancelInvoke();
+            _cancellationTokenSource?.Cancel();
+            _cancellationTokenSource?.Dispose();
+            _cancellationTokenSource = null;
+        }
+
+        private async void StartLifeTimer(CancellationToken token)
+        {
+            try
+            {
+                await Task.Delay((int)(_bulletLifeTime * 1000), token);
+                if (!token.IsCancellationRequested)
+                {
+                    Deactivate();
+                }
+            }
+            catch (TaskCanceledException)
+            {
+            }
         }
 
         private void OnCollisionEnter2D(Collision2D other)
