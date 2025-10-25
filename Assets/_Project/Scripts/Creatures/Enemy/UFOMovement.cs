@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Creatures.Enemy
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public class UfoMovement : MonoBehaviour
     {
         [SerializeField] private float _moveSpeed = 2f;
