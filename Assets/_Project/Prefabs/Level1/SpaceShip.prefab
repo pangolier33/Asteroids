@@ -219,8 +219,9 @@ GameObject:
   - component: {fileID: 5102484490848054277}
   - component: {fileID: 7822595332539349138}
   - component: {fileID: 1294571154757815895}
+  - component: {fileID: 3260907195281438555}
+  - component: {fileID: 9043013547490452443}
   - component: {fileID: 3657155057991059965}
-  - component: {fileID: 1118278765636809622}
   - component: {fileID: -3519330663163278001}
   - component: {fileID: -4154236844963271538}
   - component: {fileID: 9063864129465251138}
@@ -263,7 +264,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spaceShipMovement: {fileID: 3657155057991059965}
-  _spaceShipWeapon: {fileID: 1118278765636809622}
+  _spaceShipGun: {fileID: 3260907195281438555}
+  _spaceShipLaser: {fileID: 9043013547490452443}
 --- !u!114 &1294571154757815895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,6 +280,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 1
   _currentHealth: 0
+--- !u!114 &3260907195281438555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4901976582397744381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b44643bdac2c391438c7572e447fb75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firePoint: {fileID: 8840708410700877373}
+  _bulletPrefab: {fileID: 7660502042836325290, guid: 58557eaee11c42d46a830413cdedd04c, type: 3}
+  _delayBullet: 0.25
+--- !u!114 &9043013547490452443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4901976582397744381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af73e35f91f798a4f8495db2bec8c007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _laser: {fileID: 4617604146034850832}
+  _laserDuration: 2
+  _chargeRechargeTime: 5
+  <LaserCharges>k__BackingField: 0
 --- !u!114 &3657155057991059965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,25 +326,6 @@ MonoBehaviour:
   _shipAcceleration: 10
   _shipMaxVelocity: 10
   _shipRotationSpeed: 180
---- !u!114 &1118278765636809622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4901976582397744381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0718c2213406874c844e9ba5bb8fed7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _firePoint: {fileID: 8840708410700877373}
-  _bulletPrefab: {fileID: 7660502042836325290, guid: 58557eaee11c42d46a830413cdedd04c, type: 3}
-  _laser: {fileID: 4617604146034850832}
-  _delayBullet: 0.25
-  _laserDuration: 2
-  _chargeRechargeTime: 5
-  <LaserCharges>k__BackingField: 0
 --- !u!114 &-3519330663163278001
 MonoBehaviour:
   m_ObjectHideFlags: 0

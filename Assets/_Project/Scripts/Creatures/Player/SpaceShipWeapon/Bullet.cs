@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
 {
