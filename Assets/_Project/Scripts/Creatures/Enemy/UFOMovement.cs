@@ -13,11 +13,6 @@ namespace _Project.Scripts.Creatures.Enemy
         private Rigidbody2D _rigidbody2D;
         private Vector3 _moveDirection;
 
-        public void Initialize(SpaceShipMovement spaceShipMovement)
-        {
-            //_spaceShip = spaceShipMovement.gameObject.transform;
-        }
-
         private void OnEnable()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
