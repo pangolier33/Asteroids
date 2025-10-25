@@ -1,5 +1,4 @@
-﻿using Unity.Android.Types;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace _Project.Scripts
 {
