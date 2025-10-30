@@ -1,5 +1,5 @@
 using _Project.Scripts.Creatures.Enemy;
-using _Project.Scripts.Creatures.Factories;
+using _Project.Scripts.Factories;
 using UnityEngine;
 
 namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon

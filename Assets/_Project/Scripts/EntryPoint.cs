@@ -61,8 +61,6 @@ namespace _Project.Scripts
             
             _asteroidSpawner = new AsteroidSpawner(_asteroidPrefab, _spawnOffset, _spawnInterval, _mainCamera, _sessionData, _poolSize);
             _asteroidSpawner.SetSpawner();
-            
-            //_sessionData.OnGameOver += _asteroidSpawner.ClearAllSubscriptions;
         }
     }
 }

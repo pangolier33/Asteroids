@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace _Project.Scripts.Creatures.Enemy
+﻿namespace _Project.Scripts.Creatures.Enemy
 {
     public class Asteroid : Enemy
     {

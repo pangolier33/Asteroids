@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using _Project.Scripts.Creatures.Enemy;
-using _Project.Scripts.Creatures.Factories;
+using _Project.Scripts.Factories;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

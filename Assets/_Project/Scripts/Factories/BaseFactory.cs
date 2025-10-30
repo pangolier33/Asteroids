@@ -2,7 +2,7 @@
 using _Project.Scripts.Tools;
 using UnityEngine;
 
-namespace _Project.Scripts.Creatures.Factories
+namespace _Project.Scripts.Factories
 {
     public class BaseFactory <T> where T : MonoBehaviour
     {
@@ -25,13 +25,6 @@ namespace _Project.Scripts.Creatures.Factories
                     _poolSize
                 );
         }
-
-        private T Preload()
-        {
-            T prefab = GameObject.Instantiate(_prefab);
-            prefab.gameObject.SetActive(false);
-            return prefab;
-        }
         
         public T GetPrefab() => _pool.Get();
 
@@ -42,5 +35,12 @@ namespace _Project.Scripts.Creatures.Factories
         public Queue<T> GetAllPrefabs() => _pool.GetAllItems();
 
         public void ReturnAction(T obj) => obj.gameObject.SetActive(false);
+        
+        private T Preload()
+        {
+            T prefab = GameObject.Instantiate(_prefab);
+            prefab.gameObject.SetActive(false);
+            return prefab;
+        }
     }
 }
