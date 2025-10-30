@@ -18,35 +18,58 @@ namespace _Project.Scripts.Spawners
 
         public override IEnumerator SpawnEnemies()
         {
-            while (true)
+            while (_sessionData.IsGameOver == false)
             {
                 Vector3 screenPoint = CalculateCoordinatesBehindTheScreen();
-                _enemy = _enemyFactory.pool.Get();
-                _enemy.OnDisabled += _sessionData.AddKillEvent;
-                _enemy.OnDisabled += SpawnSmallAsteroid;
-                _enemy.transform.position = screenPoint;
+                Enemy enemy = _enemyFactory.GetPrefab();
+            
+                enemy.OnDied = null;
+                enemy.OnDied += HandleEnemyDied;
+            
+                enemy.transform.position = screenPoint;
                 yield return _spawnInterval;
             }
         }
-        private void SpawnSmallAsteroid()
+
+        private void HandleEnemyDied(Enemy enemy)
         {
-            Asteroid asteroid = _enemy.GetComponent<Asteroid>();
+            _sessionData.AddKillEvent();
+            _enemyFactory.ReturnAction(enemy);
             
-            if (asteroid.isParentObject)
+            Asteroid asteroid = enemy.GetComponent<Asteroid>();
+            if (asteroid != null && asteroid.isParentObject)
             {
-                for (int i = 0; i < asteroidSmallCount; i++)
+                SpawnSmallAsteroids(enemy.transform.position);
+            } 
+        }
+
+        private void SpawnSmallAsteroids(Vector3 spawnPosition)
+        {
+            for (int i = 0; i < asteroidSmallCount; i++)
+            {
+                Vector2 direction = Random.insideUnitCircle.normalized;
+                Vector2 spawnPos = (Vector2)spawnPosition + direction * _spawnOffset;
+            
+                Enemy smallAsteroid = _enemyFactory.GetPrefab();
+            
+                Asteroid smallAsteroidComp = smallAsteroid.GetComponent<Asteroid>();
+                if (smallAsteroidComp != null)
                 {
-                    Vector2 direction = Random.insideUnitCircle.normalized;
-                    Vector2 spawnPos = (Vector2)_enemy.transform.position + direction * _spawnOffset;
-                    
-                    Enemy smallAsteroid = _enemyFactory.pool.Get();
-                    smallAsteroid.GetComponent<Asteroid>().isParentObject = false;
-                    smallAsteroid.OnDisabled += _sessionData.AddKillEvent;
-                    
-                    smallAsteroid.transform.localScale = new Vector3(_asteroidSmallScale, _asteroidSmallScale, 1);
-                    smallAsteroid.transform.position = spawnPos;
+                    smallAsteroidComp.isParentObject = false;
                 }
+            
+                smallAsteroid.OnDied = null;
+                smallAsteroid.OnDied += HandleSmallAsteroidDied;
+            
+                smallAsteroid.transform.localScale = new Vector3(_asteroidSmallScale, _asteroidSmallScale, 1);
+                smallAsteroid.transform.position = spawnPos;
             }
+        }
+
+        private void HandleSmallAsteroidDied(Enemy enemy)
+        {
+            _sessionData.AddKillEvent();
+            _enemyFactory.ReturnAction(enemy);
         }
     }
 }

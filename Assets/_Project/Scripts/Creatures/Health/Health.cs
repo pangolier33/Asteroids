@@ -2,18 +2,18 @@ using UnityEngine;
 
 namespace _Project.Scripts.Creatures.Health
 {
-    [RequireComponent(typeof(ICreatureDeath))]
+    [RequireComponent(typeof(ICreatureDied))]
     public class Health : MonoBehaviour
     {
         [SerializeField] private int _maxHealth = 1;
         [SerializeField, Min(0)] private int _currentHealth;
 
-        private ICreatureDeath _creatureDeath;
+        private ICreatureDied _creatureDied;
 
         private void Start()
         {
             _currentHealth = _maxHealth;
-            _creatureDeath = GetComponent<ICreatureDeath>();
+            _creatureDied = GetComponent<ICreatureDied>();
         }
         
         public void TakeDamage(int damage)
@@ -24,7 +24,7 @@ namespace _Project.Scripts.Creatures.Health
 
             if (_currentHealth <= 0)
             {
-                _creatureDeath.CreatureDeath();
+                _creatureDied.CreatureDied();
             }
         }
     }

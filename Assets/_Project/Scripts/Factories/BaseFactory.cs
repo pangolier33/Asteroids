@@ -1,24 +1,24 @@
-﻿using _Project.Scripts.Tools;
+﻿using System.Collections.Generic;
+using _Project.Scripts.Tools;
 using UnityEngine;
 
 namespace _Project.Scripts.Creatures.Factories
 {
     public class BaseFactory <T> where T : MonoBehaviour
     {
-        public PoolBase<T> pool;
-        
-        private T Prefab;
+        private PoolBase<T> _pool;
+        private T _prefab;
         private int _poolSize;
 
         public BaseFactory(T prefab, int poolSize)
         {
-            Prefab = prefab;
+            _prefab = prefab;
             _poolSize = poolSize;
         }
 
         public void PoolInitialize()
         {
-            pool = new PoolBase<T>(
+            _pool = new PoolBase<T>(
                     () => Preload(),
                     GetAction,
                     ReturnAction,
@@ -28,13 +28,19 @@ namespace _Project.Scripts.Creatures.Factories
 
         private T Preload()
         {
-            T prefab = GameObject.Instantiate(Prefab);
+            T prefab = GameObject.Instantiate(_prefab);
             prefab.gameObject.SetActive(false);
             return prefab;
         }
+        
+        public T GetPrefab() => _pool.Get();
 
         public void GetAction(T obj) => obj.gameObject.SetActive(true);
 
-        private void ReturnAction(T obj) => obj.gameObject.SetActive(false);
+        public List<T> GetActivePrefabs() => _pool.GetAllActiveItems();
+
+        public Queue<T> GetAllPrefabs() => _pool.GetAllItems();
+
+        public void ReturnAction(T obj) => obj.gameObject.SetActive(false);
     }
 }

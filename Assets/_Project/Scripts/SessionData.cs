@@ -1,16 +1,28 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace _Project.Scripts
 {
     public class SessionData : MonoBehaviour
     {
-        [field: SerializeField] public int _enemyKilledScore { get; private set; }
+        public Action OnGameOver;
+        
+        [field: SerializeField] public int EnemyKilledScore { get; private set; }
+        public bool IsGameOver;
 
         private int _enemyScore = 1;
 
         public void AddKillEvent()
         {
-            _enemyKilledScore += _enemyScore;
+            EnemyKilledScore += _enemyScore;
+        }
+
+        public void GameOverEvent()
+        {
+            IsGameOver = true;
+
+            if (OnGameOver != null) 
+                OnGameOver();
         }
     }
 }

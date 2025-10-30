@@ -1,12 +1,10 @@
 using _Project.Scripts.Creatures.Health;
-using _Project.Scripts.Services;
 using _Project.Scripts.UI;
 using UnityEngine;
 
 namespace _Project.Scripts.Creatures.Player
 {
-    [RequireComponent(typeof(ScoreService))]
-    public class SpaceShipDeath : MonoBehaviour, ICreatureDeath
+    public class SpaceShipDied : MonoBehaviour, ICreatureDied
     {
         [SerializeField] private RestartPanelUI _restartCanvas;
         
@@ -17,10 +15,11 @@ namespace _Project.Scripts.Creatures.Player
             _sessionData = sessionData;
         }
         
-        public void CreatureDeath()
+        public void CreatureDied()
         {
+            _sessionData.GameOverEvent();
             Instantiate(_restartCanvas.gameObject);
-            _restartCanvas.SetScore(_sessionData._enemyKilledScore);
+            _restartCanvas.SetScore(_sessionData.EnemyKilledScore);
             Destroy(gameObject);
         }
     }

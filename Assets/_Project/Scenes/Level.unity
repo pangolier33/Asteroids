@@ -323,7 +323,7 @@ MonoBehaviour:
   _spaceShip: {fileID: 3657155057991059965, guid: b6546cd9ee6a03f408466474a594e2af, type: 3}
   _sessionData: {fileID: 4972715079411682922, guid: 299f18a97c8f2ce48b3c5c3bbe305a72, type: 3}
   _ufoPrefab: {fileID: -184873510415367234, guid: e35f9c442df6ef144b391d92fde60a17, type: 3}
-  _asteroidPrefab: {fileID: -1058897500873058449, guid: cf8ce37fde80eac4a97db259480484e4, type: 3}
+  _asteroidPrefab: {fileID: -184873510415367234, guid: d89d2ed97e543c540b522fd0b911d7ed, type: 3}
   _spawnOffset: 0.5
   _spawnIntervalValue: 5
   _poolSize: 10

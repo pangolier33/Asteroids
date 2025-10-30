@@ -28,7 +28,6 @@ namespace _Project.Scripts.Creatures.Enemy
                 _rigidbody2D.linearVelocity = _moveDirection * _moveSpeed;
         }
         
-
         private IEnumerator UpdateMovementCoroutine()
         {
             while (true)
