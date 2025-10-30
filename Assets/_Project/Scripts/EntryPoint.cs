@@ -1,3 +1,4 @@
+using System;
 using _Project.Scripts.Creatures.Enemy;
 using _Project.Scripts.Creatures.Player;
 using _Project.Scripts.Creatures.Player.SpaceShipWeapon;
@@ -37,7 +38,7 @@ namespace _Project.Scripts
             _spaceShip = Instantiate(_spaceShip);
             _hud = Instantiate(_hud);
             _sessionData = Instantiate(_sessionData);
-            _spaceShip.GetComponent<SpaceShipDeath>().Inizialize(_sessionData);
+            _spaceShip.GetComponent<SpaceShipDied>().Inizialize(_sessionData);
             BindSpawners();
             BindHud();
             StartCoroutine(_ufoSpawner.SpawnEnemies());
@@ -60,6 +61,8 @@ namespace _Project.Scripts
             
             _asteroidSpawner = new AsteroidSpawner(_asteroidPrefab, _spawnOffset, _spawnInterval, _mainCamera, _sessionData, _poolSize);
             _asteroidSpawner.SetSpawner();
+            
+            //_sessionData.OnGameOver += _asteroidSpawner.ClearAllSubscriptions;
         }
     }
 }

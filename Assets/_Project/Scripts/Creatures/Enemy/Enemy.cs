@@ -4,19 +4,16 @@ using UnityEngine;
 
 namespace _Project.Scripts.Creatures.Enemy
 {
-    public class Enemy : MonoBehaviour, ICreatureDeath
+    public class Enemy : MonoBehaviour, ICreatureDied
     {
-        public Action OnDisabled;
+        public Action<Enemy> OnDied;
 
-        public void CreatureDeath()
+        public void CreatureDied()
         {
-            gameObject.SetActive(false);
-        }
-
-        private void OnDisable()
-        {
-            if (OnDisabled != null)
-                OnDisabled();
+            if (OnDied != null)
+            {
+                OnDied(this);
+            }
         }
     }
 }

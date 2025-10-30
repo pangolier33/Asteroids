@@ -12,6 +12,9 @@ namespace _Project.Scripts.Components
         }
         private void FixedUpdate()
         {
+            if (mainCamera == null)
+                return;
+            
             Vector3 viewportPosition = mainCamera.WorldToViewportPoint(transform.position);
 
             Vector3 moveAdjustment = Vector3.zero;

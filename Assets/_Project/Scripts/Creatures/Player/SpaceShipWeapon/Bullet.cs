@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public class Bullet : MonoBehaviour
     {
         [SerializeField] private float _speed = 15f;

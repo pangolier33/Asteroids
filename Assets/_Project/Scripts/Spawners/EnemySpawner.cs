@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using _Project.Scripts.Creatures.Enemy;
 using _Project.Scripts.Creatures.Factories;
 using UnityEngine;
@@ -41,14 +42,21 @@ namespace _Project.Scripts.Spawners
         
         public virtual IEnumerator SpawnEnemies()
         {
-            while (true)
+            while (_sessionData.IsGameOver == false)
             {
                 Vector3 screenPoint = CalculateCoordinatesBehindTheScreen();
-                Enemy enemy = _enemyFactory.pool.Get();
-                enemy.OnDisabled += _sessionData.AddKillEvent;
+                Enemy enemy = _enemyFactory.GetPrefab();
+                enemy.OnDied = null;
+                enemy.OnDied += HandleEnemyDied;
                 enemy.transform.position = screenPoint;
                 yield return _spawnInterval;
             }
+        }
+
+        private void HandleEnemyDied(Enemy enemy)
+        {
+            _sessionData.AddKillEvent();
+            _enemyFactory.ReturnAction(enemy);
         }
 
         protected Vector3 CalculateCoordinatesBehindTheScreen()

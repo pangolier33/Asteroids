@@ -222,7 +222,6 @@ GameObject:
   - component: {fileID: 3260907195281438555}
   - component: {fileID: 9043013547490452443}
   - component: {fileID: 3657155057991059965}
-  - component: {fileID: -3519330663163278001}
   - component: {fileID: -4154236844963271538}
   - component: {fileID: 9063864129465251138}
   - component: {fileID: 7594918311778907918}
@@ -326,18 +325,6 @@ MonoBehaviour:
   _shipAcceleration: 10
   _shipMaxVelocity: 10
   _shipRotationSpeed: 180
---- !u!114 &-3519330663163278001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4901976582397744381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34ba52e462b92d54dab229dc858a6cb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-4154236844963271538
 MonoBehaviour:
   m_ObjectHideFlags: 0

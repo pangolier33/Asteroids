@@ -9,11 +9,11 @@ namespace _Project.Scripts.Services
         public async Task LoadSceneAsync(int sceneIndex)
         {
             GameObject loadingScreenPrefab = Resources.Load<GameObject>("LoadingScreen");
-            Object.Instantiate(loadingScreenPrefab);
+            GameObject loadingScreenInstance = Object.Instantiate(loadingScreenPrefab);
 
             await SceneManager.LoadSceneAsync(sceneIndex);
 
-            Object.Destroy(loadingScreenPrefab);
+            Object.Destroy(loadingScreenInstance);
         }
     }
 }

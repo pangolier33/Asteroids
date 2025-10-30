@@ -13,7 +13,6 @@ namespace _Project.Scripts.Creatures.Player
 
         private InputSystem_Actions _inputSystem;
 
-
         private void OnEnable()
         {
             _inputSystem.Player.Shoot.performed += OnShootPermormed;
@@ -24,6 +23,11 @@ namespace _Project.Scripts.Creatures.Player
         {
             _inputSystem.Player.Shoot.performed -= OnShootPermormed;
             _inputSystem.Player.Laser.performed -= OnLaserEnabled;
+        }
+        
+        private void OnDestroy()
+        {
+            _inputSystem?.Dispose();
         }
 
         private void Awake()

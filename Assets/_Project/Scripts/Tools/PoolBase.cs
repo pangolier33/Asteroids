@@ -55,5 +55,15 @@ namespace _Project.Scripts.Tools
             foreach (var activeItem in newList)
                 Return(activeItem);
         }
+        
+        public List<T> GetAllActiveItems()
+        {
+            return new List<T>(_activeItems);
+        }
+
+        public Queue<T> GetAllItems()
+        {
+            return new Queue<T>(_pool);
+        }
     }
 }

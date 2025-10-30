@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Creatures.Enemy
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public class AsteroidMovement : MonoBehaviour
     {
         [SerializeField] private float _minSpawnSpeed = 1f;
