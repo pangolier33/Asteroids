@@ -1,4 +1,6 @@
+using System;
 using _Project.Scripts.Creatures.Health;
+using _Project.Scripts.Services;
 using _Project.Scripts.UI;
 using UnityEngine;
 
@@ -10,16 +12,18 @@ namespace _Project.Scripts.Creatures.Player
         
         private SessionData _sessionData;
 
-        public void Inizialize(SessionData sessionData)
+        public void Initialize(SessionData sessionData)
         {
             _sessionData = sessionData;
         }
-        
+
         public void CreatureDied()
         {
             _sessionData.GameOverEvent();
-            Instantiate(_restartCanvas.gameObject);
-            _restartCanvas.SetScore(_sessionData.EnemyKilledScore);
+            GameObject restartCanvasGameObject = Instantiate(_restartCanvas.gameObject);
+            RestartPanelUI restartCanvas = restartCanvasGameObject.GetComponent<RestartPanelUI>();
+            restartCanvas.SetScore(_sessionData.EnemyKilledScore);
+            restartCanvas.SetRecord(_sessionData.GetCurrentScore());
             Destroy(gameObject);
         }
     }

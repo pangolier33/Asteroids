@@ -2,6 +2,7 @@ using System;
 using _Project.Scripts.Creatures.Enemy;
 using _Project.Scripts.Creatures.Player;
 using _Project.Scripts.Creatures.Player.SpaceShipWeapon;
+using _Project.Scripts.Services;
 using _Project.Scripts.Spawners;
 using _Project.Scripts.UI;
 using UnityEngine;
@@ -38,7 +39,7 @@ namespace _Project.Scripts
             _spaceShip = Instantiate(_spaceShip);
             _hud = Instantiate(_hud);
             _sessionData = Instantiate(_sessionData);
-            _spaceShip.GetComponent<SpaceShipDied>().Inizialize(_sessionData);
+            _spaceShip.GetComponent<SpaceShipDied>().Initialize(_sessionData);
             BindSpawners();
             BindHud();
             StartCoroutine(_ufoSpawner.SpawnEnemies());

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using _Project.Scripts.Creatures.Enemy;
+using _Project.Scripts.Services;
 using UnityEngine;
 
 namespace _Project.Scripts.Spawners
