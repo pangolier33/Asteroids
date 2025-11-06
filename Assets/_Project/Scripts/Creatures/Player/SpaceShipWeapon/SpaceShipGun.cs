@@ -34,7 +34,7 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
 
         private void ShootBullet()
         {
-            Bullet bullet = _bulletFactory.GetPrefab();
+            Bullet bullet = _bulletFactory.GetPooledObject();
 
             bullet.transform.position = _firePoint.position;
             bullet.transform.rotation = _firePoint.rotation;

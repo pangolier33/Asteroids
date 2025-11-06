@@ -44,8 +44,7 @@ namespace _Project.Scripts.Spawners
             while (_sessionData.IsGameOver == false)
             {
                 Vector3 screenPoint = CalculateCoordinatesBehindTheScreen();
-                Enemy enemy = _enemyFactory.GetPrefab();
-                enemy.OnDied = null;
+                Enemy enemy = _enemyFactory.GetPooledObject();
                 enemy.OnDied += HandleEnemyDied;
                 enemy.transform.position = screenPoint;
                 yield return _spawnInterval;

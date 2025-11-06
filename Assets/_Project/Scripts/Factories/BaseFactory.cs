@@ -26,7 +26,7 @@ namespace _Project.Scripts.Factories
                 );
         }
         
-        public T GetPrefab() => _pool.Get();
+        public T GetPooledObject() => _pool.Get();
 
         public void GetAction(T obj) => obj.gameObject.SetActive(true);
 

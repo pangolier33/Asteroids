@@ -21,9 +21,8 @@ namespace _Project.Scripts.Spawners
             while (_sessionData.IsGameOver == false)
             {
                 Vector3 screenPoint = CalculateCoordinatesBehindTheScreen();
-                Enemy enemy = _enemyFactory.GetPrefab();
-            
-                enemy.OnDied = null;
+                Enemy enemy = _enemyFactory.GetPooledObject();
+                
                 enemy.OnDied += HandleEnemyDied;
             
                 enemy.transform.position = screenPoint;
@@ -50,15 +49,13 @@ namespace _Project.Scripts.Spawners
                 Vector2 direction = Random.insideUnitCircle.normalized;
                 Vector2 spawnPos = (Vector2)spawnPosition + direction * _spawnOffset;
             
-                Enemy smallAsteroid = _enemyFactory.GetPrefab();
+                Enemy smallAsteroid = _enemyFactory.GetPooledObject();
             
                 Asteroid smallAsteroidComp = smallAsteroid.GetComponent<Asteroid>();
                 if (smallAsteroidComp != null)
                 {
                     smallAsteroidComp.isParentObject = false;
                 }
-            
-                smallAsteroid.OnDied = null;
                 smallAsteroid.OnDied += HandleSmallAsteroidDied;
             
                 smallAsteroid.transform.localScale = new Vector3(_asteroidSmallScale, _asteroidSmallScale, 1);
