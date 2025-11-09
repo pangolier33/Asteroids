@@ -6,6 +6,7 @@ namespace _Project.Scripts.Services
     {
         private int _enemyScore = 1;
         private SaveService _saveService;
+        private SaveData _currentSaveData;
         
         [field: SerializeField] public int EnemyKilledScore { get; private set; }
         public bool IsGameOver { get; private set; }
@@ -14,7 +15,7 @@ namespace _Project.Scripts.Services
         public void Initialize(SaveService saveService)
         {
             _saveService = saveService;
-            LoadRecord();
+            LoadGameData();
         }
 
         public void AddKillEvent()
@@ -28,9 +29,10 @@ namespace _Project.Scripts.Services
             CheckAndUpdateRecord();
         }
 
-        private void LoadRecord()
+        private void LoadGameData()
         {
-            CurrentRecord = _saveService.LoadRecord();
+            _currentSaveData = _saveService.LoadGameData();
+            CurrentRecord = _currentSaveData.Record;
         }
 
         private void CheckAndUpdateRecord()
@@ -38,7 +40,8 @@ namespace _Project.Scripts.Services
             if (EnemyKilledScore > CurrentRecord)
             {
                 CurrentRecord = EnemyKilledScore;
-                _saveService.SaveRecord(CurrentRecord);
+                _currentSaveData.Record = EnemyKilledScore;
+                _saveService.SaveGameData(_currentSaveData);
             }
         }
     }

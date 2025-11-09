@@ -4,18 +4,26 @@ namespace _Project.Scripts.Services
 {
     public class SaveService
     {
-        private const string RECORD_KEY = "PlayerRecord";
+        private const string SAVE_DATA_KEY = "GameSaveData";
         
-        public void SaveRecord(int record)
+        public void SaveGameData(SaveData data)
         {
-            PlayerPrefs.SetInt(RECORD_KEY, record);
-            PlayerPrefs.Save();
+            string json = JsonUtility.ToJson(data);
+            PlayerPrefs.SetString(SAVE_DATA_KEY, json);
         }
         
-        public int LoadRecord()
+        public SaveData LoadGameData()
         {
-            int record = PlayerPrefs.GetInt(RECORD_KEY, 0);
-            return record;
+            if (PlayerPrefs.HasKey(SAVE_DATA_KEY))
+            {
+                string json = PlayerPrefs.GetString(SAVE_DATA_KEY);
+                SaveData data = JsonUtility.FromJson<SaveData>(json);
+                return data;
+            }
+            else
+            {
+                return new SaveData();
+            }
         }
     }
 }
