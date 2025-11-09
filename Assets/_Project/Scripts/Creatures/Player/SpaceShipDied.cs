@@ -23,7 +23,7 @@ namespace _Project.Scripts.Creatures.Player
             GameObject restartCanvasGameObject = Instantiate(_restartCanvas.gameObject);
             RestartPanelUI restartCanvas = restartCanvasGameObject.GetComponent<RestartPanelUI>();
             restartCanvas.SetScore(_sessionData.EnemyKilledScore);
-            restartCanvas.SetRecord(_sessionData.GetCurrentScore());
+            restartCanvas.SetRecord(_sessionData.CurrentRecord);
             Destroy(gameObject);
         }
     }

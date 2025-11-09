@@ -27,6 +27,7 @@ namespace _Project.Scripts
         private EnemySpawner _asteroidSpawner;
         private Camera _mainCamera;
         private WaitForSeconds _spawnInterval;
+        private SaveService _saveService = new SaveService();
 
         private void Start()
         {
@@ -39,6 +40,7 @@ namespace _Project.Scripts
             _spaceShip = Instantiate(_spaceShip);
             _hud = Instantiate(_hud);
             _sessionData = Instantiate(_sessionData);
+            _sessionData.Initialize(_saveService);
             _spaceShip.GetComponent<SpaceShipDied>().Initialize(_sessionData);
             BindSpawners();
             BindHud();
