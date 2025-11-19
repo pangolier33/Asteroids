@@ -10,20 +10,20 @@ namespace _Project.Scripts.Creatures.Player
     {
         [SerializeField] private RestartPanelUI _restartCanvas;
         
-        private SessionData _sessionData;
+        private SessionDataManager _sessionDataManager;
 
-        public void Initialize(SessionData sessionData)
+        public void Initialize(SessionDataManager sessionDataManager)
         {
-            _sessionData = sessionData;
+            _sessionDataManager = sessionDataManager;
         }
 
         public void CreatureDied()
         {
-            _sessionData.GameOverEvent();
+            _sessionDataManager.GameOverEvent();
             GameObject restartCanvasGameObject = Instantiate(_restartCanvas.gameObject);
             RestartPanelUI restartCanvas = restartCanvasGameObject.GetComponent<RestartPanelUI>();
-            restartCanvas.SetScore(_sessionData.EnemyKilledScore);
-            restartCanvas.SetRecord(_sessionData.CurrentRecord);
+            restartCanvas.SetScore(_sessionDataManager.EnemyKilledScore);
+            restartCanvas.SetRecord(_sessionDataManager.CurrentRecord);
             Destroy(gameObject);
         }
     }

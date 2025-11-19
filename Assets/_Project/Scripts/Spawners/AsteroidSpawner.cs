@@ -12,14 +12,14 @@ namespace _Project.Scripts.Spawners
         private float _spawnOffset = 0.5f;
         private float _asteroidSmallScale = 0.5f;
 
-        public AsteroidSpawner(Enemy enemyPrefab, float spawnOffset, WaitForSeconds spawnInterval, Camera mainCamera, SessionData sessionData, int poolSize) : base(enemyPrefab, spawnOffset, spawnInterval, mainCamera, sessionData, poolSize)
+        public AsteroidSpawner(Enemy enemyPrefab, float spawnOffset, WaitForSeconds spawnInterval, Camera mainCamera, SessionDataManager sessionDataManager, int poolSize) : base(enemyPrefab, spawnOffset, spawnInterval, mainCamera, sessionDataManager, poolSize)
         {
             
         }
 
         public override IEnumerator SpawnEnemies()
         {
-            while (_sessionData.IsGameOver == false)
+            while (SessionDataManager.IsGameOver == false)
             {
                 Vector3 screenPoint = CalculateCoordinatesBehindTheScreen();
                 Enemy enemy = _enemyFactory.GetPooledObject();
@@ -33,7 +33,7 @@ namespace _Project.Scripts.Spawners
 
         private void HandleEnemyDied(Enemy enemy)
         {
-            _sessionData.AddKillEvent();
+            SessionDataManager.AddKillAsteroidEvent();
             _enemyFactory.ReturnAction(enemy);
             
             Asteroid asteroid = enemy.GetComponent<Asteroid>();
@@ -66,7 +66,7 @@ namespace _Project.Scripts.Spawners
 
         private void HandleSmallAsteroidDied(Enemy enemy)
         {
-            _sessionData.AddKillEvent();
+            SessionDataManager.AddKillAsteroidEvent();
             _enemyFactory.ReturnAction(enemy);
         }
     }

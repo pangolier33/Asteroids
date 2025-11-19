@@ -10,10 +10,7 @@ namespace _Project.Scripts.Creatures.Enemy
 
         public void CreatureDied()
         {
-            if (OnDied != null)
-            {
-                OnDied?.Invoke(this);
-            }
+            OnDied?.Invoke(this);
         }
     }
 }

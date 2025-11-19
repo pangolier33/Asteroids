@@ -6,6 +6,7 @@ using _Project.Scripts.Services;
 using _Project.Scripts.Spawners;
 using _Project.Scripts.UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _Project.Scripts
 {
@@ -14,7 +15,8 @@ namespace _Project.Scripts
         [Header("Objects to instantiate")]
         [SerializeField] private Canvas _hud;
         [SerializeField] private SpaceShipMovement _spaceShip;
-        [SerializeField] private SessionData _sessionData;
+        [SerializeField] private SessionDataManager _sessionDataManager;
+        [SerializeField] private AnalyticsManager _analyticsManager;
         
         [Header("Objects to bind enemy spawner")]
         [SerializeField] private Enemy _ufoPrefab;
@@ -39,9 +41,12 @@ namespace _Project.Scripts
             _mainCamera = Camera.main;
             _spaceShip = Instantiate(_spaceShip);
             _hud = Instantiate(_hud);
-            _sessionData = Instantiate(_sessionData);
-            _sessionData.Initialize(_saveService);
-            _spaceShip.GetComponent<SpaceShipDied>().Initialize(_sessionData);
+            _sessionDataManager = Instantiate(_sessionDataManager);
+            _analyticsManager = Instantiate(_analyticsManager);
+            
+            _sessionDataManager.Initialize(_saveService);
+            _spaceShip.GetComponent<SpaceShipDied>().Initialize(_sessionDataManager);
+            _analyticsManager.Initialize(_sessionDataManager, _spaceShip.GetComponent<SpaceShipGun>(), _spaceShip.GetComponent<SpaceShipLaser>());
             BindSpawners();
             BindHud();
             StartCoroutine(_ufoSpawner.SpawnEnemies());
@@ -59,10 +64,10 @@ namespace _Project.Scripts
         private void BindSpawners()
         {
             _spawnInterval = new WaitForSeconds(_spawnIntervalValue);
-            _ufoSpawner = new EnemySpawner(_ufoPrefab, _spawnOffset, _spawnInterval, _mainCamera, _sessionData, _poolSize);
+            _ufoSpawner = new EnemySpawner(_ufoPrefab, _spawnOffset, _spawnInterval, _mainCamera, _sessionDataManager, _poolSize);
             _ufoSpawner.SetSpawner();
             
-            _asteroidSpawner = new AsteroidSpawner(_asteroidPrefab, _spawnOffset, _spawnInterval, _mainCamera, _sessionData, _poolSize);
+            _asteroidSpawner = new AsteroidSpawner(_asteroidPrefab, _spawnOffset, _spawnInterval, _mainCamera, _sessionDataManager, _poolSize);
             _asteroidSpawner.SetSpawner();
         }
     }
