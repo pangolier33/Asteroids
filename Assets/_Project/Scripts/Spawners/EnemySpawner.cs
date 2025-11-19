@@ -15,7 +15,7 @@ namespace _Project.Scripts.Spawners
         protected Enemy _enemyPrefab;
         protected BaseFactory<Enemy> _enemyFactory;
         protected WaitForSeconds _spawnInterval;
-        protected SessionData _sessionData;
+        protected SessionDataManager SessionDataManager;
 
         private int _poolSize;
         private float _spawnOffset;
@@ -24,13 +24,13 @@ namespace _Project.Scripts.Spawners
         
 
         public EnemySpawner(Enemy enemyPrefab, float spawnOffset, WaitForSeconds spawnInterval, Camera mainCamera,
-            SessionData sessionData, int poolSize)
+            SessionDataManager sessionDataManager, int poolSize)
         {
             _enemyPrefab = enemyPrefab;
             _spawnOffset = spawnOffset;
             _spawnInterval = spawnInterval;
             _mainCamera = mainCamera;
-            _sessionData = sessionData;
+            SessionDataManager = sessionDataManager;
             _poolSize = poolSize;
         }
 
@@ -42,7 +42,7 @@ namespace _Project.Scripts.Spawners
         
         public virtual IEnumerator SpawnEnemies()
         {
-            while (_sessionData.IsGameOver == false)
+            while (SessionDataManager.IsGameOver == false)
             {
                 Vector3 screenPoint = CalculateCoordinatesBehindTheScreen();
                 Enemy enemy = _enemyFactory.GetPooledObject();
@@ -52,9 +52,8 @@ namespace _Project.Scripts.Spawners
             }
         }
 
-        private void HandleEnemyDied(Enemy enemy)
+        public virtual void HandleEnemyDied(Enemy enemy)
         {
-            _sessionData.AddKillEvent();
             _enemyFactory.ReturnAction(enemy);
         }
 

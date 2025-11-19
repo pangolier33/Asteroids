@@ -1,4 +1,4 @@
-using _Project.Scripts.Creatures.Enemy;
+using System;
 using _Project.Scripts.Factories;
 using UnityEngine;
 
@@ -7,6 +7,7 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
     public class SpaceShipGun : MonoBehaviour
     {
         private const int PROJECTILE_PRELOAD_COUNT = 20;
+        public event Action clickShoot;
 
         [SerializeField] private Transform _firePoint;
         [SerializeField] private Bullet _bulletPrefab;
@@ -25,7 +26,7 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
         {
             if (!IsCooldownReady(_nextFireTime))
                 return;
-
+            clickShoot?.Invoke();
             ShootBullet();
             SetCooldown(ref _nextFireTime, _delayBullet);
         }

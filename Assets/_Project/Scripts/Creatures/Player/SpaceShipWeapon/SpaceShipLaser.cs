@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
@@ -5,6 +6,8 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
     public class SpaceShipLaser : MonoBehaviour
     {
         private const int MAX_LASER_CHARGES = 3;
+
+        public event Action clickLaser; 
 
         [SerializeField] private GameObject _laser;
         [SerializeField] private float _laserDuration = 2f;
@@ -31,6 +34,7 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
         {
             if (LaserCharges > 0 && !_isLaserActive)
             {
+                clickLaser?.Invoke();
                 UseLaserCharge();
                 EnableLaser();
             }
