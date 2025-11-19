@@ -11,8 +11,13 @@ namespace _Project.Scripts.Services
         private SpaceShipGun _spaceShipGun;
         private SpaceShipLaser _spaceShipLaser;
 
+<<<<<<< HEAD
         private int _numberOfClicksLaser;
         private int _numberOfClicksGun;
+=======
+        private int _numerOfClickLaser;
+        private int _numerOfClickGun;
+>>>>>>> origin/master
         private bool _isUsedLaser;
 
         public void Initialize(SessionDataManager sessionDataManager, SpaceShipGun spaceShipGun, SpaceShipLaser spaceShipLaser)
@@ -33,20 +38,35 @@ namespace _Project.Scripts.Services
         {
             _analyticsService.LogEnemyKilled("Ufo", _sessionDataManager.UfoKilledScore);
             _analyticsService.LogEnemyKilled("Asteroid", _sessionDataManager.AsterodisKilledScore);
+<<<<<<< HEAD
             if (_numberOfClicksLaser >= 1) 
                 _analyticsService.LogEvent("Is laser used", "Answer", "yes");
             _analyticsService.LogEvent("Laser used", "Count", _numberOfClicksLaser.ToString());
             _analyticsService.LogEvent("Gun used", "Count", _numberOfClicksGun.ToString());
+=======
+            if (_numerOfClickLaser >= 1) 
+                _analyticsService.LogEvent("Is laser used", "Answer", "yes");
+            _analyticsService.LogEvent("Laser used", "Count", _numerOfClickLaser.ToString());
+            _analyticsService.LogEvent("Gun used", "Count", _numerOfClickGun.ToString());
+>>>>>>> origin/master
         }
 
         private void CalculateLaser()
         {
+<<<<<<< HEAD
             _numberOfClicksLaser += 1;
+=======
+            _numerOfClickLaser += 1;
+>>>>>>> origin/master
         }
 
         private void CalculateGunUsed()
         {
+<<<<<<< HEAD
             _numberOfClicksGun += 1;
+=======
+            _numerOfClickGun += 1;
+>>>>>>> origin/master
         }
 
         private async void InitializeAnalitics()
