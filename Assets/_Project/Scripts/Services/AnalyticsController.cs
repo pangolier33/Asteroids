@@ -1,11 +1,17 @@
-﻿using _Project.Scripts.Creatures.Enemy;
+﻿using System;
+using _Project.Scripts.Creatures.Enemy;
 using _Project.Scripts.Creatures.Player.SpaceShipWeapon;
 using UnityEngine;
 
 namespace _Project.Scripts.Services
 {
-    public class AnalyticsManager : MonoBehaviour
+    public class AnalyticsController : MonoBehaviour
     {
+        private const string UFO_NAME = "Ufo";
+        private const string ASTEROID_NAME = "Asteroid";
+        private const string GUN_NAME = "Gun";
+        private const string LASER_NAME = "Laser";
+        
         private AnalyticsService _analyticsService = new AnalyticsService();
         private SessionDataManager _sessionDataManager;
         private SpaceShipGun _spaceShipGun;
@@ -14,7 +20,7 @@ namespace _Project.Scripts.Services
         private int _numberOfClicksLaser;
         private int _numberOfClicksGun;
         private bool _isUsedLaser;
-
+        
         public void Initialize(SessionDataManager sessionDataManager, SpaceShipGun spaceShipGun, SpaceShipLaser spaceShipLaser)
         {
             _sessionDataManager = sessionDataManager;
@@ -29,14 +35,21 @@ namespace _Project.Scripts.Services
             _spaceShipLaser.clickLaser += CalculateLaser;
         }
 
+        private void OnDisable()
+        {
+            _sessionDataManager.GameOver -= LogEvents;
+            _spaceShipGun.clickShoot -= CalculateGunUsed;
+            _spaceShipLaser.clickLaser -= CalculateLaser;
+        }
+
         private void LogEvents()
         {
-            _analyticsService.LogEnemyKilled("Ufo", _sessionDataManager.UfoKilledScore);
-            _analyticsService.LogEnemyKilled("Asteroid", _sessionDataManager.AsterodisKilledScore);
+            _analyticsService.LogEnemyKilled(UFO_NAME, _sessionDataManager.UfoKilledScore);
+            _analyticsService.LogEnemyKilled(ASTEROID_NAME, _sessionDataManager.AsterodisKilledScore);
             if (_numberOfClicksLaser >= 1) 
-                _analyticsService.LogEvent("Is laser used", "Answer", "yes");
-            _analyticsService.LogEvent("Laser used", "Count", _numberOfClicksLaser.ToString());
-            _analyticsService.LogEvent("Gun used", "Count", _numberOfClicksGun.ToString());
+                _analyticsService.LogIsWeaponUsed(LASER_NAME);
+            _analyticsService.LogWeaponUsedCount(LASER_NAME, _numberOfClicksLaser);
+            _analyticsService.LogWeaponUsedCount(GUN_NAME, _numberOfClicksGun);
         }
 
         private void CalculateLaser()

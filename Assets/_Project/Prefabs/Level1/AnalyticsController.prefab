@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8648260400715586085}
   - component: {fileID: 2912755157323473231}
   m_Layer: 0
-  m_Name: AnaliticsService
+  m_Name: AnalyticsController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
