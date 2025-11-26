@@ -1,11 +1,13 @@
-using UnityEngine;
+using System;
+using System.Threading.Tasks;
 using Firebase;
 using Firebase.Analytics;
-using System.Threading.Tasks;
-using System;
+using UnityEngine;
 
-public class AnalyticsService
+namespace _Project.Scripts.Services
 {
+    public class AnalyticsService : IAnalyticsService
+    {
         private bool _isInitialized = false;
         
         public async Task<bool> Initialize()
@@ -36,16 +38,81 @@ public class AnalyticsService
             }
         }
         
-        private void SetFirebaseDebugMode()
+        public void LogEvent(string eventName, string parameterName = null, string parameterValue = null)
         {
-#if UNITY_EDITOR
-            string debugUserId = "unity_editor_" + System.DateTime.Now.Ticks;
-            FirebaseAnalytics.SetUserId(debugUserId);
+            if (!_isInitialized) return;
             
-            FirebaseAnalytics.SetUserProperty("debug_mode", "true");
-            FirebaseAnalytics.SetUserProperty("unity_editor", "true");
-            FirebaseAnalytics.SetUserProperty("platform", "editor");
+            try
+            {
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR
+                
+                if (FirebaseApp.DefaultInstance == null || string.IsNullOrEmpty(FirebaseApp.DefaultInstance.Options.ProjectId))
+                {
+                    Debug.Log($"[ANALYTICS MOCK] {eventName} - {parameterName}: {parameterValue}");
+                    return;
+                }
 #endif
+                
+                if (string.IsNullOrEmpty(parameterName))
+                {
+                    FirebaseAnalytics.LogEvent(eventName);
+                }
+                else
+                {
+                    FirebaseAnalytics.LogEvent(eventName, parameterName, parameterValue);
+                }
+                
+                Debug.Log($"[ANALYTICS] {eventName} - {parameterName}: {parameterValue}");
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Analytics error: {e.Message}");
+                Debug.Log($"[ANALYTICS MOCK] {eventName} - {parameterName}: {parameterValue}");
+            }
+        }
+        
+        public void LogGameStart()
+        {
+            LogEvent("game_start");
+        }
+        
+        public void LogEnemyKilled(string enemyType, int totalScore)
+        {
+            LogEvent("enemy killed score", enemyType, totalScore.ToString());
+        }
+
+        public void LogWeaponUsedCount(string weaponType, int usageCount)
+        {
+            LogEvent(weaponType, "Number of uses", usageCount.ToString());
+        }
+
+        public void LogIsWeaponUsed(string weaponType)
+        {
+            LogEvent(weaponType, "bool", "true");
+        }
+
+        public void LogEvent(string eventName, params Parameter[] parameters)
+        {
+            if (!_isInitialized) return;
+            
+            try
+            {
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR
+                if (FirebaseApp.DefaultInstance == null)
+                {
+                    string paramString = parameters.Length > 0 ? $" - {parameters.Length} params" : "";
+                    Debug.Log($"[ANALYTICS MOCK] {eventName}{paramString}");
+                    return;
+                }
+#endif
+                
+                FirebaseAnalytics.LogEvent(eventName, parameters);
+                Debug.Log($"[ANALYTICS] {eventName} with {parameters.Length} parameters");
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Analytics error: {e.Message}");
+            }
         }
         
         private async Task<bool> InitializeWithCustomConfig(AppOptions options)
@@ -87,80 +154,5 @@ public class AnalyticsService
                    !string.IsNullOrEmpty(options.ApiKey) &&
                    options.ProjectId != "your-project-id";
         }
-        
-        public void LogEvent(string eventName, string parameterName = null, string parameterValue = null)
-        {
-            if (!_isInitialized) return;
-            
-            try
-            {
-                #if UNITY_STANDALONE_WIN || UNITY_EDITOR
-                
-                if (FirebaseApp.DefaultInstance == null || string.IsNullOrEmpty(FirebaseApp.DefaultInstance.Options.ProjectId))
-                {
-                    Debug.Log($"[ANALYTICS MOCK] {eventName} - {parameterName}: {parameterValue}");
-                    return;
-                }
-                #endif
-                
-                if (string.IsNullOrEmpty(parameterName))
-                {
-                    FirebaseAnalytics.LogEvent(eventName);
-                }
-                else
-                {
-                    FirebaseAnalytics.LogEvent(eventName, parameterName, parameterValue);
-                }
-                
-                Debug.Log($"[ANALYTICS] {eventName} - {parameterName}: {parameterValue}");
-            }
-            catch (Exception e)
-            {
-                Debug.LogError($"Analytics error: {e.Message}");
-                Debug.Log($"[ANALYTICS MOCK] {eventName} - {parameterName}: {parameterValue}");
-            }
-        }
-        
-        public void LogGameStart()
-        {
-            LogEvent("game_start", "platform", "windows");
-        }
-        
-        public void LogEnemyKilled(string enemyType, int totalScore)
-        {
-            LogEvent("enemy_killed", "enemy_type", enemyType);
-            LogEvent("score_update", "total_score", totalScore.ToString());
-        }
-        
-        public void LogGameOver(int finalScore, int sessionTime)
-        {
-            LogEvent("game_over", 
-                new Parameter("final_score", finalScore),
-                new Parameter("session_time", sessionTime),
-                new Parameter("platform", "windows"));
-        }
-        
-        public void LogEvent(string eventName, params Parameter[] parameters)
-        {
-            if (!_isInitialized) return;
-            
-            try
-            {
-                #if UNITY_STANDALONE_WIN || UNITY_EDITOR
-                if (FirebaseApp.DefaultInstance == null)
-                {
-                    string paramString = parameters.Length > 0 ? $" - {parameters.Length} params" : "";
-                    Debug.Log($"[ANALYTICS MOCK] {eventName}{paramString}");
-                    return;
-                }
-                #endif
-                
-                FirebaseAnalytics.LogEvent(eventName, parameters);
-                Debug.Log($"[ANALYTICS] {eventName} with {parameters.Length} parameters");
-            }
-            catch (Exception e)
-            {
-                Debug.LogError($"Analytics error: {e.Message}");
-            }
-        }
+    }
 }

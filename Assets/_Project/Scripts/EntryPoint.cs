@@ -16,7 +16,7 @@ namespace _Project.Scripts
         [SerializeField] private Canvas _hud;
         [SerializeField] private SpaceShipMovement _spaceShip;
         [SerializeField] private SessionDataManager _sessionDataManager;
-        [SerializeField] private AnalyticsManager _analyticsManager;
+        [FormerlySerializedAs("_analyticsManager")] [SerializeField] private AnalyticsController analyticsController;
         
         [Header("Objects to bind enemy spawner")]
         [SerializeField] private Enemy _ufoPrefab;
@@ -42,11 +42,11 @@ namespace _Project.Scripts
             _spaceShip = Instantiate(_spaceShip);
             _hud = Instantiate(_hud);
             _sessionDataManager = Instantiate(_sessionDataManager);
-            _analyticsManager = Instantiate(_analyticsManager);
+            analyticsController = Instantiate(analyticsController);
             
             _sessionDataManager.Initialize(_saveService);
             _spaceShip.GetComponent<SpaceShipDied>().Initialize(_sessionDataManager);
-            _analyticsManager.Initialize(_sessionDataManager, _spaceShip.GetComponent<SpaceShipGun>(), _spaceShip.GetComponent<SpaceShipLaser>());
+            analyticsController.Initialize(_sessionDataManager, _spaceShip.GetComponent<SpaceShipGun>(), _spaceShip.GetComponent<SpaceShipLaser>());
             BindSpawners();
             BindHud();
             StartCoroutine(_ufoSpawner.SpawnEnemies());
