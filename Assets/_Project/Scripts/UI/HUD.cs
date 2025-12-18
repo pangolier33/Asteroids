@@ -16,12 +16,13 @@ namespace _Project.Scripts.UI
         private SpaceShipMovement _spaceShipMovement;
         private SpaceShipLaser _spaceShipLaser;
         private Rigidbody2D _shipRigidbody;
-        private int _score;
+        private bool _isInitialized = false;
 
         public void Initialize(SpaceShipMovement spaceShipMovement, SpaceShipLaser spaceShipLaser)
         {
             _spaceShipMovement = spaceShipMovement;
             _spaceShipLaser = spaceShipLaser;
+            _shipRigidbody = _spaceShipMovement.ShipRigidbody;
         }
         
         private void Start()
@@ -31,20 +32,17 @@ namespace _Project.Scripts.UI
 
         private void Update()
         {
-            if (_shipRigidbody == null) return;
             UpdateShipInfoUI();
         }
 
         private void UpdateShipInfoUI()
         {
+            if (_shipRigidbody == null || _spaceShipLaser == null) return;
+            
             UpdateCoordinatesUI();
-
             UpdateRotationUI();
-
             UpdateSpeedUI();
-
             UpdateLaserChargesUI();
-
             UpdateNextLaserTimeUI();
         }
 

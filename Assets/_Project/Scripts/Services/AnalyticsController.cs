@@ -1,45 +1,71 @@
 ﻿using System;
-using _Project.Scripts.Creatures.Enemy;
 using _Project.Scripts.Creatures.Player.SpaceShipWeapon;
-using UnityEngine;
 
 namespace _Project.Scripts.Services
 {
-    public class AnalyticsController : MonoBehaviour
+    public class AnalyticsController : IDisposable
     {
         private const string UFO_NAME = "Ufo";
         private const string ASTEROID_NAME = "Asteroid";
         private const string GUN_NAME = "Gun";
         private const string LASER_NAME = "Laser";
         
-        private AnalyticsService _analyticsService = new AnalyticsService();
-        private SessionDataManager _sessionDataManager;
-        private SpaceShipGun _spaceShipGun;
-        private SpaceShipLaser _spaceShipLaser;
+        private readonly AnalyticsService _analyticsService;
+        private readonly SessionDataManager _sessionDataManager;
+        private readonly SpaceShipGun _spaceShipGun;
+        private readonly SpaceShipLaser _spaceShipLaser;
         
         private int _numberOfClicksLaser;
         private int _numberOfClicksGun;
-        private bool _isUsedLaser;
         
-        public void Initialize(SessionDataManager sessionDataManager, SpaceShipGun spaceShipGun, SpaceShipLaser spaceShipLaser)
+        public AnalyticsController(
+            AnalyticsService analyticsService,
+            SessionDataManager sessionDataManager,
+            SpaceShipGun spaceShipGun,
+            SpaceShipLaser spaceShipLaser)
         {
+            _analyticsService = analyticsService;
             _sessionDataManager = sessionDataManager;
             _spaceShipGun = spaceShipGun;
             _spaceShipLaser = spaceShipLaser;
             
-            InitializeAnalytics();
-            
+            SubscribeToEvents();
+        }
+        
+        public async void Initialize()
+        {
+            await _analyticsService.Initialize();
             _analyticsService.LogGameStart();
-            _sessionDataManager.GameOver += LogEvents;
-            _spaceShipGun.clickShoot += CalculateGunUsed;
-            _spaceShipLaser.clickLaser += CalculateLaser;
         }
 
-        private void OnDisable()
+        private void SubscribeToEvents()
+        {
+            _sessionDataManager.GameOver += LogEvents;
+            
+            if (_spaceShipGun != null)
+            {
+                _spaceShipGun.clickShoot += CalculateGunUsed;
+            }
+            
+            if (_spaceShipLaser != null)
+            {
+                _spaceShipLaser.clickLaser += CalculateLaser;
+            }
+        }
+
+        private void UnsubscribeFromEvents()
         {
             _sessionDataManager.GameOver -= LogEvents;
-            _spaceShipGun.clickShoot -= CalculateGunUsed;
-            _spaceShipLaser.clickLaser -= CalculateLaser;
+            
+            if (_spaceShipGun != null)
+            {
+                _spaceShipGun.clickShoot -= CalculateGunUsed;
+            }
+            
+            if (_spaceShipLaser != null)
+            {
+                _spaceShipLaser.clickLaser -= CalculateLaser;
+            }
         }
 
         private void LogEvents()
@@ -54,17 +80,17 @@ namespace _Project.Scripts.Services
 
         private void CalculateLaser()
         {
-            _numberOfClicksLaser += 1;
+            _numberOfClicksLaser++;
         }
 
         private void CalculateGunUsed()
         {
-            _numberOfClicksGun += 1;
+            _numberOfClicksGun++;
         }
 
-        private async void InitializeAnalytics()
+        public void Dispose()
         {
-            await _analyticsService.Initialize();
+            UnsubscribeFromEvents();
         }
     }
 }

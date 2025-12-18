@@ -62,12 +62,10 @@ namespace _Project.Scripts.Services
                     FirebaseAnalytics.LogEvent(eventName, parameterName, parameterValue);
                 }
                 
-                Debug.Log($"[ANALYTICS] {eventName} - {parameterName}: {parameterValue}");
             }
             catch (Exception e)
             {
                 Debug.LogError($"Analytics error: {e.Message}");
-                Debug.Log($"[ANALYTICS MOCK] {eventName} - {parameterName}: {parameterValue}");
             }
         }
         

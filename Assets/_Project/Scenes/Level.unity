@@ -176,6 +176,88 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e43276ac2d3d67a41be37eca70550d58, type: 3}
+--- !u!1 &972260229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 972260231}
+  - component: {fileID: 972260230}
+  - component: {fileID: 972260232}
+  m_Layer: 0
+  m_Name: SceneContext
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &972260230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972260229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 972260232}
+  _installerPrefabs: []
+  _autoRun: 1
+  OnPreInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPreResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  _parentNewObjectsUnderSceneContext: 0
+  _contractNames: []
+  _parentContractNames: []
+--- !u!4 &972260231
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972260229}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &972260232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972260229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3bccf1c5277ae14a81a9a1e1f0bfdef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spaceShipPrefab: {fileID: 3657155057991059965, guid: b6546cd9ee6a03f408466474a594e2af, type: 3}
+  _sessionDataManager: {fileID: 1147449433852158197, guid: 299f18a97c8f2ce48b3c5c3bbe305a72, type: 3}
+  _hudPrefab: {fileID: 8898424630410890984, guid: ffef11265c472a54392f9b1c20830809, type: 3}
+  _ufoPrefab: {fileID: -184873510415367234, guid: e35f9c442df6ef144b391d92fde60a17, type: 3}
+  _asteroidPrefab: {fileID: -184873510415367234, guid: d89d2ed97e543c540b522fd0b911d7ed, type: 3}
 --- !u!1001 &1304462425
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -319,12 +401,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c4d7b90b428e7b48a30656991953a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hud: {fileID: 8898424630410890984, guid: ffef11265c472a54392f9b1c20830809, type: 3}
-  _spaceShip: {fileID: 3657155057991059965, guid: b6546cd9ee6a03f408466474a594e2af, type: 3}
-  _sessionDataManager: {fileID: 1147449433852158197, guid: 299f18a97c8f2ce48b3c5c3bbe305a72, type: 3}
-  _analyticsManager: {fileID: 2912755157323473231, guid: a9ad648c7dc52e64ea2f7ddee87a7266, type: 3}
-  _ufoPrefab: {fileID: -184873510415367234, guid: e35f9c442df6ef144b391d92fde60a17, type: 3}
-  _asteroidPrefab: {fileID: -184873510415367234, guid: d89d2ed97e543c540b522fd0b911d7ed, type: 3}
   _spawnOffset: 0.5
   _spawnIntervalValue: 5
   _poolSize: 10
@@ -351,3 +427,4 @@ SceneRoots:
   - {fileID: 1304462425}
   - {fileID: 1427783607}
   - {fileID: 1932149840}
+  - {fileID: 972260231}
