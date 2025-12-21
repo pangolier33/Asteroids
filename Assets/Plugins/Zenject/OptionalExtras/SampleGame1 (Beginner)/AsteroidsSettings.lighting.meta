@@ -1,15 +1,3 @@
-fileFormatVersion: 2
-guid: a8eb2f7a4b5e041379e2cf1fde9fb74d
-NativeFormatImporter:
-  externalObjects: {}
-  mainObjectFileID: 0
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/AsteroidsSettings.lighting
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:42565ac6ee79d8e6275c4e498d936808ec61b405c79f4724c5114fb08fd5422c
+size 432

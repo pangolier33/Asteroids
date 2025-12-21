@@ -1,13 +1,3 @@
-fileFormatVersion: 2
-guid: 93a60ba8e409947b1a0334537c8b38c8
-NativeFormatImporter:
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/SampleGame2 (Advanced)/Media/Prefabs/Explosion.prefab
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:b2fa446165f5d4ff4b34083192922d17d318e366f9c0bc4b303f64ad6774424d
+size 392

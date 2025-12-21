@@ -1,20 +1,3 @@
-fileFormatVersion: 2
-guid: 2afd112e630107f458140fbe19d4e31c
-timeCreated: 1528988907
-licenseType: Store
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/Signals/Main/SignalBusInstaller.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:1467ef9e56b29f39bce6c72dde3e9d1268b87959859d7be274a49eb7f3d05733
+size 521

@@ -1,20 +1,3 @@
-fileFormatVersion: 2
-guid: 554fc06f7ed876d479aa605f55099e02
-timeCreated: 1528024394
-licenseType: Store
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/UnitTests/Editor/MemoryPool/TestStaticMemoryPool.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:b51492ca175bff4061c341b7448dce012b6cfad12c3821cb5eab304c0f3df321
+size 538

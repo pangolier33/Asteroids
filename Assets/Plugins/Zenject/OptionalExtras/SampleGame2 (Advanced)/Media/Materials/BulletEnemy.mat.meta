@@ -1,15 +1,3 @@
-fileFormatVersion: 2
-guid: eeda8e5511ed0494ea45f29b908d1d8c
-timeCreated: 1456628383
-licenseType: Store
-NativeFormatImporter:
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/SampleGame2 (Advanced)/Media/Materials/BulletEnemy.mat
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:9bde91f12742306564a8ce8fbf8ad3f7c2ca958a6cf9e932f2a0c2402e2f5cdf
+size 436

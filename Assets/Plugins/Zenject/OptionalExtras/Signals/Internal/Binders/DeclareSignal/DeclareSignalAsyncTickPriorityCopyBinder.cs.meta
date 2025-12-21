@@ -1,20 +1,3 @@
-fileFormatVersion: 2
-guid: b81f91889a4f58f45a186d306ec19a76
-timeCreated: 1529046908
-licenseType: Store
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/Signals/Internal/Binders/DeclareSignal/DeclareSignalAsyncTickPriorityCopyBinder.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:9740c57b5b4ab057d2a4c8c3eaacd4674d9445dbbd754de558a30a832705a05d
+size 569

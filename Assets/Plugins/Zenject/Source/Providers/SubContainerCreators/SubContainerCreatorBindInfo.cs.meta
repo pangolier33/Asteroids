@@ -1,20 +1,3 @@
-fileFormatVersion: 2
-guid: 2d894c838f0dcc34bb38d1311af9ea56
-timeCreated: 1534923025
-licenseType: Store
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/Source/Providers/SubContainerCreators/SubContainerCreatorBindInfo.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:9b91aa0c177932fed581e656cae0ecaae5db832c8fd83075bc6fcd7abfe0abcd
+size 540

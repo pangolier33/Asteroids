@@ -1,16 +1,3 @@
-fileFormatVersion: 2
-guid: 91f1a89eec2339443a33e85d58a69325
-timeCreated: 1527696648
-licenseType: Store
-DefaultImporter:
-  externalObjects: {}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/IntegrationTests/SceneTests/TestDestructionOrder/TestDestructionOrder1.unity
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:72ffee1d28a81002a808cc600c3a4758bab2c2d841eebeda48ba7b004183d7c3
+size 475

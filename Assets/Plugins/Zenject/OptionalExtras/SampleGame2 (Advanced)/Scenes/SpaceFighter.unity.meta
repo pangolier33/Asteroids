@@ -1,15 +1,3 @@
-fileFormatVersion: 2
-guid: aea20ff1b07af644f9638d9c740ec0e0
-timeCreated: 1456414954
-licenseType: Store
-DefaultImporter:
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/SampleGame2 (Advanced)/Scenes/SpaceFighter.unity
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:2058f62fb671913444d6fc74f7f5280929c17f7548b827ee3b7bd59890070c63
+size 425

@@ -1,19 +1,3 @@
-fileFormatVersion: 2
-guid: d2392181aaeca434cb15e2719d7567d6
-timeCreated: 1461708053
-licenseType: Store
-MonoImporter:
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/Source/Binding/Finalizers/ScopableBindingFinalizer.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:4f8305dd54eb3cd4d2baf21f9cda7c9336dc0c126ab63c6b23313f9eeb9f3d7f
+size 503

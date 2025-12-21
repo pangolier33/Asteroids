@@ -1,18 +1,3 @@
-fileFormatVersion: 2
-guid: 617897a56465c40ee8de5e479395fbc8
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/IntegrationTests/Bindings/TestFromSubContainerPrefab/CircFoo.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:8b21219be64c8134696df0c97e6a513e980f708416e1948d06d52fe34abdf0ea
+size 507

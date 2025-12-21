@@ -1,15 +1,3 @@
-fileFormatVersion: 2
-guid: 8645273165cb7f54290d6eaa1e10ab37
-timeCreated: 1461878212
-licenseType: Store
-DefaultImporter:
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/Source/Zenject.csproj
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:fa6240ccbee4a74f3388d7ce487dc84391b8b230390aa604d5913c64837de6d2
+size 383

@@ -1,19 +1,3 @@
-fileFormatVersion: 2
-guid: 32bea9a1bf6287e4e936f2de85375172
-timeCreated: 1456680988
-licenseType: Store
-MonoImporter:
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/SampleGame2 (Advanced)/Scripts/Misc/Explosion.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:61c28d4168d33773c259050d16bc3cb0a8524142f94b01ce809d6c1430e07a3c
+size 513

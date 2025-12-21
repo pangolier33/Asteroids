@@ -1,15 +1,3 @@
-fileFormatVersion: 2
-guid: 0e8cb14a39fd6f249a44c7943b3fa7c0
-timeCreated: 1486605718
-licenseType: Store
-NativeFormatImporter:
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/IntegrationTests/Resources/TestDiContainerMethods/Camera.prefab
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:90e4fc7e147d2322e5204d3d20fddbb6d8e67080e0d6a039b6353e3791abeb22
+size 445

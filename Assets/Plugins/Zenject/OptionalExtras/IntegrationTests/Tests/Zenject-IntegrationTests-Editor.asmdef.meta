@@ -1,16 +1,3 @@
-fileFormatVersion: 2
-guid: b4d325adfafa9454b8d5f7d62eca2a8a
-timeCreated: 1531969489
-licenseType: Store
-AssemblyDefinitionImporter:
-  externalObjects: {}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/IntegrationTests/Tests/Zenject-IntegrationTests-Editor.asmdef
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:354130a0b2c3b0797fa14a49ba891ea950e005fb6b7b11132e18fc5a584f7625
+size 471

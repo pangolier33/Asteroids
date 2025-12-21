@@ -1,16 +1,3 @@
-fileFormatVersion: 2
-guid: aebd7ef925dd4fe4690c3238e879f914
-timeCreated: 1537606270
-licenseType: Store
-DefaultImporter:
-  externalObjects: {}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/Signals/Zenject-Signals.csproj
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:fe3e7685b98254fadbc7042062055a74793e60526fbd052abf73e0d7262775c9
+size 429

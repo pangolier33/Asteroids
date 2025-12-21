@@ -1,18 +1,3 @@
-fileFormatVersion: 2
-guid: 907fe89581f70f64e88ceda5022ffdd6
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/UnitTests/Editor/Signals/TestBindSignal.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:140224be8737e92fe7354c4a9a47d268af134563fa2a44acba3939e08816c965
+size 486

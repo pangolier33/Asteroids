@@ -1,15 +1,3 @@
-fileFormatVersion: 2
-guid: bfe2502efa3e0b3438c53be39dad6c3c
-timeCreated: 1459015737
-licenseType: Store
-NativeFormatImporter:
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/IntegrationTests/Resources/TestFromPrefabResource/GorpAndQux.prefab
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:a43ef3ea7ce5cc006d017ee2fd3e2ac29c11b0acf44caa84b45ed60154776f8b
+size 449

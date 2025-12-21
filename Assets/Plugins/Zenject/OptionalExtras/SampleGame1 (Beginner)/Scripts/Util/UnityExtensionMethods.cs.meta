@@ -1,15 +1,3 @@
-fileFormatVersion: 2
-guid: 1018c66230d7f7b408485a0d8c28147d
-MonoImporter:
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Scripts/Util/UnityExtensionMethods.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:512f8efd1d4c498500a2fdd7bbf6a7fbc3f011de86377c425dd6f77c193b27f8
+size 439

@@ -1,13 +1,3 @@
-fileFormatVersion: 2
-guid: 7072050308ffe4cc1a908ac897583e2e
-ShaderImporter:
-  defaultTextures: []
-  userData: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Media/Imported/Shaders/Particle
-    Alpha Blend_IgnoreFog.shader
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:d8c19ac15ee7db3344ba1c2875f81f95eec1dce68f9e1d82a628db9bfb354865
+size 399

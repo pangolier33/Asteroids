@@ -1,19 +1,3 @@
-fileFormatVersion: 2
-guid: 3b0521d85aeb9ee479dcb29ef4d88547
-timeCreated: 1465651364
-licenseType: Store
-MonoImporter:
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/Source/Providers/ComponentProviders/AddToGameObjectComponentProviders/AddToCurrentGameObjectComponentProvider.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:882e15f27ade839b251b9f53a3342807f71397c583de519c4633ec159c8799be
+size 562

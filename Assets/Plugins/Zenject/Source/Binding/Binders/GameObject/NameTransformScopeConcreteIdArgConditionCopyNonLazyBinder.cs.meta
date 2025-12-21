@@ -1,20 +1,3 @@
-fileFormatVersion: 2
-guid: 74c9bb72aa7484d49a39760d2246f1a3
-timeCreated: 1523257673
-licenseType: Store
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/Source/Binding/Binders/GameObject/NameTransformScopeConcreteIdArgConditionCopyNonLazyBinder.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:76f331a9e7ca88da9bf2384ef85d7094a51f29664fb26af21ac302e26eb6e43f
+size 566

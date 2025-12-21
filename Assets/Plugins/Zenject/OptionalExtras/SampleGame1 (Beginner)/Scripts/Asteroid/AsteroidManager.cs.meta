@@ -1,15 +1,3 @@
-fileFormatVersion: 2
-guid: a9a361be236d95c48a1de52c435fcc9a
-MonoImporter:
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Scripts/Asteroid/AsteroidManager.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:878f17c44c8f1c9522bfe0e4d8eb782316534c6f6ab6daac68064d6e11b50649
+size 437

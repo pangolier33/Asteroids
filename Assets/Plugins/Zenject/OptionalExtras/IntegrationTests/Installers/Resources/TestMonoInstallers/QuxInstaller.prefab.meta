@@ -1,15 +1,3 @@
-fileFormatVersion: 2
-guid: a2dee8dc5b292034aa05c835d3dfa23a
-timeCreated: 1465573559
-licenseType: Store
-NativeFormatImporter:
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/IntegrationTests/Installers/Resources/TestMonoInstallers/QuxInstaller.prefab
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:8e66a44f9216087da2397d6fa591433222520b636f318cf28e58f17455d6800c
+size 458

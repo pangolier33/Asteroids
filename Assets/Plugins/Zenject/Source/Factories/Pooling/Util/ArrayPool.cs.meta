@@ -1,20 +1,3 @@
-fileFormatVersion: 2
-guid: 891d6e713fcfdfc4a95271fdee018e94
-timeCreated: 1537870146
-licenseType: Store
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/Source/Factories/Pooling/Util/ArrayPool.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:caf2bd4a09a1e1166a55986d8dc3a155b15062ab1f43b4437862801ee1165fe0
+size 514

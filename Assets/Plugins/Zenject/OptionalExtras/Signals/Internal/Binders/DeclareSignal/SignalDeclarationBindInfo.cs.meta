@@ -1,20 +1,3 @@
-fileFormatVersion: 2
-guid: 1e83db91ff836874fb4fcf3ae4e16f0b
-timeCreated: 1521277428
-licenseType: Store
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/Signals/Internal/Binders/DeclareSignal/SignalDeclarationBindInfo.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:52c603fefdfa2b6cc70e4bd513d7c04946ddf489acb5ea62bcd1245d18086512
+size 554

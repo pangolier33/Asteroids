@@ -1,19 +1,3 @@
-fileFormatVersion: 2
-guid: 05d17b3e7f09bc44f8be86e01642ee8d
-timeCreated: 1462127469
-licenseType: Store
-MonoImporter:
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/Source/Binding/Binders/Conventions/ConventionSelectTypesBinder.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:2dfc386ae94c25f6964d3a89cd98b3773b4c25bf9bfb4b297590650379d230e6
+size 515

@@ -1,20 +1,3 @@
-using System;
-using ModestTree;
-
-namespace Zenject
-{
-    public class BindSignalIdToBinder<TSignal> : BindSignalToBinder<TSignal>
-    {
-        public BindSignalIdToBinder(DiContainer container, SignalBindingBindInfo signalBindInfo)
-            : base(container, signalBindInfo)
-        {
-        }
-
-        public BindSignalToBinder<TSignal> WithId(object identifier)
-        {
-            SignalBindInfo.Identifier = identifier;
-            return this;
-        }
-    }
-}
-
+version https://git-lfs.github.com/spec/v1
+oid sha256:258d636e17f441a27b9488e112f1f76d74719dc534f2de6e2d3650f15a5ba230
+size 495
