@@ -1,19 +1,3 @@
-fileFormatVersion: 2
-guid: 62ec581e8d820a74797d1dabf19d85c3
-timeCreated: 1461708051
-licenseType: Store
-MonoImporter:
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/Source/Binding/Binders/ConcreteBinders/ConcreteBinderGeneric.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:e97b3859badb4cf3910c44cb0b256399af6077233dc59457b048f6cee504de70
+size 513

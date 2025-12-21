@@ -1,16 +1,3 @@
-fileFormatVersion: 2
-guid: a2f2239355369ba4fb6909aeaa41def5
-timeCreated: 1531969421
-licenseType: Store
-AssemblyDefinitionImporter:
-  externalObjects: {}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/TestFramework/Zenject-TestFramework.asmdef
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:e72072bda44caeae9b5426b8b02afb69a6a253abc263c7fbe8c1ac983f5536cb
+size 452

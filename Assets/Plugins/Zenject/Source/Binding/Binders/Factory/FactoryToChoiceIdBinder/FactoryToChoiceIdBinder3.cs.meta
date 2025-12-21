@@ -1,19 +1,3 @@
-fileFormatVersion: 2
-guid: be02341a689ce654ab7160ce4eb5ed0e
-timeCreated: 1484511596
-licenseType: Store
-MonoImporter:
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/Source/Binding/Binders/Factory/FactoryToChoiceIdBinder/FactoryToChoiceIdBinder3.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:53ccbabd104663982932b0e1208f04819842ee6133ecb0a96ae7ef86b59fe0f8
+size 532

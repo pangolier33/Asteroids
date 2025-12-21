@@ -1,20 +1,3 @@
-fileFormatVersion: 2
-guid: 81cad1ee2d8c20942a68a4228e09ff1d
-timeCreated: 1537522729
-licenseType: Store
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/Source/Util/ProfileTimers.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:8a41adae362aaf8ff5f05b35be71a76894f2f7e0ee6d40dd7dfb5d601b9ba728
+size 500

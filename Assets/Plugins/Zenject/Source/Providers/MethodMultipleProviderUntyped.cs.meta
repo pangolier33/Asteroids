@@ -1,20 +1,3 @@
-fileFormatVersion: 2
-guid: dd9674ffe36a06141afeab1ebbc399f0
-timeCreated: 1529046908
-licenseType: Store
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/Source/Providers/MethodMultipleProviderUntyped.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:41cdae02a8db60c34b17ea6b39df51845e0404318c43a76745bb5ed03e26c2e8
+size 521

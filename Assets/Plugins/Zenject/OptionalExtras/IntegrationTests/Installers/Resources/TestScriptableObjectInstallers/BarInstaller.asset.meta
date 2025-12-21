@@ -1,15 +1,3 @@
-fileFormatVersion: 2
-guid: 2de8710dcfa13404897fe61a0772cb01
-timeCreated: 1465580450
-licenseType: Store
-NativeFormatImporter:
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/IntegrationTests/Installers/Resources/TestScriptableObjectInstallers/BarInstaller.asset
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:6f7481c881933b281067e28008cb5a13334c59a81aa646a93014ee4caa0efddb
+size 469

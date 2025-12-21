@@ -1,19 +1,3 @@
-fileFormatVersion: 2
-guid: aff38aaefd39d0d41a92c2707718d15c
-timeCreated: 1461708052
-licenseType: Store
-MonoImporter:
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: -9997
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/Source/Runtime/Kernels/SceneKernel.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:976df15d406a5dc1fd66f7799ccf01a4c2fd1e94be134db075c607d4b9fb4359
+size 491

@@ -1,20 +1,3 @@
-fileFormatVersion: 2
-guid: 604fe2d23cc79c7498be851b6970af1b
-timeCreated: 1521266917
-licenseType: Store
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/Signals/Internal/Binders/SignalCopyBinder.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:fbc566a5f05baafca28d58435a2b238f1740c09c3a8145abe9973b15b394bf6b
+size 531

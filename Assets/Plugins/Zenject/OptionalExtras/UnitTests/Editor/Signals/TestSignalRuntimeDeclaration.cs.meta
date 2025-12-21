@@ -1,18 +1,3 @@
-fileFormatVersion: 2
-guid: d126648ba38c37f4bbd46176fd19e72a
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/UnitTests/Editor/Signals/TestSignalRuntimeDeclaration.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:e351cbe587d23d1b74aed8029cf46cba5ca21ea02cf93f2d4cac29285681abf5
+size 500

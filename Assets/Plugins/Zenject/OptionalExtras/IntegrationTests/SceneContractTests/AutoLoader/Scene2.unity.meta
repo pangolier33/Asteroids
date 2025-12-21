@@ -1,16 +1,3 @@
-fileFormatVersion: 2
-guid: e290c5ee5cba76840b3564b4fc30737c
-timeCreated: 1520771077
-licenseType: Store
-DefaultImporter:
-  externalObjects: {}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/IntegrationTests/SceneContractTests/AutoLoader/Scene2.unity
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:30d06443cba41186594bdb3a4683c853ff7e195eae0c58e860e43d7f93d1ce5a
+size 458

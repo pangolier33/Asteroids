@@ -1,25 +1,3 @@
-namespace Zenject
-{
-    [NoReflectionBaking]
-    public class SignalTickPriorityCopyBinder : SignalCopyBinder
-    {
-        public SignalTickPriorityCopyBinder(
-            SignalDeclarationBindInfo signalBindInfo)
-        {
-            SignalBindInfo = signalBindInfo;
-        }
-
-        protected SignalDeclarationBindInfo SignalBindInfo
-        {
-            get; private set;
-        }
-
-        public SignalCopyBinder WithTickPriority(int priority)
-        {
-            SignalBindInfo.TickPriority = priority;
-            SignalBindInfo.RunAsync = true;
-            return this;
-        }
-    }
-}
-
+version https://git-lfs.github.com/spec/v1
+oid sha256:c736c2126fd46b05b85968b24c36b7955b49736a42ac0d72f0a8dc7a60e20b76
+size 629

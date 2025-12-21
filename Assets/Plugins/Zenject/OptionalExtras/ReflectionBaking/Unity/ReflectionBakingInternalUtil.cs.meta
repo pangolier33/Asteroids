@@ -1,20 +1,3 @@
-fileFormatVersion: 2
-guid: 68724c9557073844fb7c3f088c588d32
-timeCreated: 1537003252
-licenseType: Store
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Unity/ReflectionBakingInternalUtil.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:4dbac71959f27ec80cda24dd225c7c5468060d28305d4ff6c2107b72c699e5eb
+size 541

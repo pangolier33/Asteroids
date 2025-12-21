@@ -1,15 +1,3 @@
-fileFormatVersion: 2
-guid: e0ea78722f7cb4451b99519c67bf1608
-NativeFormatImporter:
-  externalObjects: {}
-  mainObjectFileID: 0
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/SampleGame2 (Advanced)/Scenes/SpaceFighterSettings.lighting
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:418e451a048757ce35be95c6cb9c2f2a2f83303add6cda22f3a573475350c2d2
+size 442

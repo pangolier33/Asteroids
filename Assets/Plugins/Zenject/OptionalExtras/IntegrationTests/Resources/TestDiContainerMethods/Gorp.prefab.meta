@@ -1,15 +1,3 @@
-fileFormatVersion: 2
-guid: 956d91076f66be1488d99299c06d37b8
-timeCreated: 1486605550
-licenseType: Store
-NativeFormatImporter:
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/IntegrationTests/Resources/TestDiContainerMethods/Gorp.prefab
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:0978dbc8ff950cf365b6965dc6b92824a4f6cd19a4911e4b2e5781c58dedcb85
+size 443

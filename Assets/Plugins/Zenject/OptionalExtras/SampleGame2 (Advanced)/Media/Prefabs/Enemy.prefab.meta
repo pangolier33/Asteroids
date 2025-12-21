@@ -1,15 +1,3 @@
-fileFormatVersion: 2
-guid: 55f63c48150ecbb469e095dbde67c6e9
-timeCreated: 1456415643
-licenseType: Store
-NativeFormatImporter:
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/SampleGame2 (Advanced)/Media/Prefabs/Enemy.prefab
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:51422afcadfed827d010a3dc7ca558dd353cb1d02a28cea72bbab98021734c31
+size 431

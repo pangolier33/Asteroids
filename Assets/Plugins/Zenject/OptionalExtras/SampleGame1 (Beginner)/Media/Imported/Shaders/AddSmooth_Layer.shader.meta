@@ -1,12 +1,3 @@
-fileFormatVersion: 2
-guid: e10518acdaf774d528297b6d5b3a5839
-ShaderImporter:
-  defaultTextures: []
-  userData: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Media/Imported/Shaders/AddSmooth_Layer.shader
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:e76352d828e3a4e03b95ffa55481f51fb87c9b84cf93067b0975b6b116a60bf4
+size 380

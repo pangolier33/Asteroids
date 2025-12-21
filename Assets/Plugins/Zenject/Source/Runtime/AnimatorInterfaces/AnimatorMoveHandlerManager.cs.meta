@@ -1,19 +1,3 @@
-fileFormatVersion: 2
-guid: a07f8d298d010b34ca694d0d124b66d2
-timeCreated: 1487820669
-licenseType: Store
-MonoImporter:
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/Source/Runtime/AnimatorInterfaces/AnimatorMoveHandlerManager.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:8b9b0c4d4e8af448f897b647420ccf1c1e4112c3489c650a3c96eb79d688e162
+size 513

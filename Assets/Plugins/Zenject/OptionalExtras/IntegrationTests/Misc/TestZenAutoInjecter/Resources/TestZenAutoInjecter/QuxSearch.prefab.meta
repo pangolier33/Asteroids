@@ -1,17 +1,3 @@
-fileFormatVersion: 2
-guid: de81b619565bbf8408b85c2016b9477d
-timeCreated: 1528434557
-licenseType: Store
-NativeFormatImporter:
-  externalObjects: {}
-  mainObjectFileID: 100100000
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/IntegrationTests/Misc/TestZenAutoInjecter/Resources/TestZenAutoInjecter/QuxSearch.prefab
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:92efaaa5edb40f1f669b89fcb8175f5424540d4aca8db019bdaf3dbda1c6eb2f
+size 522

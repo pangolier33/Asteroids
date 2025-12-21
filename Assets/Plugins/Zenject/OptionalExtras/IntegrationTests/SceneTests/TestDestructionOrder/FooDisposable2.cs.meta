@@ -1,20 +1,3 @@
-fileFormatVersion: 2
-guid: c5b51a749e060d34289822f72cb51ffe
-timeCreated: 1527696771
-licenseType: Store
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/IntegrationTests/SceneTests/TestDestructionOrder/FooDisposable2.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:e13ebd6a3d57ac71784eaef6f2a777fea1ee337679287a57d46f1618b646ec65
+size 553

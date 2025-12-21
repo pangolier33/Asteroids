@@ -1,20 +1,3 @@
-fileFormatVersion: 2
-guid: f80ffddc2b920e54f85483d37863d1ba
-timeCreated: 1527866041
-licenseType: Store
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/IntegrationTests/Tests/Misc/TestAnimationStateBehaviourInject/TestAnimationStateBehaviourInject.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:de00739a37bf4a2e5f47af129cd6ab7db39322271dd6a5cedca4c150f289ebbd
+size 585

@@ -1,20 +1,3 @@
-fileFormatVersion: 2
-guid: 5b634c456740a0e42928511e3f2ada75
-timeCreated: 1527233974
-licenseType: Store
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/TestFramework/SceneTestFixtureSceneReference.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:3abbbd5bfd7c19e37c8ad06566cb54d670b6fbc7354b14faff9085ef69f83575
+size 534

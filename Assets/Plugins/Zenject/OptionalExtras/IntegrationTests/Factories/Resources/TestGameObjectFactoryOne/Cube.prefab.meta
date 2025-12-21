@@ -1,15 +1,3 @@
-fileFormatVersion: 2
-guid: 3aca5d856f350b24eb622adb19746ebc
-timeCreated: 1459214356
-licenseType: Store
-NativeFormatImporter:
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/IntegrationTests/Factories/Resources/TestGameObjectFactoryOne/Cube.prefab
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:dfd0785b6cbccbce787c060ecd7a46b8d7466c6b84e897d37d2f6bb47234f07e
+size 455

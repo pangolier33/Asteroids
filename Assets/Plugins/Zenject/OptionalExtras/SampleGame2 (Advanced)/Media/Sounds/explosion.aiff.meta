@@ -1,29 +1,3 @@
-fileFormatVersion: 2
-guid: 9cb65eb2505fbf443ac876ba177374f9
-timeCreated: 1484707267
-licenseType: Store
-AudioImporter:
-  serializedVersion: 6
-  defaultSettings:
-    loadType: 0
-    sampleRateSetting: 0
-    sampleRateOverride: 44100
-    compressionFormat: 1
-    quality: 1
-    conversionMode: 0
-  platformSettingOverrides: {}
-  forceToMono: 0
-  normalize: 1
-  preloadAudioData: 1
-  loadInBackground: 0
-  3D: 1
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/SampleGame2 (Advanced)/Media/Sounds/explosion.aiff
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:78236dae6ed23c99ac8e5d74430ffdcd8613d9fed3f5dd56b5efc00026f16092
+size 715

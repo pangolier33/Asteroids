@@ -1,19 +1,3 @@
-fileFormatVersion: 2
-guid: 4087d354966adf44fa24ee0fa597f6da
-timeCreated: 1456617036
-licenseType: Store
-MonoImporter:
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/SampleGame2 (Advanced)/Scripts/Enemy/EnemyStateManager.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:8cfa43ba6769dacdc633a9cc1f3e03ce7a0023e6c2261aa71040b1f058447b7f
+size 522

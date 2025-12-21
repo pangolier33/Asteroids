@@ -1,20 +1,3 @@
-fileFormatVersion: 2
-guid: c4d7a9a15b734ad4682e1817c61c98c6
-timeCreated: 1520788822
-licenseType: Store
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/IntegrationTests/SceneContractTests/Decorators/Scene1Installer.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:6fca8d1f7c676384603cd5dcd7e695cf86851e29fbd4bf2a5ef6bd4bb030060c
+size 552

@@ -1,16 +1,3 @@
-fileFormatVersion: 2
-guid: e988738e8012f5a4fa42a45fcab11e2c
-timeCreated: 1531030364
-licenseType: Store
-AssemblyDefinitionImporter:
-  externalObjects: {}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/MemoryPoolMonitor/Editor/Zenject-PoolMonitor-Editor.asmdef
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:f53c16bbebad09c1a263997e48dc0cdef8140f1bda9420667de77bce18e64521
+size 468

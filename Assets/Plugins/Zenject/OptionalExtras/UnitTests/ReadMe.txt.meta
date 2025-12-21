@@ -1,15 +1,3 @@
-fileFormatVersion: 2
-guid: 4f3e3f9dfc5945a409244fec02c55536
-timeCreated: 1465496279
-licenseType: Store
-TextScriptImporter:
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/UnitTests/ReadMe.txt
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:bc972ab76e297903d0ae1509f8432da2de0a2d02f449e62663003046fc8896c3
+size 400

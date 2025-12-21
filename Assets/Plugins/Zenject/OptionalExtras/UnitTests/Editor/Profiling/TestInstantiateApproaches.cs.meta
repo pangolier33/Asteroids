@@ -1,20 +1,3 @@
-fileFormatVersion: 2
-guid: 12c4cac1f74962c48916d2476d6828d0
-timeCreated: 1537582037
-licenseType: Store
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/UnitTests/Editor/Profiling/TestInstantiateApproaches.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:0256aa3ceeeffd34bd0a2d3926dea2c14036e2cd7874c8fb96be00901df3b82a
+size 542

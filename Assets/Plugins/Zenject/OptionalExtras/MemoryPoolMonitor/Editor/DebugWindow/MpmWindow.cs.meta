@@ -1,20 +1,3 @@
-fileFormatVersion: 2
-guid: e38c08208cf0cee48a675a3944d37e10
-timeCreated: 1521391096
-licenseType: Store
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/MemoryPoolMonitor/Editor/DebugWindow/MpmWindow.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:7a302ab7c416c109a50d8f87a77fbf5c2eccf2d1dd9f498b13a73f4c1b3f8734
+size 536

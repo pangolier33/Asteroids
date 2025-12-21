@@ -1,17 +1,3 @@
-fileFormatVersion: 2
-guid: 351a07e7d4f94924ca89ac897d494be2
-timeCreated: 1528434628
-licenseType: Store
-NativeFormatImporter:
-  externalObjects: {}
-  mainObjectFileID: 100100000
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/IntegrationTests/Misc/TestZenAutoInjecter/Resources/TestZenAutoInjecter/Bar.prefab
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:83f8f4aa8de042080dcdedfdc9af913f4c26b57890ba2b8d44438fbae78e3e2a
+size 516

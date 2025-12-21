@@ -1,20 +1,3 @@
-fileFormatVersion: 2
-guid: 48a8b9cc5fc1b7641ad87f55c4da8788
-timeCreated: 1528024394
-licenseType: Store
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/MemoryPoolMonitor/Editor/DebugWindow/InPlaceStableSort.cs
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:ef5672964a916d58711fc507b465ccc60379c3af2a5f08389760da39918c2176
+size 544

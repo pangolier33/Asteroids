@@ -1,15 +1,3 @@
-fileFormatVersion: 2
-guid: d0fc7ecead470be4d8ac1114be3d9d62
-timeCreated: 1458261082
-licenseType: Store
-NativeFormatImporter:
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157735
-  packageName: Extenject Dependency Injection IOC
-  packageVersion: 9.2.0
-  assetPath: Assets/Plugins/Zenject/OptionalExtras/IntegrationTests/Resources/TestFromPrefab/Foo2.prefab
-  uploadId: 370902
+version https://git-lfs.github.com/spec/v1
+oid sha256:6af5ed98722f79d8f2b853dfe46c1aa06be7d20bce27aa0666496fade90553e1
+size 435
