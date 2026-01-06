@@ -8,8 +8,6 @@ namespace _Project.Scripts.Tools
     [RequireComponent(typeof(Button))]
     public class RestartButton : MonoBehaviour
     {
-        [SerializeField] private int _scene = 0;
-        
         private SceneLoaderService _sceneLoader = new SceneLoaderService();
         private Button _button;
 
@@ -30,7 +28,7 @@ namespace _Project.Scripts.Tools
 
         private async void OnRestartClick()
         {
-            await _sceneLoader.LoadSceneAsync(_scene);
+            await _sceneLoader.LoadLevelScene();
         }
     }
 }

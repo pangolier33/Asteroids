@@ -10,7 +10,7 @@ namespace _Project.Scripts.Services
         private const string GUN_NAME = "Gun";
         private const string LASER_NAME = "Laser";
         
-        private readonly AnalyticsService _analyticsService;
+        private readonly IAnalyticsService _analyticsService;
         private readonly SessionDataManager _sessionDataManager;
         private readonly SpaceShipGun _spaceShipGun;
         private readonly SpaceShipLaser _spaceShipLaser;
@@ -19,7 +19,7 @@ namespace _Project.Scripts.Services
         private int _numberOfClicksGun;
         
         public AnalyticsController(
-            AnalyticsService analyticsService,
+            IAnalyticsService analyticsService,
             SessionDataManager sessionDataManager,
             SpaceShipGun spaceShipGun,
             SpaceShipLaser spaceShipLaser)

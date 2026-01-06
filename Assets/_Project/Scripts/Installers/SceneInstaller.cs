@@ -1,5 +1,6 @@
 using _Project.Scripts.Creatures.Enemy;
 using _Project.Scripts.Creatures.Player;
+using _Project.Scripts.Enums;
 using _Project.Scripts.Services;
 using UnityEngine;
 using Zenject;
@@ -16,13 +17,10 @@ namespace _Project.Scripts.Installers
         
         public override void InstallBindings()
         {
-            Container.Bind<SaveService>().AsSingle();
-            Container.Bind<AnalyticsService>().AsSingle();
-            
             Container.Bind<Camera>().FromMethod(ctx => Camera.main).AsSingle();
             
-            Container.Bind<Enemy>().WithId("UfoPrefab").FromInstance(_ufoPrefab);
-            Container.Bind<Enemy>().WithId("AsteroidPrefab").FromInstance(_asteroidPrefab);
+            Container.Bind<Enemy>().WithId(ZenjectIDs.UfoPrefab).FromInstance(_ufoPrefab);
+            Container.Bind<Enemy>().WithId(ZenjectIDs.AsteroidPrefab).FromInstance(_asteroidPrefab);
             
             CreateGameObjects();
         }

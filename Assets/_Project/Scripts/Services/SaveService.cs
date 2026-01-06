@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Services
 {
-    public class SaveService
+    public class SaveService : ISaveService
     {
         private const string SAVE_DATA_KEY = "GameSaveData";
         

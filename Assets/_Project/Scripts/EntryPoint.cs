@@ -1,6 +1,7 @@
 using _Project.Scripts.Creatures.Enemy;
 using _Project.Scripts.Creatures.Player;
 using _Project.Scripts.Creatures.Player.SpaceShipWeapon;
+using _Project.Scripts.Enums;
 using _Project.Scripts.Services;
 using _Project.Scripts.Spawners;
 using _Project.Scripts.UI;
@@ -38,8 +39,8 @@ namespace _Project.Scripts
             Canvas hud,
             SessionDataManager sessionDataManager,
             AnalyticsService analyticsService,
-            [Inject(Id = "UfoPrefab")] Enemy ufoPrefab,
-            [Inject(Id = "AsteroidPrefab")] Enemy asteroidPrefab)
+            [Inject(Id = ZenjectIDs.UfoPrefab)] Enemy ufoPrefab,
+            [Inject(Id = ZenjectIDs.AsteroidPrefab)] Enemy asteroidPrefab)
         {
             _saveService = saveService;
             _mainCamera = mainCamera;
