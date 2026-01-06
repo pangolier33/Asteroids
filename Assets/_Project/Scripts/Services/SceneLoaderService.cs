@@ -9,6 +9,16 @@ namespace _Project.Scripts.Services
         private int _bootstrapSceneIndex = 0;
         private int _levelSceneIndex = 1;
         
+        public async Task LoadLevelScene()
+        {
+            await LoadSceneAsync(_levelSceneIndex);
+        }
+        
+        public async Task LoadBootstrapScene()
+        {
+            await LoadSceneAsync(_bootstrapSceneIndex);
+        }
+        
         private async Task LoadSceneAsync(int sceneIndex)
         {
             GameObject loadingScreenPrefab = Resources.Load<GameObject>("LoadingScreen");
@@ -17,16 +27,6 @@ namespace _Project.Scripts.Services
             await SceneManager.LoadSceneAsync(sceneIndex);
 
             Object.Destroy(loadingScreenInstance);
-        }
-
-        public async Task LoadLevelScene()
-        {
-            await LoadSceneAsync(_levelSceneIndex);
-        }
-        
-        public async Task LoadBootstraplScene()
-        {
-            await LoadSceneAsync(_bootstrapSceneIndex);
         }
     }
 }
