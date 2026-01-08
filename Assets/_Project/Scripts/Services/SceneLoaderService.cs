@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 namespace _Project.Scripts.Services
 {
-    public class SceneLoaderService
+    public class SceneLoaderService : ISceneLoaderService
     {
         private int _bootstrapSceneIndex = 0;
         private int _levelSceneIndex = 1;
@@ -19,7 +19,7 @@ namespace _Project.Scripts.Services
             await LoadSceneAsync(_bootstrapSceneIndex);
         }
         
-        private async Task LoadSceneAsync(int sceneIndex)
+        public async Task LoadSceneAsync(int sceneIndex)
         {
             GameObject loadingScreenPrefab = Resources.Load<GameObject>("LoadingScreen");
             GameObject loadingScreenInstance = Object.Instantiate(loadingScreenPrefab);
