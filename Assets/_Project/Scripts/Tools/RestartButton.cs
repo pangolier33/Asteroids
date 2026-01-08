@@ -8,7 +8,7 @@ namespace _Project.Scripts.Tools
     [RequireComponent(typeof(Button))]
     public class RestartButton : MonoBehaviour
     {
-        private SceneLoaderService _sceneLoader = new SceneLoaderService();
+        private ISceneLoaderService _sceneLoader = new SceneLoaderService();
         private Button _button;
 
         private void Awake()

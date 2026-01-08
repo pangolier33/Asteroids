@@ -11,7 +11,7 @@ namespace _Project.Scripts.Services
 
         private async void LoadLevel()
         {
-            SceneLoaderService sceneLoaderService = new SceneLoaderService();
+            ISceneLoaderService sceneLoaderService = new SceneLoaderService();
             await sceneLoaderService.LoadLevelScene();
         }
     }
