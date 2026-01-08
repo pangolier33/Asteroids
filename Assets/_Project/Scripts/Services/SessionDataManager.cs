@@ -9,7 +9,7 @@ namespace _Project.Scripts.Services
         public event Action GameOver;
         
         private int _enemyScore = 1;
-        private SaveService _saveService;
+        private ISaveService _saveService;
         private SaveData _currentSaveData;
         
         [field: SerializeField] public int EnemyKilledScore { get; private set; }
@@ -18,7 +18,7 @@ namespace _Project.Scripts.Services
         public bool IsGameOver { get; private set; }
         public int CurrentRecord { get; private set; }
         
-        public void Initialize(SaveService saveService)
+        public void Initialize(ISaveService saveService)
         {
             _saveService = saveService;
             

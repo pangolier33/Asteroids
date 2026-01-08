@@ -17,7 +17,7 @@ namespace _Project.Scripts
         [SerializeField] private float _spawnIntervalValue = 5f;
         [SerializeField] private int _poolSize = 10;
         
-        private SaveService _saveService;
+        private ISaveService _saveService;
         private Camera _mainCamera;
         private SpaceShipMovement _spaceShip;
         private Canvas _hud;
@@ -25,7 +25,7 @@ namespace _Project.Scripts
         private AnalyticsController _analyticsController;
         private Enemy _ufoPrefab;
         private Enemy _asteroidPrefab;
-        private AnalyticsService _analyticsService;
+        private IAnalyticsService _analyticsService;
         
         private EnemySpawner _ufoSpawner;
         private EnemySpawner _asteroidSpawner;
@@ -33,12 +33,12 @@ namespace _Project.Scripts
 
         [Inject]
         public void Construct(
-            SaveService saveService,
+            ISaveService saveService,
             Camera mainCamera,
             SpaceShipMovement spaceShip,
             Canvas hud,
             SessionDataManager sessionDataManager,
-            AnalyticsService analyticsService,
+            IAnalyticsService analyticsService,
             [Inject(Id = ZenjectIDs.UfoPrefab)] Enemy ufoPrefab,
             [Inject(Id = ZenjectIDs.AsteroidPrefab)] Enemy asteroidPrefab)
         {

@@ -5,7 +5,7 @@ public class ProjectInstaller : MonoInstaller
 {
     public override void InstallBindings()
     {
-        Container.Bind<ISaveService>().To<SaveService>().AsSingle();
-        Container.Bind<IAnalyticsService>().To<AnalyticsService>().AsSingle();
+        Container.BindInterfacesAndSelfTo<SaveService>().AsSingle();
+        Container.BindInterfacesAndSelfTo<AnalyticsService>().AsSingle();
     }
 }
