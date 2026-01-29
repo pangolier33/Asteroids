@@ -1,4 +1,6 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace _Project.Scripts.Services
 {
@@ -6,13 +8,7 @@ namespace _Project.Scripts.Services
     {
         private void Start()
         {
-            LoadLevel();
-        }
-
-        private async void LoadLevel()
-        {
-            ISceneLoaderService sceneLoaderService = new SceneLoaderService();
-            await sceneLoaderService.LoadLevelScene();
+            
         }
     }
 }

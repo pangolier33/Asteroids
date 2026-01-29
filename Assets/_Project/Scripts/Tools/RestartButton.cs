@@ -1,14 +1,14 @@
 using _Project.Scripts.Services;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Zenject;
 
 namespace _Project.Scripts.Tools
 {
     [RequireComponent(typeof(Button))]
     public class RestartButton : MonoBehaviour
     {
-        private ISceneLoaderService _sceneLoader = new SceneLoaderService();
+        [Inject] private ISceneLoaderService _sceneLoader;
         private Button _button;
 
         private void Awake()

@@ -10,12 +10,18 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
         public event Action clickShoot;
 
         [SerializeField] private Transform _firePoint;
-        [SerializeField] private Bullet _bulletPrefab;
         [SerializeField] private float _delayBullet = 0.25f;
+        
+        public Bullet _bulletPrefab;
 
         private BaseFactory<Bullet> _bulletFactory;
         private float _nextFireTime;
 
+        public void Construct(Bullet bullet)
+        {
+            _bulletPrefab = bullet;
+        }
+        
         private void Awake()
         {
             _bulletFactory = new BaseFactory<Bullet>(_bulletPrefab, PROJECTILE_PRELOAD_COUNT);

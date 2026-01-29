@@ -6,7 +6,7 @@ namespace _Project.Scripts.Spawners
 {
     public class UfoSpawner : EnemySpawner
     {
-        public UfoSpawner(Enemy enemyPrefab, float spawnOffset, WaitForSeconds spawnInterval, Camera mainCamera, SessionDataManager sessionDataManager, int poolSize) : base(enemyPrefab, spawnOffset, spawnInterval, mainCamera, sessionDataManager, poolSize)
+        public UfoSpawner(Enemy enemyPrefab, float spawnOffset, float spawnInterval, Camera mainCamera, SessionDataManager sessionDataManager, int poolSize) : base(enemyPrefab, spawnOffset, spawnInterval, mainCamera, sessionDataManager, poolSize)
         {
         }
         

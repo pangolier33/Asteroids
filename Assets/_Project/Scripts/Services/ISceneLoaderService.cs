@@ -1,11 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 
 namespace _Project.Scripts.Services
 {
     public interface ISceneLoaderService
     {
-        Task LoadLevelScene();
-        Task LoadBootstrapScene();
-        Task LoadSceneAsync(int sceneIndex);
+        UniTask LoadLevelScene();
+        UniTask LoadBootstrapScene();
+        UniTask LoadSceneAsync(int sceneIndex);
     }
 }

@@ -1,42 +1,63 @@
 using _Project.Scripts.Creatures.Enemy;
 using _Project.Scripts.Creatures.Player;
+using _Project.Scripts.Creatures.Player.SpaceShipWeapon;
+using _Project.Scripts.EntryPoints;
 using _Project.Scripts.Enums;
 using _Project.Scripts.Services;
+using _Project.Scripts.Services.Addressebles;
+using _Project.Scripts.Tools;
+using _Project.Scripts.UI;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Rendering;
 using Zenject;
 
 namespace _Project.Scripts.Installers
 {
     public class SceneInstaller : MonoInstaller
     {
-        [SerializeField] private SpaceShipMovement _spaceShipPrefab;
-        [SerializeField] private SessionDataManager _sessionDataManager;
-        [SerializeField] private Canvas _hudPrefab;
-        [SerializeField] private Enemy _ufoPrefab;
-        [SerializeField] private Enemy _asteroidPrefab;
-        
+        [Inject] private LevelPrefabs _levelPrefabs;
+
+        private SpaceShipMovement _spaceShip;
+        private HUD _hud;
+        private SessionDataManager _sessionDataManager;
+        private RestartPanelUI _restartPanelUI;
+        private Enemy _ufo;
+        private Enemy _asteroid;
+        private Bullet _bullet;
+    
         public override void InstallBindings()
+        {
+            BindGameObjectsAsync().Forget();
+        }
+
+        private async UniTaskVoid BindGameObjectsAsync()
         {
             Container.Bind<Camera>().FromMethod(ctx => Camera.main).AsSingle();
             
-            Container.Bind<Enemy>().WithId(ZenjectIDs.UfoPrefab).FromInstance(_ufoPrefab);
-            Container.Bind<Enemy>().WithId(ZenjectIDs.AsteroidPrefab).FromInstance(_asteroidPrefab);
+            await BindPrefabs();
             
-            CreateGameObjects();
+            Container.BindInterfacesAndSelfTo<LevelEntryPoint>().AsSingle().NonLazy();
         }
-        
-        private void CreateGameObjects()
+
+        private async UniTask BindPrefabs()
         {
-            _spaceShipPrefab = Instantiate(_spaceShipPrefab);
-            Container.Bind<SpaceShipMovement>().FromInstance(_spaceShipPrefab).AsSingle();
-            
-            _hudPrefab = Instantiate(_hudPrefab);
-            Container.Bind<Canvas>().FromInstance(_hudPrefab.GetComponent<Canvas>()).AsSingle();
-            
-            _sessionDataManager = Instantiate(_sessionDataManager);
+            _spaceShip = _levelPrefabs.spaceShipPrefab;
+            _hud = _levelPrefabs.hudPrefab;
+            _sessionDataManager = _levelPrefabs.sessionDataManagerPrefab;
+            _asteroid = _levelPrefabs.asteroidPrefab;
+            _ufo = _levelPrefabs.ufoPrefab;
+            _bullet = _levelPrefabs.bulletPrefab;
+            _restartPanelUI = _levelPrefabs.restartPanelUIPrefab;
+
+            Container.Bind<SpaceShipMovement>().FromInstance(_spaceShip.GetComponent<SpaceShipMovement>()).AsSingle();
+            Container.Bind<HUD>().FromInstance(_hud.GetComponent<HUD>()).AsSingle();
             Container.Bind<SessionDataManager>().FromInstance(_sessionDataManager.GetComponent<SessionDataManager>()).AsSingle();
+            Container.Bind<Enemy>().WithId(ZenjectIDs.UfoPrefab).FromInstance(_ufo);
+            Container.Bind<Enemy>().WithId(ZenjectIDs.AsteroidPrefab).FromInstance(_asteroid);
             
-            Container.Bind<EntryPoint>().FromComponentInHierarchy().AsSingle();
+            _spaceShip.GetComponent<SpaceShipGun>().Construct(_bullet);
+            _spaceShip.GetComponent<SpaceShipDied>().Construct(_restartPanelUI);
         }
     }
 }

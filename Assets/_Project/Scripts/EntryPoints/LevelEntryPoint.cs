@@ -1,3 +1,4 @@
+using System;
 using _Project.Scripts.Creatures.Enemy;
 using _Project.Scripts.Creatures.Player;
 using _Project.Scripts.Creatures.Player.SpaceShipWeapon;
@@ -5,38 +6,39 @@ using _Project.Scripts.Enums;
 using _Project.Scripts.Services;
 using _Project.Scripts.Spawners;
 using _Project.Scripts.UI;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
+using Object = UnityEngine.Object;
 
-namespace _Project.Scripts
+namespace _Project.Scripts.EntryPoints
 {
-    public class EntryPoint : MonoBehaviour
+    public class LevelEntryPoint : IInitializable, IDisposable
     {
-        [Header("Parameters to bind enemy spawner")]
-        [SerializeField] private float _spawnOffset = 5f;
-        [SerializeField] private float _spawnIntervalValue = 5f;
-        [SerializeField] private int _poolSize = 10;
+        private float _spawnOffset = 0.5f;
+        private float _spawnInterval = 5f;
+        private int _poolSize = 10;
         
         private ISaveService _saveService;
         private Camera _mainCamera;
         private SpaceShipMovement _spaceShip;
-        private Canvas _hud;
+        private HUD _hud;
         private SessionDataManager _sessionDataManager;
         private AnalyticsController _analyticsController;
         private Enemy _ufoPrefab;
         private Enemy _asteroidPrefab;
         private IAnalyticsService _analyticsService;
+        private SpaceShipLaser _spaceShipLaser;
         
         private EnemySpawner _ufoSpawner;
         private EnemySpawner _asteroidSpawner;
-        private WaitForSeconds _spawnInterval;
 
         [Inject]
         public void Construct(
             ISaveService saveService,
             Camera mainCamera,
             SpaceShipMovement spaceShip,
-            Canvas hud,
+            HUD hud,
             SessionDataManager sessionDataManager,
             IAnalyticsService analyticsService,
             [Inject(Id = ZenjectIDs.UfoPrefab)] Enemy ufoPrefab,
@@ -52,9 +54,11 @@ namespace _Project.Scripts
             _asteroidPrefab = asteroidPrefab;
         }
 
-        private void Start()
+        public void Initialize()
         {
+            InstantiatePrefabs();
             BindObjects();
+            StartWorkSpawniers().Forget();
         }
 
         private void BindObjects()
@@ -63,7 +67,7 @@ namespace _Project.Scripts
                 
             var spaceShipDied = _spaceShip.GetComponent<SpaceShipDied>();
             var spaceShipGun = _spaceShip.GetComponent<SpaceShipGun>();
-            var spaceShipLaser = _spaceShip.GetComponent<SpaceShipLaser>();
+            _spaceShipLaser = _spaceShip.GetComponent<SpaceShipLaser>();
                 
             spaceShipDied.Initialize(_sessionDataManager);
                 
@@ -71,29 +75,38 @@ namespace _Project.Scripts
                 _analyticsService,
                 _sessionDataManager,
                 spaceShipGun,
-                spaceShipLaser);
+                _spaceShipLaser);
                 
             _analyticsController.Initialize();
                 
-            BindHud(spaceShipLaser);
-                
+            BindHud(_spaceShipLaser, _spaceShip.GetComponent<SpaceShipMovement>());
+
             BindSpawners();
-                
-            StartCoroutine(_ufoSpawner.SpawnEnemies());
-            StartCoroutine(_asteroidSpawner.SpawnEnemies());
         }
 
-        private void BindHud(SpaceShipLaser spaceShipLaser)
+        private async UniTaskVoid StartWorkSpawniers()
         {
-            HUD hudComponent = _hud.GetComponent<HUD>();
-            hudComponent.Initialize(_spaceShip, spaceShipLaser);
-            _hud.worldCamera = _mainCamera;
+            await UniTask.WhenAll(
+                _ufoSpawner.SpawnEnemies(),
+                _asteroidSpawner.SpawnEnemies()
+            );
+        }
+
+        private void InstantiatePrefabs()
+        {
+            _spaceShip = Object.Instantiate(_spaceShip);
+            _hud = Object.Instantiate(_hud);
+            _sessionDataManager = Object.Instantiate(_sessionDataManager);
+        }
+
+        private void BindHud(SpaceShipLaser spaceShipLaser, SpaceShipMovement spaceShip)
+        {
+            _hud.Initialize(spaceShip, spaceShipLaser);
+            _hud.GetComponent<Canvas>().worldCamera = Camera.main;
         }
 
         private void BindSpawners()
         {
-            _spawnInterval = new WaitForSeconds(_spawnIntervalValue);
-            
             _ufoSpawner = new EnemySpawner(
                 _ufoPrefab, 
                 _spawnOffset, 
@@ -113,9 +126,8 @@ namespace _Project.Scripts
             _asteroidSpawner.SetSpawner();
         }
 
-        private void OnDestroy()
+        public void Dispose()
         {
-            StopAllCoroutines();
             _analyticsController?.Dispose();
         }
     }

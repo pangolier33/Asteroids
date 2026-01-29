@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using _Project.Scripts.Creatures.Enemy;
 using _Project.Scripts.Services;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Spawners
 {
@@ -12,22 +15,23 @@ namespace _Project.Scripts.Spawners
         private float _spawnOffset = 0.5f;
         private float _asteroidSmallScale = 0.5f;
 
-        public AsteroidSpawner(Enemy enemyPrefab, float spawnOffset, WaitForSeconds spawnInterval, Camera mainCamera, SessionDataManager sessionDataManager, int poolSize) : base(enemyPrefab, spawnOffset, spawnInterval, mainCamera, sessionDataManager, poolSize)
+        public AsteroidSpawner(Enemy enemyPrefab, float spawnOffset, float spawnInterval, Camera mainCamera, SessionDataManager sessionDataManager, int poolSize) : base(enemyPrefab, spawnOffset, spawnInterval, mainCamera, sessionDataManager, poolSize)
         {
             
         }
 
-        public override IEnumerator SpawnEnemies()
+        public override async UniTask SpawnEnemies()
         {
             while (SessionDataManager.IsGameOver == false)
             {
+                await UniTask.Delay(TimeSpan.FromSeconds(_spawnInterval));
                 Vector3 screenPoint = CalculateCoordinatesBehindTheScreen();
                 Enemy enemy = _enemyFactory.GetPooledObject();
                 
                 enemy.OnDied += HandleEnemyDied;
             
                 enemy.transform.position = screenPoint;
-                yield return _spawnInterval;
+                
             }
         }
 

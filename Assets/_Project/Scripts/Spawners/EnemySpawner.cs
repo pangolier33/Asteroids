@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using _Project.Scripts.Creatures.Enemy;
 using _Project.Scripts.Factories;
 using _Project.Scripts.Services;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,7 +16,7 @@ namespace _Project.Scripts.Spawners
         
         protected Enemy _enemyPrefab;
         protected BaseFactory<Enemy> _enemyFactory;
-        protected WaitForSeconds _spawnInterval;
+        protected float _spawnInterval;
         protected SessionDataManager SessionDataManager;
 
         private int _poolSize;
@@ -23,7 +25,7 @@ namespace _Project.Scripts.Spawners
         private float _cameraOffsetZ = 10f;
         
 
-        public EnemySpawner(Enemy enemyPrefab, float spawnOffset, WaitForSeconds spawnInterval, Camera mainCamera,
+        public EnemySpawner(Enemy enemyPrefab, float spawnOffset, float spawnInterval, Camera mainCamera,
             SessionDataManager sessionDataManager, int poolSize)
         {
             _enemyPrefab = enemyPrefab;
@@ -40,15 +42,15 @@ namespace _Project.Scripts.Spawners
             _enemyFactory.PoolInitialize();
         }
         
-        public virtual IEnumerator SpawnEnemies()
+        public virtual async UniTask SpawnEnemies()
         {
             while (SessionDataManager.IsGameOver == false)
             {
+                await UniTask.Delay(TimeSpan.FromSeconds(_spawnInterval));
                 Vector3 screenPoint = CalculateCoordinatesBehindTheScreen();
                 Enemy enemy = _enemyFactory.GetPooledObject();
                 enemy.OnDied += HandleEnemyDied;
                 enemy.transform.position = screenPoint;
-                yield return _spawnInterval;
             }
         }
 

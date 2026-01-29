@@ -1,17 +1,22 @@
-using System;
 using _Project.Scripts.Creatures.Health;
 using _Project.Scripts.Services;
 using _Project.Scripts.UI;
 using UnityEngine;
+using Zenject;
 
 namespace _Project.Scripts.Creatures.Player
 {
     public class SpaceShipDied : MonoBehaviour, ICreatureDied
     {
-        [SerializeField] private RestartPanelUI _restartCanvas;
+        public RestartPanelUI _restartCanvas;
         
         private SessionDataManager _sessionDataManager;
 
+        public void Construct(RestartPanelUI restartCanvas)
+        {
+            _restartCanvas = restartCanvas;
+        }
+        
         public void Initialize(SessionDataManager sessionDataManager)
         {
             _sessionDataManager = sessionDataManager;
@@ -20,11 +25,9 @@ namespace _Project.Scripts.Creatures.Player
         public void CreatureDied()
         {
             _sessionDataManager.GameOverEvent();
-            GameObject restartCanvasGameObject = Instantiate(_restartCanvas.gameObject);
-            RestartPanelUI restartCanvas = restartCanvasGameObject.GetComponent<RestartPanelUI>();
+            var restartCanvas = Instantiate(_restartCanvas);
             restartCanvas.SetScore(_sessionDataManager.EnemyKilledScore);
             restartCanvas.SetRecord(_sessionDataManager.CurrentRecord);
-            Destroy(gameObject);
         }
     }
 }

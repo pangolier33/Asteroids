@@ -470,8 +470,6 @@ MonoBehaviour:
   _velocityText: {fileID: 7189797453279248887}
   _chargesText: {fileID: 8063173818571880992}
   _nextLaserText: {fileID: 3634351093364387005}
-  _spaceShipMonement: {fileID: 3657155057991059965, guid: b6546cd9ee6a03f408466474a594e2af, type: 3}
-  _spaceShipWeapon: {fileID: 1118278765636809622, guid: b6546cd9ee6a03f408466474a594e2af, type: 3}
 --- !u!223 &8898424630410890984
 Canvas:
   m_ObjectHideFlags: 0
@@ -482,9 +480,9 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 1364688479341423804, guid: e43276ac2d3d67a41be37eca70550d58, type: 3}
+  m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0

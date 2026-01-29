@@ -253,11 +253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3bccf1c5277ae14a81a9a1e1f0bfdef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spaceShipPrefab: {fileID: 3657155057991059965, guid: b6546cd9ee6a03f408466474a594e2af, type: 3}
-  _sessionDataManager: {fileID: 1147449433852158197, guid: 299f18a97c8f2ce48b3c5c3bbe305a72, type: 3}
-  _hudPrefab: {fileID: 8898424630410890984, guid: ffef11265c472a54392f9b1c20830809, type: 3}
-  _ufoPrefab: {fileID: -184873510415367234, guid: e35f9c442df6ef144b391d92fde60a17, type: 3}
-  _asteroidPrefab: {fileID: -184873510415367234, guid: d89d2ed97e543c540b522fd0b911d7ed, type: 3}
 --- !u!1001 &1304462425
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -372,53 +367,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56a7a1b8e9d7a7e44bea20b8c1b843df, type: 3}
---- !u!1 &1932149838
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1932149840}
-  - component: {fileID: 1932149839}
-  m_Layer: 0
-  m_Name: EntryPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1932149839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1932149838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c4d7b90b428e7b48a30656991953a3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spawnOffset: 0.5
-  _spawnIntervalValue: 5
-  _poolSize: 10
---- !u!4 &1932149840
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1932149838}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.07866807, y: -0.60215557, z: 89.604836}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -426,5 +374,4 @@ SceneRoots:
   - {fileID: 360755709}
   - {fileID: 1304462425}
   - {fileID: 1427783607}
-  - {fileID: 1932149840}
   - {fileID: 972260231}
