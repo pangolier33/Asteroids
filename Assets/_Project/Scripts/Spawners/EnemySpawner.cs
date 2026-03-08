@@ -46,11 +46,11 @@ namespace _Project.Scripts.Spawners
         {
             while (SessionDataManager.IsGameOver == false)
             {
-                await UniTask.Delay(TimeSpan.FromSeconds(_spawnInterval));
                 Vector3 screenPoint = CalculateCoordinatesBehindTheScreen();
                 Enemy enemy = _enemyFactory.GetPooledObject();
                 enemy.OnDied += HandleEnemyDied;
                 enemy.transform.position = screenPoint;
+                await UniTask.Delay(TimeSpan.FromSeconds(_spawnInterval));
             }
         }
 

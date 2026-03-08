@@ -6,11 +6,10 @@ using UnityEngine;
 
 namespace _Project.Scripts.Services.Addressebles
 {
-    public class LevelPrefabs : MonoBehaviour
+    public class LevelPrefabs
     {
         public SpaceShipMovement spaceShipPrefab;
         public HUD hudPrefab;
-        public SessionDataManager sessionDataManagerPrefab;
         public Enemy asteroidPrefab;
         public Enemy ufoPrefab;
         public Canvas loadingScreenPrefab;

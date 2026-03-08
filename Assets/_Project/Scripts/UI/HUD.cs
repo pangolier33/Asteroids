@@ -17,7 +17,6 @@ namespace _Project.Scripts.UI
         private SpaceShipMovement _spaceShipMovement;
         private SpaceShipLaser _spaceShipLaser;
         private Rigidbody2D _shipRigidbody;
-        private bool _isInitialized = false;
 
         public void Initialize(SpaceShipMovement spaceShipMovement, SpaceShipLaser spaceShipLaser)
         {

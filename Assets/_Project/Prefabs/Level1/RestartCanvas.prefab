@@ -334,6 +334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 4516652857536692629}
   _recordText: {fileID: 6186476096177171685}
+  _button: {fileID: 2767462665794819123}
 --- !u!223 &456233420309910194
 Canvas:
   m_ObjectHideFlags: 0
@@ -409,7 +410,6 @@ GameObject:
   - component: {fileID: 6575104512844271129}
   - component: {fileID: 8262061642049799168}
   - component: {fileID: 2767462665794819123}
-  - component: {fileID: 8407837805003676478}
   m_Layer: 5
   m_Name: RestartButton
   m_TagString: Untagged
@@ -519,18 +519,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8407837805003676478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2454738189266597945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e3f6ff71122f934481ae2de46a8a594, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3852847609870808815
 GameObject:
   m_ObjectHideFlags: 0

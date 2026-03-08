@@ -5,6 +5,6 @@ namespace _Project.Scripts.Services
     [Serializable]
     public class SaveData
     {
-        public int Record;
+        public int record;
     }
 }

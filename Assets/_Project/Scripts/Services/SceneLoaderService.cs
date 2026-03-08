@@ -9,6 +9,7 @@ namespace _Project.Scripts.Services
     public class SceneLoaderService : ISceneLoaderService
     {
         [Inject] private LevelPrefabs _levelPrefabs;
+        
         private int _bootstrapSceneIndex = 0;
         private int _levelSceneIndex = 1;
         

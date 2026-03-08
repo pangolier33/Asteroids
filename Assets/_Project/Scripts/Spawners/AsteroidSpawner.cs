@@ -35,7 +35,7 @@ namespace _Project.Scripts.Spawners
             }
         }
 
-        private void HandleEnemyDied(Enemy enemy)
+        public override void HandleEnemyDied(Enemy enemy)
         {
             SessionDataManager.AddKillAsteroidEvent();
             _enemyFactory.ReturnAction(enemy);

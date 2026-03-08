@@ -14,10 +14,7 @@ namespace _Project.Scripts.Services.Addressebles
 
         UniTask<SpaceShipMovement> CreateSpaceShip();
         void ReleaseSpaceShip();
-
-        UniTask<SessionDataManager> CreateSessionDataManager();
-        void ReleaseSessionDataManager();
-
+        
         UniTask<Enemy> CreateUFO();
         void ReleaseUFO();
 

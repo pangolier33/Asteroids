@@ -63,8 +63,6 @@ namespace _Project.Scripts.EntryPoints
 
         private void BindObjects()
         {
-            _sessionDataManager.Initialize(_saveService);
-                
             var spaceShipDied = _spaceShip.GetComponent<SpaceShipDied>();
             var spaceShipGun = _spaceShip.GetComponent<SpaceShipGun>();
             _spaceShipLaser = _spaceShip.GetComponent<SpaceShipLaser>();
@@ -96,7 +94,6 @@ namespace _Project.Scripts.EntryPoints
         {
             _spaceShip = Object.Instantiate(_spaceShip);
             _hud = Object.Instantiate(_hud);
-            _sessionDataManager = Object.Instantiate(_sessionDataManager);
         }
 
         private void BindHud(SpaceShipLaser spaceShipLaser, SpaceShipMovement spaceShip)

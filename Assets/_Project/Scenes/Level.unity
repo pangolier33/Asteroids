@@ -253,6 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3bccf1c5277ae14a81a9a1e1f0bfdef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _restartPanelPrefab: {fileID: 1365019926494013848, guid: c452d83a26a704048b5760c1cd1220f3, type: 3}
 --- !u!1001 &1304462425
 PrefabInstance:
   m_ObjectHideFlags: 0

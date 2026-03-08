@@ -16,9 +16,6 @@ namespace _Project.Scripts.Services.Addressebles
         public UniTask<SpaceShipMovement> CreateSpaceShip() => LoadAssetComponent<SpaceShipMovement>(AddreseblesIDs.SpaceShip.ToString());
         public void ReleaseSpaceShip() => ReleaseAsset(AddreseblesIDs.SpaceShip.ToString());
         
-        public UniTask<SessionDataManager> CreateSessionDataManager() => LoadAssetComponent<SessionDataManager>(AddreseblesIDs.SessionDataManager.ToString());
-        public void ReleaseSessionDataManager() => ReleaseAsset(AddreseblesIDs.SessionDataManager.ToString());
-        
         public UniTask<Enemy> CreateUFO() => LoadAssetComponent<Enemy>(AddreseblesIDs.UFO.ToString());
         public void ReleaseUFO() => ReleaseAsset(AddreseblesIDs.UFO.ToString());
         

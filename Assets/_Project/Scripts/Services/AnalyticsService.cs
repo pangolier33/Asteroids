@@ -113,7 +113,7 @@ namespace _Project.Scripts.Services
             }
         }
         
-        private async Task<bool> InitializeWithCustomConfig(AppOptions options)
+        private Task<bool> InitializeWithCustomConfig(AppOptions options)
         {
             try
             {
@@ -127,7 +127,7 @@ namespace _Project.Scripts.Services
                     Debug.Log("Firebase Analytics initialized for Windows");
                     LogEvent("game_start", "platform", "windows");
                     
-                    return true;
+                    return Task.FromResult(true);
                 }
             }
             catch (Exception e)
@@ -135,7 +135,7 @@ namespace _Project.Scripts.Services
                 Debug.LogError($"Custom config failed: {e.Message}");
             }
             
-            return false;
+            return Task.FromResult(false);
         }
         
         private bool InitializeMock()

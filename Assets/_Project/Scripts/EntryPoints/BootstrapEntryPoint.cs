@@ -19,13 +19,12 @@ namespace _Project.Scripts.EntryPoints
 
         private async UniTask LoadAssets()
         {
-            var (hud, spaceShip, sessionDataManager, ufo, asteroid, loadingScreen, restartPanelUI, bullet) = await UniTask.WhenAll(_addressableReferencesLoader.CreateHUD(),
-                _addressableReferencesLoader.CreateSpaceShip(), _addressableReferencesLoader.CreateSessionDataManager(), _addressableReferencesLoader.CreateUFO(),
+            var (hud, spaceShip, ufo, asteroid, loadingScreen, restartPanelUI, bullet) = await UniTask.WhenAll(_addressableReferencesLoader.CreateHUD(),
+                _addressableReferencesLoader.CreateSpaceShip(), _addressableReferencesLoader.CreateUFO(),
                 _addressableReferencesLoader.CreateAsteroid(), _addressableReferencesLoader.CreateLoadingScreen(), _addressableReferencesLoader.CreateRestartPanelUI(), _addressableReferencesLoader.CreateBullet());
 
             _levelPrefabs.hudPrefab = hud;
             _levelPrefabs.spaceShipPrefab = spaceShip;
-            _levelPrefabs.sessionDataManagerPrefab = sessionDataManager;
             _levelPrefabs.asteroidPrefab = asteroid;
             _levelPrefabs.ufoPrefab = ufo;
             _levelPrefabs.loadingScreenPrefab = loadingScreen;

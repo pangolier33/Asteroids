@@ -5,11 +5,9 @@ using _Project.Scripts.EntryPoints;
 using _Project.Scripts.Enums;
 using _Project.Scripts.Services;
 using _Project.Scripts.Services.Addressebles;
-using _Project.Scripts.Tools;
 using _Project.Scripts.UI;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Rendering;
 using Zenject;
 
 namespace _Project.Scripts.Installers
@@ -17,10 +15,10 @@ namespace _Project.Scripts.Installers
     public class SceneInstaller : MonoInstaller
     {
         [Inject] private LevelPrefabs _levelPrefabs;
-
+        
+        private SessionDataManager _sessionData;
         private SpaceShipMovement _spaceShip;
         private HUD _hud;
-        private SessionDataManager _sessionDataManager;
         private RestartPanelUI _restartPanelUI;
         private Enemy _ufo;
         private Enemy _asteroid;
@@ -44,7 +42,6 @@ namespace _Project.Scripts.Installers
         {
             _spaceShip = _levelPrefabs.spaceShipPrefab;
             _hud = _levelPrefabs.hudPrefab;
-            _sessionDataManager = _levelPrefabs.sessionDataManagerPrefab;
             _asteroid = _levelPrefabs.asteroidPrefab;
             _ufo = _levelPrefabs.ufoPrefab;
             _bullet = _levelPrefabs.bulletPrefab;
@@ -52,12 +49,12 @@ namespace _Project.Scripts.Installers
 
             Container.Bind<SpaceShipMovement>().FromInstance(_spaceShip.GetComponent<SpaceShipMovement>()).AsSingle();
             Container.Bind<HUD>().FromInstance(_hud.GetComponent<HUD>()).AsSingle();
-            Container.Bind<SessionDataManager>().FromInstance(_sessionDataManager.GetComponent<SessionDataManager>()).AsSingle();
+            Container.Bind<RestartPanelUI>().FromInstance(_restartPanelUI).AsSingle();
+            Container.BindInterfacesAndSelfTo<SessionDataManager>().AsSingle();
             Container.Bind<Enemy>().WithId(ZenjectIDs.UfoPrefab).FromInstance(_ufo);
             Container.Bind<Enemy>().WithId(ZenjectIDs.AsteroidPrefab).FromInstance(_asteroid);
             
             _spaceShip.GetComponent<SpaceShipGun>().Construct(_bullet);
-            _spaceShip.GetComponent<SpaceShipDied>().Construct(_restartPanelUI);
         }
     }
 }

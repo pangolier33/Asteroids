@@ -11,6 +11,11 @@ namespace _Project.Scripts.Tools
         [Inject] private ISceneLoaderService _sceneLoader;
         private Button _button;
 
+        public void Construct(ISceneLoaderService sceneLoader)
+        {
+            _sceneLoader = sceneLoader;
+        }
+
         private void Awake()
         {
             _button = GetComponent<Button>();
