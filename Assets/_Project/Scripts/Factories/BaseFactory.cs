@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using _Project.Scripts.Tools;
 using UnityEngine;
+using Zenject;
 
 namespace _Project.Scripts.Factories
 {

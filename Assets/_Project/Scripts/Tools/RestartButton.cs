@@ -8,9 +8,10 @@ namespace _Project.Scripts.Tools
     [RequireComponent(typeof(Button))]
     public class RestartButton : MonoBehaviour
     {
-        [Inject] private ISceneLoaderService _sceneLoader;
+        private ISceneLoaderService _sceneLoader;
         private Button _button;
 
+        [Inject] 
         public void Construct(ISceneLoaderService sceneLoader)
         {
             _sceneLoader = sceneLoader;

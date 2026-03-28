@@ -1,10 +1,7 @@
 ﻿using System;
 using _Project.Scripts.UI;
-using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.Rendering;
 using Zenject;
-using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Services
 {
@@ -12,10 +9,10 @@ namespace _Project.Scripts.Services
     {
         public event Action GameOver;
         
-        [Inject] private ISaveService _saveService;
-        [Inject] private SaveData _currentSaveData;
-        [Inject] private RestartPanelUI _restartCanvas;
-        [Inject] private IInstantiator _instantiator;
+        private ISaveService _saveService;
+        private SaveData _currentSaveData;
+        private RestartPanelUI _restartCanvas;
+        private IInstantiator _instantiator;
         
         private int _enemyScore = 1;
         
@@ -25,6 +22,15 @@ namespace _Project.Scripts.Services
         public bool IsGameOver { get; private set; }
         public int CurrentRecord { get; private set; }
 
+        [Inject]
+        public void Construct(ISaveService saveService, SaveData currentSaveData, RestartPanelUI restartCanvas,
+            IInstantiator instantiator)
+        {
+            _saveService = saveService;
+            _currentSaveData = currentSaveData;
+            _restartCanvas = restartCanvas;
+            _instantiator = instantiator;
+        }
         public void Initialize()
         {
             LoadGameData();
@@ -46,8 +52,8 @@ namespace _Project.Scripts.Services
             GameOver?.Invoke();
             EnemyKilledScore = AsterodisKilledScore + UfoKilledScore;
 
-            CreateRestartCanvas();
             CheckAndUpdateRecord();
+            CreateRestartCanvas();
         }
 
         private void LoadGameData()

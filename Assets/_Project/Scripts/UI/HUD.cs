@@ -1,4 +1,3 @@
-using System;
 using _Project.Scripts.Creatures.Player;
 using _Project.Scripts.Creatures.Player.SpaceShipWeapon;
 using TMPro;
@@ -17,15 +16,13 @@ namespace _Project.Scripts.UI
         private SpaceShipMovement _spaceShipMovement;
         private SpaceShipLaser _spaceShipLaser;
         private Rigidbody2D _shipRigidbody;
+        private Canvas _hudCanvas;
 
         public void Initialize(SpaceShipMovement spaceShipMovement, SpaceShipLaser spaceShipLaser)
         {
             _spaceShipMovement = spaceShipMovement;
             _spaceShipLaser = spaceShipLaser;
             _shipRigidbody = _spaceShipMovement.ShipRigidbody;
-
-            Canvas canvas = GetComponent<Canvas>();
-            canvas.worldCamera = Camera.main;
         }
 
         private void Start()

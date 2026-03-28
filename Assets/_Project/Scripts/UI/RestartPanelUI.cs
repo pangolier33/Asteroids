@@ -14,8 +14,6 @@ namespace _Project.Scripts.UI
         [SerializeField] private Button _button;
 
         private ISceneLoaderService _sceneLoaderService;
-        
-        public class Factory : PlaceholderFactory<RestartPanelUI> { }
 
         [Inject]
         public void Construct(ISceneLoaderService sceneLoaderService)

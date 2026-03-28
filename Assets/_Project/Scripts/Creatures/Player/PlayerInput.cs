@@ -12,50 +12,71 @@ namespace _Project.Scripts.Creatures.Player
         [SerializeField] private SpaceShipLaser _spaceShipLaser;
 
         private InputSystem_Actions _inputSystem;
+        private bool _isInitialized;
 
         private void OnEnable()
         {
-            _inputSystem.Player.Shoot.performed += OnShootPermormed;
-            _inputSystem.Player.Laser.performed += OnLaserEnabled;
-        }
-
-        private void OnDisable()
-        {
-            _inputSystem.Player.Shoot.performed -= OnShootPermormed;
-            _inputSystem.Player.Laser.performed -= OnLaserEnabled;
+            _inputSystem.Enable();
+            
+            _inputSystem.Player.Shoot.performed += OnShootPerformed;
+            _inputSystem.Player.Laser.performed += OnLaserPerformed;
         }
         
-        private void OnDestroy()
-        {
-            _inputSystem?.Dispose();
-        }
-
         private void Awake()
         {
-            _spaceShipMovement = GetComponent<SpaceShipMovement>();
             _inputSystem = new InputSystem_Actions();
-            _inputSystem.Enable();
+            
+            if (_spaceShipMovement == null)
+                _spaceShipMovement = GetComponent<SpaceShipMovement>();
+            
+            _isInitialized = true;
         }
 
         private void Update()
         {
+            if (!_isInitialized || _inputSystem == null) return;
+            
             ReadAccelerationMovement();
-        
             ReadRotationMovement();
+        }
+        
+        private void OnDisable()
+        {
+            if (_inputSystem == null) return;
+            
+            _inputSystem.Player.Shoot.performed -= OnShootPerformed;
+            _inputSystem.Player.Laser.performed -= OnLaserPerformed;
+            
+            _inputSystem.Disable();
+        }
+
+        private void OnDestroy()
+        {
+            if (_inputSystem != null)
+            {
+                _inputSystem.Dispose();
+                _inputSystem = null;
+            }
         }
 
         private void ReadRotationMovement()
         {
             Vector2 inputDirection = _inputSystem.Player.Move.ReadValue<Vector2>();
             float direction = inputDirection.x;
-        
-            _spaceShipMovement.HandleShipRotation(-direction);
+            
+            if (_spaceShipMovement != null)
+            {
+                _spaceShipMovement.HandleShipRotation(-direction);
+            }
         }
 
         private void ReadAccelerationMovement()
         {
             Vector2 inputDirection = _inputSystem.Player.Move.ReadValue<Vector2>();
             float direction = inputDirection.y;
+            
+            if (_spaceShipMovement == null) return;
+            
             if (direction >= 0.1f)
             {
                 _spaceShipMovement.HandleShipAcceleration();
@@ -64,17 +85,22 @@ namespace _Project.Scripts.Creatures.Player
             {
                 _spaceShipMovement.HandleShipStopAcceleration();
             }
-            
         }
 
-        private void OnShootPermormed(InputAction.CallbackContext obj)
+        private void OnShootPerformed(InputAction.CallbackContext obj)
         {
-            _spaceShipGun.HandleShooting();
+            if (_spaceShipGun != null)
+            {
+                _spaceShipGun.HandleShooting();
+            }
         }
 
-        private void OnLaserEnabled(InputAction.CallbackContext obj)
+        private void OnLaserPerformed(InputAction.CallbackContext obj)
         {
-            _spaceShipLaser.HandleLaserActivation();
+            if (_spaceShipLaser != null)
+            {
+                _spaceShipLaser.HandleLaserActivation();
+            }
         }
     }
 }

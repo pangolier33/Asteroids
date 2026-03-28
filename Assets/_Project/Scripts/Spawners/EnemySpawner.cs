@@ -1,5 +1,5 @@
 using System;
-using System.Collections;
+using System.Threading;
 using _Project.Scripts.Creatures.Enemy;
 using _Project.Scripts.Factories;
 using _Project.Scripts.Services;
@@ -21,7 +21,7 @@ namespace _Project.Scripts.Spawners
 
         private int _poolSize;
         private float _spawnOffset;
-        private Camera _mainCamera;
+        protected Camera _mainCamera;
         private float _cameraOffsetZ = 10f;
         
 
@@ -40,9 +40,10 @@ namespace _Project.Scripts.Spawners
         {
             _enemyFactory = new BaseFactory<Enemy>(_enemyPrefab, _poolSize);
             _enemyFactory.PoolInitialize();
+            if (SessionDataManager == null) Debug.Log("SessionDataManager == null");
         }
         
-        public virtual async UniTask SpawnEnemies()
+        public virtual async UniTask SpawnEnemies(CancellationToken token)
         {
             while (SessionDataManager.IsGameOver == false)
             {
@@ -50,7 +51,7 @@ namespace _Project.Scripts.Spawners
                 Enemy enemy = _enemyFactory.GetPooledObject();
                 enemy.OnDied += HandleEnemyDied;
                 enemy.transform.position = screenPoint;
-                await UniTask.Delay(TimeSpan.FromSeconds(_spawnInterval));
+                await UniTask.Delay(TimeSpan.FromSeconds(_spawnInterval), cancellationToken: token);
             }
         }
 

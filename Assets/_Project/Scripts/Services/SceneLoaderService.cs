@@ -8,10 +8,16 @@ namespace _Project.Scripts.Services
 {
     public class SceneLoaderService : ISceneLoaderService
     {
-        [Inject] private LevelPrefabs _levelPrefabs;
-        
         private int _bootstrapSceneIndex = 0;
         private int _levelSceneIndex = 1;
+        
+        private IAddressableReferencesLoader _addressableReferencesLoader;
+
+        [Inject] 
+        public void Construct(IAddressableReferencesLoader addressableReferencesLoader)
+        {
+            _addressableReferencesLoader = addressableReferencesLoader;
+        }
         
         public async UniTask LoadLevelScene()
         {
@@ -25,7 +31,7 @@ namespace _Project.Scripts.Services
         
         public async UniTask LoadSceneAsync(int sceneIndex)
         {
-            var loadingScreenPrefab = _levelPrefabs.loadingScreenPrefab;
+            var loadingScreenPrefab = await _addressableReferencesLoader.CreateLoadingScreen();
             var loadingScreenInstance = Object.Instantiate(loadingScreenPrefab);
 
             await SceneManager.LoadSceneAsync(sceneIndex);

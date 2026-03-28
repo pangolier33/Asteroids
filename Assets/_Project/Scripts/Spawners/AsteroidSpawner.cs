@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections;
+using System.Threading;
 using _Project.Scripts.Creatures.Enemy;
 using _Project.Scripts.Services;
 using Cysharp.Threading.Tasks;
@@ -11,7 +11,7 @@ namespace _Project.Scripts.Spawners
     public class AsteroidSpawner : EnemySpawner
     {
         private Enemy _enemy;
-        private int asteroidSmallCount = 2;
+        private int _asteroidSmallCount = 2;
         private float _spawnOffset = 0.5f;
         private float _asteroidSmallScale = 0.5f;
 
@@ -20,18 +20,17 @@ namespace _Project.Scripts.Spawners
             
         }
 
-        public override async UniTask SpawnEnemies()
+        public override async UniTask SpawnEnemies(CancellationToken token)
         {
-            while (SessionDataManager.IsGameOver == false)
+            while (SessionDataManager.IsGameOver == false && !token.IsCancellationRequested)
             {
-                await UniTask.Delay(TimeSpan.FromSeconds(_spawnInterval));
                 Vector3 screenPoint = CalculateCoordinatesBehindTheScreen();
                 Enemy enemy = _enemyFactory.GetPooledObject();
                 
                 enemy.OnDied += HandleEnemyDied;
             
                 enemy.transform.position = screenPoint;
-                
+                await UniTask.Delay(TimeSpan.FromSeconds(_spawnInterval), cancellationToken: token);
             }
         }
 
@@ -49,7 +48,7 @@ namespace _Project.Scripts.Spawners
 
         private void SpawnSmallAsteroids(Vector3 spawnPosition)
         {
-            for (int i = 0; i < asteroidSmallCount; i++)
+            for (int i = 0; i < _asteroidSmallCount; i++)
             {
                 Vector2 direction = Random.insideUnitCircle.normalized;
                 Vector2 spawnPos = (Vector2)spawnPosition + direction * _spawnOffset;

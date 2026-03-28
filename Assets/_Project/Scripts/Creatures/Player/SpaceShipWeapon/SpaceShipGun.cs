@@ -1,6 +1,7 @@
 using System;
 using _Project.Scripts.Factories;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
 {
@@ -8,23 +9,23 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
     {
         private const int PROJECTILE_PRELOAD_COUNT = 20;
         public event Action clickShoot;
+        
+        public Bullet bulletPrefab;
 
         [SerializeField] private Transform _firePoint;
         [SerializeField] private float _delayBullet = 0.25f;
         
-        public Bullet _bulletPrefab;
-
         private BaseFactory<Bullet> _bulletFactory;
         private float _nextFireTime;
 
         public void Construct(Bullet bullet)
         {
-            _bulletPrefab = bullet;
+            bulletPrefab = bullet;
         }
         
         private void Awake()
         {
-            _bulletFactory = new BaseFactory<Bullet>(_bulletPrefab, PROJECTILE_PRELOAD_COUNT);
+            _bulletFactory = new BaseFactory<Bullet>(bulletPrefab, PROJECTILE_PRELOAD_COUNT);
             _bulletFactory.PoolInitialize();
         }
 

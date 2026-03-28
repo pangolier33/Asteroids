@@ -1,16 +1,20 @@
+using _Project.Scripts.EntryPoints;
 using _Project.Scripts.Services;
 using _Project.Scripts.Services.Addressebles;
 using Zenject;
 
-public class ProjectInstaller : MonoInstaller
+namespace _Project.Scripts.Installers
 {
-    public override void InstallBindings()
+    public class ProjectInstaller : MonoInstaller
     {
-        Container.BindInterfacesAndSelfTo<SaveService>().AsSingle();
-        Container.Bind<SaveData>().AsSingle();
-        Container.BindInterfacesAndSelfTo<AnalyticsService>().AsSingle();
-        Container.BindInterfacesAndSelfTo<AddressableReferencesLoader>().AsSingle();
-        Container.BindInterfacesAndSelfTo<SceneLoaderService>().AsSingle();
-        Container.Bind<LevelPrefabs>().AsSingle();
+        public override void InstallBindings()
+        {
+            Container.BindInterfacesAndSelfTo<SaveService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AnalyticsService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AddressableReferencesLoader>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SceneLoaderService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<BootstrapEntryPoint>().AsSingle();
+            Container.Bind<SaveData>().AsSingle();
+        }
     }
 }

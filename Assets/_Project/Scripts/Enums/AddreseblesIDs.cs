@@ -2,7 +2,6 @@
 {
     public enum AddreseblesIDs
     {
-        SessionDataManager,
         Bullet,
         SpaceShip,
         RestartCanvas,

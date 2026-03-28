@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1364688479341423804, guid: e43276ac2d3d67a41be37eca70550d58, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2511570565984019001, guid: e43276ac2d3d67a41be37eca70550d58, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -176,6 +180,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e43276ac2d3d67a41be37eca70550d58, type: 3}
+--- !u!20 &360755710 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1364688479341423804, guid: e43276ac2d3d67a41be37eca70550d58, type: 3}
+  m_PrefabInstance: {fileID: 360755709}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &972260229
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3bccf1c5277ae14a81a9a1e1f0bfdef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _restartPanelPrefab: {fileID: 1365019926494013848, guid: c452d83a26a704048b5760c1cd1220f3, type: 3}
+  _mainCamera: {fileID: 360755710}
 --- !u!1001 &1304462425
 PrefabInstance:
   m_ObjectHideFlags: 0
