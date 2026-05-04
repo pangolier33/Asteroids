@@ -9,7 +9,7 @@ namespace _Project.Scripts.Services.Addressebles
 {
     public interface IAddressableReferencesLoader
     {
-        UniTask<HUD> CreateHUD();
+        UniTask<HUDView> CreateHUD();
         void ReleaseHUD();
 
         UniTask<SpaceShipMovement> CreateSpaceShip();

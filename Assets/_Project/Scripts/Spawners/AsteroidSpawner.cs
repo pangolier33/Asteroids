@@ -1,28 +1,32 @@
 ﻿using System;
 using System.Threading;
 using _Project.Scripts.Creatures.Enemy;
-using _Project.Scripts.Services;
+using _Project.Scripts.Services.ScoreSystem;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Zenject;
 using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Spawners
 {
     public class AsteroidSpawner : EnemySpawner
     {
+        
         private Enemy _enemy;
         private int _asteroidSmallCount = 2;
         private float _spawnOffset = 0.5f;
         private float _asteroidSmallScale = 0.5f;
 
-        public AsteroidSpawner(Enemy enemyPrefab, float spawnOffset, float spawnInterval, Camera mainCamera, SessionDataManager sessionDataManager, int poolSize) : base(enemyPrefab, spawnOffset, spawnInterval, mainCamera, sessionDataManager, poolSize)
+        public AsteroidSpawner(Enemy enemyPrefab, float spawnOffset, float spawnInterval, Camera mainCamera,
+            GameOverController gameOverController,  ScoreController scoreController, IInstantiator instantiator, int poolSize)
+            : base(enemyPrefab, spawnOffset, spawnInterval, mainCamera, gameOverController, scoreController, instantiator, poolSize)
         {
             
         }
 
         public override async UniTask SpawnEnemies(CancellationToken token)
         {
-            while (SessionDataManager.IsGameOver == false && !token.IsCancellationRequested)
+            while (_gameOverController.IsGameOver == false && !token.IsCancellationRequested)
             {
                 Vector3 screenPoint = CalculateCoordinatesBehindTheScreen();
                 Enemy enemy = _enemyFactory.GetPooledObject();
@@ -36,7 +40,8 @@ namespace _Project.Scripts.Spawners
 
         public override void HandleEnemyDied(Enemy enemy)
         {
-            SessionDataManager.AddKillAsteroidEvent();
+            enemy.OnDied -= HandleEnemyDied;
+            _scoreController.AddAsteroidKill();
             _enemyFactory.ReturnAction(enemy);
             
             Asteroid asteroid = enemy.GetComponent<Asteroid>();
@@ -69,7 +74,7 @@ namespace _Project.Scripts.Spawners
 
         private void HandleSmallAsteroidDied(Enemy enemy)
         {
-            SessionDataManager.AddKillAsteroidEvent();
+            _scoreController.AddAsteroidKill();
             _enemyFactory.ReturnAction(enemy);
         }
     }

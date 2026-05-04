@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Reflection.Emit;
+using System.Runtime.InteropServices;
 using _Project.Scripts.Tools;
 using UnityEngine;
 using Zenject;
@@ -7,14 +9,16 @@ namespace _Project.Scripts.Factories
 {
     public class BaseFactory <T> where T : MonoBehaviour
     {
+        private IInstantiator _instantiator;
         private PoolBase<T> _pool;
         private T _prefab;
         private int _poolSize;
 
-        public BaseFactory(T prefab, int poolSize)
+        public BaseFactory(T prefab, int poolSize, IInstantiator instantiator)
         {
             _prefab = prefab;
             _poolSize = poolSize;
+            _instantiator = instantiator;
         }
 
         public void PoolInitialize()
@@ -39,7 +43,7 @@ namespace _Project.Scripts.Factories
         
         private T Preload()
         {
-            T prefab = GameObject.Instantiate(_prefab);
+            T prefab = _instantiator.InstantiatePrefabForComponent<T>(_prefab);
             prefab.gameObject.SetActive(false);
             return prefab;
         }

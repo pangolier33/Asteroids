@@ -1,5 +1,6 @@
 ﻿using System;
 using _Project.Scripts.Creatures.Player.SpaceShipWeapon;
+using _Project.Scripts.Services.ScoreSystem;
 
 namespace _Project.Scripts.Services
 {
@@ -11,7 +12,8 @@ namespace _Project.Scripts.Services
         private const string LASER_NAME = "Laser";
         
         private readonly IAnalyticsService _analyticsService;
-        private readonly SessionDataManager _sessionDataManager;
+        private readonly ScoreController _scoreController;
+        private readonly GameOverController _gameOverController;
         private readonly SpaceShipGun _spaceShipGun;
         private readonly SpaceShipLaser _spaceShipLaser;
         
@@ -20,12 +22,14 @@ namespace _Project.Scripts.Services
         
         public AnalyticsController(
             IAnalyticsService analyticsService,
-            SessionDataManager sessionDataManager,
+            GameOverController gameOverController,
+            ScoreController scoreController,
             SpaceShipGun spaceShipGun,
             SpaceShipLaser spaceShipLaser)
         {
             _analyticsService = analyticsService;
-            _sessionDataManager = sessionDataManager;
+            _gameOverController = gameOverController;
+            _scoreController = scoreController;
             _spaceShipGun = spaceShipGun;
             _spaceShipLaser = spaceShipLaser;
             
@@ -40,7 +44,7 @@ namespace _Project.Scripts.Services
 
         private void SubscribeToEvents()
         {
-            _sessionDataManager.GameOver += LogEvents;
+            _gameOverController.GameOverEvent += LogEvents;
             
             if (_spaceShipGun != null)
             {
@@ -55,7 +59,7 @@ namespace _Project.Scripts.Services
 
         private void UnsubscribeFromEvents()
         {
-            _sessionDataManager.GameOver -= LogEvents;
+            _gameOverController.GameOverEvent -= LogEvents;
             
             if (_spaceShipGun != null)
             {
@@ -70,8 +74,8 @@ namespace _Project.Scripts.Services
 
         private void LogEvents()
         {
-            _analyticsService.LogEnemyKilled(UFO_NAME, _sessionDataManager.UfoKilledScore);
-            _analyticsService.LogEnemyKilled(ASTEROID_NAME, _sessionDataManager.AsterodisKilledScore);
+            _analyticsService.LogEnemyKilled(UFO_NAME, _scoreController.UfoKilledScore);
+            _analyticsService.LogEnemyKilled(ASTEROID_NAME, _scoreController.AsteroidsKilledScore);
             if (_numberOfClicksLaser >= 1) 
                 _analyticsService.LogIsWeaponUsed(LASER_NAME);
             _analyticsService.LogWeaponUsedCount(LASER_NAME, _numberOfClicksLaser);

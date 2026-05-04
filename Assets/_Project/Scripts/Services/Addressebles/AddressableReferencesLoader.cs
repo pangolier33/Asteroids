@@ -10,7 +10,7 @@ namespace _Project.Scripts.Services.Addressebles
 {
     public class AddressableReferencesLoader : AddressableLoader, IAddressableReferencesLoader
     {
-        public UniTask<HUD> CreateHUD() => LoadAssetComponent<HUD>(AddreseblesIDs.HUD.ToString());
+        public UniTask<HUDView> CreateHUD() => LoadAssetComponent<HUDView>(AddreseblesIDs.HUD.ToString());
         public void ReleaseHUD() => ReleaseAsset(AddreseblesIDs.HUD.ToString());
         
         public UniTask<SpaceShipMovement> CreateSpaceShip() => LoadAssetComponent<SpaceShipMovement>(AddreseblesIDs.SpaceShip.ToString());

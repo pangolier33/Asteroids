@@ -2,6 +2,7 @@ using System;
 using _Project.Scripts.Factories;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Zenject;
 
 namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
 {
@@ -17,22 +18,33 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
         
         private BaseFactory<Bullet> _bulletFactory;
         private float _nextFireTime;
+        private IInstantiator _instantiator;
 
-        public void Construct(Bullet bullet)
+        public void Construct(Bullet bullet, IInstantiator instantiator)
         {
             bulletPrefab = bullet;
+            _instantiator = instantiator; 
+            
+            SetBulletSpawner();
         }
         
-        private void Awake()
+        private void SetBulletSpawner()
         {
-            _bulletFactory = new BaseFactory<Bullet>(bulletPrefab, PROJECTILE_PRELOAD_COUNT);
+            _bulletFactory = new BaseFactory<Bullet>(bulletPrefab, PROJECTILE_PRELOAD_COUNT, _instantiator);
             _bulletFactory.PoolInitialize();
         }
 
         public void HandleShooting()
         {
+            if (_bulletFactory == null)
+            {
+                Debug.LogError("BulletFactory is NULL!");
+                return;
+            }
+
             if (!IsCooldownReady(_nextFireTime))
                 return;
+
             clickShoot?.Invoke();
             ShootBullet();
             SetCooldown(ref _nextFireTime, _delayBullet);

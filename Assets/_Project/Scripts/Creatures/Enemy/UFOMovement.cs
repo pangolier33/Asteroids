@@ -1,6 +1,7 @@
 using System.Collections;
 using _Project.Scripts.Creatures.Player;
 using UnityEngine;
+using Zenject;
 
 namespace _Project.Scripts.Creatures.Enemy
 {
@@ -14,11 +15,19 @@ namespace _Project.Scripts.Creatures.Enemy
         private Rigidbody2D _rigidbody2D;
         private Vector3 _moveDirection;
 
-        private void OnEnable()
+        [Inject]
+        public void Construct(SpaceShipMovement spaceShip)
+        {
+            _spaceShip = spaceShip.transform;
+        }
+
+        private void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
-            _spaceShip = FindFirstObjectByType<SpaceShipMovement>().gameObject.transform;
-            
+        }
+
+        private void OnEnable()
+        {
             StartCoroutine(UpdateMovementCoroutine());
         }
 
@@ -27,7 +36,7 @@ namespace _Project.Scripts.Creatures.Enemy
             if (_spaceShip != null)
                 _rigidbody2D.linearVelocity = _moveDirection * _moveSpeed;
         }
-        
+
         private IEnumerator UpdateMovementCoroutine()
         {
             while (true)
@@ -36,7 +45,7 @@ namespace _Project.Scripts.Creatures.Enemy
                 {
                     _moveDirection = (_spaceShip.position - transform.position).normalized;
                 }
-            
+
                 yield return new WaitForSeconds(_updateInterval);
             }
         }

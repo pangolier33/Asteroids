@@ -35,7 +35,7 @@ namespace _Project.Scripts.Components
                 moveAdjustment.y -= 1;
             }
 
-            transform.position = Camera.main.ViewportToWorldPoint(viewportPosition + moveAdjustment);
+            transform.position = mainCamera.ViewportToWorldPoint(viewportPosition + moveAdjustment);
         }
     }
 }

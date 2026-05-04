@@ -5,6 +5,7 @@ using _Project.Scripts.Creatures.Player;
 using _Project.Scripts.Creatures.Player.SpaceShipWeapon;
 using _Project.Scripts.Enums;
 using _Project.Scripts.Services;
+using _Project.Scripts.Services.ScoreSystem;
 using _Project.Scripts.Spawners;
 using _Project.Scripts.UI;
 using Cysharp.Threading.Tasks;
@@ -24,8 +25,10 @@ namespace _Project.Scripts.EntryPoints
         
         private Camera _mainCamera;
         private SpaceShipMovement _spaceShip;
-        private HUD _hud;
-        private SessionDataManager _sessionDataManager;
+        private HUDView _hud;
+        private ScoreController _scoreController;
+        private GameOverController _gameOverController;
+        private IInstantiator _instantiator;
         private AnalyticsController _analyticsController;
         private Enemy _ufoPrefab;
         private Enemy _asteroidPrefab;
@@ -39,24 +42,27 @@ namespace _Project.Scripts.EntryPoints
         public void Construct(
             Camera mainCamera,
             SpaceShipMovement spaceShip,
-            HUD hud,
-            SessionDataManager sessionDataManager,
+            HUDView hud,
+            GameOverController gameOverController,
+            ScoreController scoreController,
             IAnalyticsService analyticsService,
+            IInstantiator instantiator, 
             [Inject(Id = ZenjectIDs.UfoPrefab)] Enemy ufoPrefab,
             [Inject(Id = ZenjectIDs.AsteroidPrefab)] Enemy asteroidPrefab)
         {
             _mainCamera = mainCamera;
             _spaceShip = spaceShip;
             _hud = hud;
-            _sessionDataManager = sessionDataManager;
+            _gameOverController = gameOverController;
+            _scoreController = scoreController;
             _analyticsService = analyticsService;
+            _instantiator = instantiator;
             _ufoPrefab = ufoPrefab;
             _asteroidPrefab = asteroidPrefab;
         }
 
         public void Initialize()
         {
-            InstantiatePrefabs();
             BindObjects();
             StartWorkSpawniers(_cts.Token).Forget();
         }
@@ -67,11 +73,12 @@ namespace _Project.Scripts.EntryPoints
             var spaceShipGun = _spaceShip.GetComponent<SpaceShipGun>();
             _spaceShipLaser = _spaceShip.GetComponent<SpaceShipLaser>();
                 
-            spaceShipDied.Initialize(_sessionDataManager);
+            spaceShipDied.Initialize(_gameOverController);
                 
             _analyticsController = new AnalyticsController(
                 _analyticsService,
-                _sessionDataManager,
+                _gameOverController,
+                _scoreController,
                 spaceShipGun,
                 _spaceShipLaser);
                 
@@ -90,12 +97,6 @@ namespace _Project.Scripts.EntryPoints
             );
         }
 
-        private void InstantiatePrefabs()
-        {
-            _spaceShip = Object.Instantiate(_spaceShip);
-            _hud = Object.Instantiate(_hud);
-        }
-
         private void BindHud(SpaceShipLaser spaceShipLaser, SpaceShipMovement spaceShip)
         {
             _hud.Initialize(spaceShip, spaceShipLaser);
@@ -103,22 +104,30 @@ namespace _Project.Scripts.EntryPoints
 
         private void BindSpawners()
         {
-            _ufoSpawner = new UfoSpawner(
-                _ufoPrefab, 
-                _spawnOffset, 
-                _spawnInterval, 
-                _mainCamera, 
-                _sessionDataManager, 
-                _poolSize);
+            _ufoSpawner = _instantiator.Instantiate<UfoSpawner>(
+                new object[]
+                {
+                    _ufoPrefab,
+                    _spawnOffset,
+                    _spawnInterval,
+                    _mainCamera,
+                    _gameOverController,
+                    _scoreController,
+                    _poolSize
+                });
             _ufoSpawner.SetSpawner();
             
-            _asteroidSpawner = new AsteroidSpawner(
-                _asteroidPrefab, 
-                _spawnOffset, 
-                _spawnInterval, 
-                _mainCamera, 
-                _sessionDataManager, 
-                _poolSize);
+            _asteroidSpawner = _instantiator.Instantiate<AsteroidSpawner>(
+                new object[]
+                {
+                    _asteroidPrefab,
+                    _spawnOffset,
+                    _spawnInterval,
+                    _mainCamera,
+                    _gameOverController,
+                    _scoreController,
+                    _poolSize
+                });
             _asteroidSpawner.SetSpawner();
         }
 

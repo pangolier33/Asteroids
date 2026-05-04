@@ -14,7 +14,7 @@ namespace _Project.Scripts.Creatures.Player
         private InputSystem_Actions _inputSystem;
         private bool _isInitialized;
 
-        private void OnEnable()
+        private void Start()
         {
             _inputSystem.Enable();
             
@@ -26,8 +26,9 @@ namespace _Project.Scripts.Creatures.Player
         {
             _inputSystem = new InputSystem_Actions();
             
-            if (_spaceShipMovement == null)
-                _spaceShipMovement = GetComponent<SpaceShipMovement>();
+            _spaceShipMovement = GetComponent<SpaceShipMovement>();
+            _spaceShipGun = GetComponent<SpaceShipGun>();
+            _spaceShipLaser = GetComponent<SpaceShipLaser>();
             
             _isInitialized = true;
         }

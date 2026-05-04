@@ -3,8 +3,10 @@ using System.Threading;
 using _Project.Scripts.Creatures.Enemy;
 using _Project.Scripts.Factories;
 using _Project.Scripts.Services;
+using _Project.Scripts.Services.ScoreSystem;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Zenject;
 using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Spawners
@@ -17,7 +19,9 @@ namespace _Project.Scripts.Spawners
         protected Enemy _enemyPrefab;
         protected BaseFactory<Enemy> _enemyFactory;
         protected float _spawnInterval;
-        protected SessionDataManager SessionDataManager;
+        protected GameOverController _gameOverController;
+        protected ScoreController _scoreController;
+        protected IInstantiator _instantiator;
 
         private int _poolSize;
         private float _spawnOffset;
@@ -26,26 +30,27 @@ namespace _Project.Scripts.Spawners
         
 
         public EnemySpawner(Enemy enemyPrefab, float spawnOffset, float spawnInterval, Camera mainCamera,
-            SessionDataManager sessionDataManager, int poolSize)
+            GameOverController gameOverController, ScoreController scoreController, IInstantiator instantiator, int poolSize)
         {
             _enemyPrefab = enemyPrefab;
             _spawnOffset = spawnOffset;
             _spawnInterval = spawnInterval;
             _mainCamera = mainCamera;
-            SessionDataManager = sessionDataManager;
+            _gameOverController = gameOverController;
+            _scoreController = scoreController;
+            _instantiator = instantiator;
             _poolSize = poolSize;
         }
 
         public void SetSpawner()
         {
-            _enemyFactory = new BaseFactory<Enemy>(_enemyPrefab, _poolSize);
+            _enemyFactory = new BaseFactory<Enemy>(_enemyPrefab, _poolSize, _instantiator);
             _enemyFactory.PoolInitialize();
-            if (SessionDataManager == null) Debug.Log("SessionDataManager == null");
         }
         
         public virtual async UniTask SpawnEnemies(CancellationToken token)
         {
-            while (SessionDataManager.IsGameOver == false)
+            while (_gameOverController.IsGameOver == false)
             {
                 Vector3 screenPoint = CalculateCoordinatesBehindTheScreen();
                 Enemy enemy = _enemyFactory.GetPooledObject();
@@ -57,6 +62,7 @@ namespace _Project.Scripts.Spawners
 
         public virtual void HandleEnemyDied(Enemy enemy)
         {
+            enemy.OnDied -= HandleEnemyDied;
             _enemyFactory.ReturnAction(enemy);
         }
 

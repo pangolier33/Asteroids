@@ -1,6 +1,8 @@
 using _Project.Scripts.Services.Addressebles;
+using _Project.Scripts.Services.ScoreSystem;
 using UnityEngine;
 using Zenject;
+
 
 namespace _Project.Scripts.Installers
 {
@@ -11,6 +13,7 @@ namespace _Project.Scripts.Installers
         public override void InstallBindings()
         {
             Container.Bind<Camera>().FromInstance(_mainCamera).AsSingle();
+            
             Container.BindInterfacesAndSelfTo<AddressablesAssetsInitializer>().AsSingle();
         }
     }

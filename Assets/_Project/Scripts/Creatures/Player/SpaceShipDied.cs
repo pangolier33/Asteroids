@@ -1,5 +1,6 @@
 using _Project.Scripts.Creatures.Health;
 using _Project.Scripts.Services;
+using _Project.Scripts.Services.ScoreSystem;
 using _Project.Scripts.UI;
 using UnityEngine;
 using Zenject;
@@ -8,16 +9,16 @@ namespace _Project.Scripts.Creatures.Player
 {
     public class SpaceShipDied : MonoBehaviour, ICreatureDied
     {
-        private SessionDataManager _sessionDataManager;
+        private GameOverController _gameOverController;
         
-        public void Initialize(SessionDataManager sessionDataManager)
+        public void Initialize(GameOverController gameOverController)
         {
-            _sessionDataManager = sessionDataManager;
+            _gameOverController = gameOverController;
         }
 
         public void CreatureDied()
         {
-            _sessionDataManager.GameOverEvent();
+            _gameOverController.TriggerGameOver();
         }
     }
 }
