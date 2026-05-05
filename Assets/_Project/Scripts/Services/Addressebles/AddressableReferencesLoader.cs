@@ -25,7 +25,7 @@ namespace _Project.Scripts.Services.Addressebles
         public UniTask<Canvas> CreateLoadingScreen() => LoadAssetComponent<Canvas>(AddreseblesIDs.LoadingScreen.ToString());
         public void ReleaseLoadingScreen() => ReleaseAsset(AddreseblesIDs.LoadingScreen.ToString());
         
-        public UniTask<RestartPanelUI> CreateRestartPanelUI() => LoadAssetComponent<RestartPanelUI>(AddreseblesIDs.RestartCanvas.ToString());
+        public UniTask<RestartPanelUIView> CreateRestartPanelUI() => LoadAssetComponent<RestartPanelUIView>(AddreseblesIDs.RestartCanvas.ToString());
         public void ReleaseRestartPanelUI() => ReleaseAsset(AddreseblesIDs.RestartCanvas.ToString());
         
         public UniTask<Bullet> CreateBullet() => LoadAssetComponent<Bullet>(AddreseblesIDs.Bullet.ToString());

@@ -4,6 +4,6 @@ namespace _Project.Scripts.Services.ScoreSystem
 {
     public interface IRestartUIFactory
     {
-        RestartPanelUI Create(int score, int record);
+        RestartPanelUIView Create(int score, int record);
     }
 }

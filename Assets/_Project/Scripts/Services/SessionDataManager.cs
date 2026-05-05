@@ -11,7 +11,7 @@ namespace _Project.Scripts.Services
         
         private ISaveService _saveService;
         private SaveData _currentSaveData;
-        private RestartPanelUI _restartCanvas;
+        private RestartPanelUIView _restartCanvas;
         private IInstantiator _instantiator;
         
         private int _enemyScore = 1;
@@ -23,7 +23,7 @@ namespace _Project.Scripts.Services
         public int CurrentRecord { get; private set; }
 
         [Inject]
-        public void Construct(ISaveService saveService, SaveData currentSaveData, RestartPanelUI restartCanvas,
+        public void Construct(ISaveService saveService, SaveData currentSaveData, RestartPanelUIView restartCanvas,
             IInstantiator instantiator)
         {
             _saveService = saveService;
@@ -75,7 +75,7 @@ namespace _Project.Scripts.Services
         private void CreateRestartCanvas()
         {
             var gameObject = new GameObject("RestartCanvas");
-            _restartCanvas = _instantiator.InstantiatePrefabForComponent<RestartPanelUI>(_restartCanvas, gameObject.transform);
+            _restartCanvas = _instantiator.InstantiatePrefabForComponent<RestartPanelUIView>(_restartCanvas, gameObject.transform);
             _restartCanvas.SetScore(EnemyKilledScore);
             _restartCanvas.SetRecord(CurrentRecord);
         }

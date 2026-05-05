@@ -24,7 +24,7 @@ namespace _Project.Scripts.Services.Addressebles
         UniTask<Canvas> CreateLoadingScreen();
         void ReleaseLoadingScreen();
 
-        UniTask<RestartPanelUI> CreateRestartPanelUI();
+        UniTask<RestartPanelUIView> CreateRestartPanelUI();
         void ReleaseRestartPanelUI();
 
         UniTask<Bullet> CreateBullet();
