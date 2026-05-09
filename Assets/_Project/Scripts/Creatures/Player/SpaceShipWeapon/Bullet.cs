@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Zenject;
 
 namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
 {
@@ -35,6 +36,19 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
         private void Deactivate()
         {
             gameObject.SetActive(false);
+        }
+        
+        public class Pool : MonoMemoryPool<Bullet>
+        {
+            protected override void OnSpawned(Bullet item)
+            {
+                item.gameObject.SetActive(true);
+            }
+
+            protected override void OnDespawned(Bullet item)
+            {
+                item.gameObject.SetActive(false);
+            }
         }
     }
 }

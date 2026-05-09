@@ -1,8 +1,6 @@
 using System;
 using System.Threading;
 using _Project.Scripts.Creatures.Enemy;
-using _Project.Scripts.Factories;
-using _Project.Scripts.Services;
 using _Project.Scripts.Services.ScoreSystem;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -11,59 +9,63 @@ using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Spawners
 {
-    public class EnemySpawner
+    public class EnemySpawner<TEnemy> where TEnemy : Enemy
     {
         private const int SIDES_SCREEN_COUNT = 4;
         private const float OFFSET_FOR_SPAWN_BEHIND_THE_SCREEN = 1f;
-        
-        protected Enemy _enemyPrefab;
-        protected BaseFactory<Enemy> _enemyFactory;
-        protected float _spawnInterval;
-        protected GameOverController _gameOverController;
-        protected ScoreController _scoreController;
-        protected IInstantiator _instantiator;
 
-        private int _poolSize;
-        private float _spawnOffset;
-        protected Camera _mainCamera;
+        protected readonly MonoMemoryPool<TEnemy> _pool;
+        protected readonly Camera _mainCamera;
+        protected readonly GameOverController _gameOverController;
+        protected readonly ScoreController _scoreController;
+
+        protected readonly float _spawnInterval;
+        protected readonly float _spawnOffset;
+        
         private float _cameraOffsetZ = 10f;
-        
 
-        public EnemySpawner(Enemy enemyPrefab, float spawnOffset, float spawnInterval, Camera mainCamera,
-            GameOverController gameOverController, ScoreController scoreController, IInstantiator instantiator, int poolSize)
+        protected EnemySpawner(
+            MonoMemoryPool<TEnemy> pool,
+            Camera mainCamera,
+            GameOverController gameOverController,
+            ScoreController scoreController,
+            float spawnOffset,
+            float spawnInterval)
         {
-            _enemyPrefab = enemyPrefab;
-            _spawnOffset = spawnOffset;
-            _spawnInterval = spawnInterval;
+            _pool = pool;
             _mainCamera = mainCamera;
             _gameOverController = gameOverController;
             _scoreController = scoreController;
-            _instantiator = instantiator;
-            _poolSize = poolSize;
+
+            _spawnOffset = spawnOffset;
+            _spawnInterval = spawnInterval;
         }
 
-        public void SetSpawner()
-        {
-            _enemyFactory = new BaseFactory<Enemy>(_enemyPrefab, _poolSize, _instantiator);
-            _enemyFactory.PoolInitialize();
-        }
-        
         public virtual async UniTask SpawnEnemies(CancellationToken token)
         {
-            while (_gameOverController.IsGameOver == false)
+            while (!_gameOverController.IsGameOver &&
+                   !token.IsCancellationRequested)
             {
-                Vector3 screenPoint = CalculateCoordinatesBehindTheScreen();
-                Enemy enemy = _enemyFactory.GetPooledObject();
-                enemy.OnDied += HandleEnemyDied;
-                enemy.transform.position = screenPoint;
-                await UniTask.Delay(TimeSpan.FromSeconds(_spawnInterval), cancellationToken: token);
+                SpawnEnemy();
+
+                await UniTask.Delay(
+                    TimeSpan.FromSeconds(_spawnInterval),
+                    cancellationToken: token);
             }
         }
 
-        public virtual void HandleEnemyDied(Enemy enemy)
+        protected virtual void SpawnEnemy()
+        {
+            TEnemy enemy = _pool.Spawn();
+            enemy.transform.position = CalculateCoordinatesBehindTheScreen();
+            enemy.OnDied += HandleEnemyDied;
+        }
+
+        protected virtual void HandleEnemyDied(Enemy enemy)
         {
             enemy.OnDied -= HandleEnemyDied;
-            _enemyFactory.ReturnAction(enemy);
+
+            _pool.Despawn((TEnemy)enemy);
         }
 
         protected Vector3 CalculateCoordinatesBehindTheScreen()
@@ -74,10 +76,12 @@ namespace _Project.Scripts.Spawners
             switch (side)
             {
                 case 0:
-                    viewportPoint = new Vector3(Random.value, OFFSET_FOR_SPAWN_BEHIND_THE_SCREEN + _spawnOffset, _cameraOffsetZ);
+                    viewportPoint = new Vector3(Random.value, OFFSET_FOR_SPAWN_BEHIND_THE_SCREEN + _spawnOffset,
+                        _cameraOffsetZ);
                     break;
                 case 1:
-                    viewportPoint = new Vector3(OFFSET_FOR_SPAWN_BEHIND_THE_SCREEN + _spawnOffset, Random.value, _cameraOffsetZ);
+                    viewportPoint = new Vector3(OFFSET_FOR_SPAWN_BEHIND_THE_SCREEN + _spawnOffset, Random.value,
+                        _cameraOffsetZ);
                     break;
                 case 2:
                     viewportPoint = new Vector3(Random.value, -_spawnOffset, _cameraOffsetZ);
@@ -86,7 +90,7 @@ namespace _Project.Scripts.Spawners
                     viewportPoint = new Vector3(-_spawnOffset, Random.value, _cameraOffsetZ);
                     break;
             }
-            
+
             return _mainCamera.ViewportToWorldPoint(viewportPoint);
         }
     }

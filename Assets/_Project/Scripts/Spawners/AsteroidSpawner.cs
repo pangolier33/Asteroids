@@ -1,81 +1,55 @@
-﻿using System;
-using System.Threading;
-using _Project.Scripts.Creatures.Enemy;
+﻿using _Project.Scripts.Creatures.Enemy;
 using _Project.Scripts.Services.ScoreSystem;
-using Cysharp.Threading.Tasks;
+using _Project.Scripts.Tools;
 using UnityEngine;
-using Zenject;
 using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Spawners
 {
-    public class AsteroidSpawner : EnemySpawner
+    public class AsteroidSpawner : EnemySpawner<Asteroid>
     {
-        
-        private Enemy _enemy;
-        private int _asteroidSmallCount = 2;
-        private float _spawnOffset = 0.5f;
-        private float _asteroidSmallScale = 0.5f;
+        private const int ASTEROID_SMALL_COUNT = 2;
+        private const float SMALL_ASTEROID_SCALE = 0.5f;
+        private const float SMALL_ASTEROID_OFFSET = 0.5f;
 
-        public AsteroidSpawner(Enemy enemyPrefab, float spawnOffset, float spawnInterval, Camera mainCamera,
-            GameOverController gameOverController,  ScoreController scoreController, IInstantiator instantiator, int poolSize)
-            : base(enemyPrefab, spawnOffset, spawnInterval, mainCamera, gameOverController, scoreController, instantiator, poolSize)
+        public AsteroidSpawner(Asteroid.Pool pool, Camera mainCamera, GameOverController gameOverController, ScoreController scoreController, EnemySpawnerSettings settings)
+            : base(pool, mainCamera, gameOverController, scoreController, settings.SpawnOffset, settings.SpawnInterval)
         {
-            
         }
 
-        public override async UniTask SpawnEnemies(CancellationToken token)
-        {
-            while (_gameOverController.IsGameOver == false && !token.IsCancellationRequested)
-            {
-                Vector3 screenPoint = CalculateCoordinatesBehindTheScreen();
-                Enemy enemy = _enemyFactory.GetPooledObject();
-                
-                enemy.OnDied += HandleEnemyDied;
-            
-                enemy.transform.position = screenPoint;
-                await UniTask.Delay(TimeSpan.FromSeconds(_spawnInterval), cancellationToken: token);
-            }
-        }
-
-        public override void HandleEnemyDied(Enemy enemy)
+        protected override void HandleEnemyDied(Enemy enemy)
         {
             enemy.OnDied -= HandleEnemyDied;
             _scoreController.AddAsteroidKill();
-            _enemyFactory.ReturnAction(enemy);
-            
-            Asteroid asteroid = enemy.GetComponent<Asteroid>();
-            if (asteroid != null && asteroid.isParentObject)
+            Asteroid asteroid = (Asteroid)enemy;
+
+            if (asteroid.isParentObject)
             {
-                SpawnSmallAsteroids(enemy.transform.position);
-            } 
+                SpawnSmallAsteroids(asteroid.transform.position);
+            }
+
+            _pool.Despawn(asteroid);
         }
 
         private void SpawnSmallAsteroids(Vector3 spawnPosition)
         {
-            for (int i = 0; i < _asteroidSmallCount; i++)
+            for (int i = 0; i < ASTEROID_SMALL_COUNT; i++)
             {
                 Vector2 direction = Random.insideUnitCircle.normalized;
-                Vector2 spawnPos = (Vector2)spawnPosition + direction * _spawnOffset;
-            
-                Enemy smallAsteroid = _enemyFactory.GetPooledObject();
-            
-                Asteroid smallAsteroidComp = smallAsteroid.GetComponent<Asteroid>();
-                if (smallAsteroidComp != null)
-                {
-                    smallAsteroidComp.isParentObject = false;
-                }
-                smallAsteroid.OnDied += HandleSmallAsteroidDied;
-            
-                smallAsteroid.transform.localScale = new Vector3(_asteroidSmallScale, _asteroidSmallScale, 1);
-                smallAsteroid.transform.position = spawnPos;
+                Vector2 spawnPos = (Vector2)spawnPosition + direction * SMALL_ASTEROID_OFFSET;
+                Asteroid asteroid = _pool.Spawn();
+                asteroid.isParentObject = false;
+                asteroid.transform.position = spawnPos;
+                asteroid.transform.localScale = Vector3.one * SMALL_ASTEROID_SCALE;
+                asteroid.OnDied += HandleSmallAsteroidDied;
             }
         }
 
         private void HandleSmallAsteroidDied(Enemy enemy)
         {
+            enemy.OnDied -= HandleSmallAsteroidDied;
             _scoreController.AddAsteroidKill();
-            _enemyFactory.ReturnAction(enemy);
+            _pool.Despawn((Asteroid)enemy);
         }
     }
 }

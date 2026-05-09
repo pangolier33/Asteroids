@@ -1,11 +1,13 @@
+using _Project.Scripts.Creatures.Enemy;
 using _Project.Scripts.Creatures.Player;
 using _Project.Scripts.Creatures.Player.SpaceShipWeapon;
 using _Project.Scripts.EntryPoints;
 using _Project.Scripts.Enums;
 using _Project.Scripts.Services.ScoreSystem;
+using _Project.Scripts.Spawners;
+using _Project.Scripts.Tools;
 using _Project.Scripts.UI;
 using Cysharp.Threading.Tasks;
-using UnityEngine;
 using Zenject;
 
 namespace _Project.Scripts.Services.Addressebles
@@ -39,12 +41,21 @@ namespace _Project.Scripts.Services.Addressebles
                 _loader.CreateRestartPanelUI(),
                 _loader.CreateBullet()
             );
+            
+            _container.BindInstance(new EnemySpawnerSettings { SpawnOffset = 0.5f, SpawnInterval = 5f }).AsSingle();
+            
+            _container.BindMemoryPool<Bullet, Bullet.Pool>().WithInitialSize(20).FromComponentInNewPrefab(bullet).UnderTransformGroup("Bullets");
+            
+            _container.BindMemoryPool<UFO, UFO.Pool>().WithInitialSize(10).FromComponentInNewPrefab(ufo).UnderTransformGroup("Ufos");
+            
+            _container.BindMemoryPool<Asteroid, Asteroid.Pool>().WithInitialSize(10).FromComponentInNewPrefab(asteroid).UnderTransformGroup("Asteroids");
+            
+            _container.Bind<UfoSpawner>().AsSingle();
+            _container.Bind<AsteroidSpawner>().AsSingle();
+            
+            var spaceShipInstance = _instantiator.InstantiatePrefabForComponent<SpaceShipMovement>(spaceShip);
 
-            var spaceShipInstance =
-                _instantiator.InstantiatePrefabForComponent<SpaceShipMovement>(spaceShip);
-
-            var hudInstance =
-                _instantiator.InstantiatePrefabForComponent<HUDView>(hud);
+            var hudInstance = _instantiator.InstantiatePrefabForComponent<HUDView>(hud);
 
             _container.BindInstance(spaceShipInstance).AsSingle();
             _container.BindInstance(hudInstance).AsSingle();
@@ -53,9 +64,6 @@ namespace _Project.Scripts.Services.Addressebles
             _container.BindInstance(ufo).WithId(ZenjectIDs.UfoPrefab);
             _container.BindInstance(asteroid).WithId(ZenjectIDs.AsteroidPrefab);
             _container.BindInstance(bullet).AsSingle();
-
-            var gun = spaceShipInstance.GetComponent<SpaceShipGun>();
-            gun.Construct(bullet, _instantiator);
             
             _container.Bind<ScoreController>().AsSingle();
             _container.BindInterfacesAndSelfTo<RecordController>().AsSingle();

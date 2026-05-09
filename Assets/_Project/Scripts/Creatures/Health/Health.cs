@@ -10,7 +10,7 @@ namespace _Project.Scripts.Creatures.Health
 
         private ICreatureDied _creatureDied;
 
-        private void Start()
+        private void OnEnable()
         {
             _currentHealth = _maxHealth;
             _creatureDied = GetComponent<ICreatureDied>();
