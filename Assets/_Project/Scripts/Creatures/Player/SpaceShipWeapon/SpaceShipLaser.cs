@@ -7,7 +7,7 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
     {
         private const int MAX_LASER_CHARGES = 3;
 
-        public event Action clickLaser; 
+        public event Action ClickLaser; 
 
         [SerializeField] private GameObject _laser;
         [SerializeField] private float _laserDuration = 2f;
@@ -34,7 +34,7 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
         {
             if (LaserCharges > 0 && !_isLaserActive)
             {
-                clickLaser?.Invoke();
+                ClickLaser?.Invoke();
                 UseLaserCharge();
                 EnableLaser();
             }

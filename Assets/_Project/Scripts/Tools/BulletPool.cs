@@ -1,7 +1,7 @@
 ﻿
 namespace _Project.Scripts.Tools
 {
-    public class BulletPool
+    public class Pool
     {
         
     }

@@ -14,7 +14,7 @@ namespace _Project.Scripts.Creatures.Enemy
         private Transform _spaceShip;
         private Rigidbody2D _rigidbody2D;
         private Vector3 _moveDirection;
-
+        
         [Inject]
         public void Construct(SpaceShipMovement spaceShip)
         {

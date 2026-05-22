@@ -10,14 +10,28 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
         [SerializeField] private float _speed = 15f;
         [SerializeField] private float _bulletLifeTime = 5f;
 
+        private Rigidbody2D _rb;
+        private Coroutine _lifeCoroutine;
+
+        private void Awake()
+        {
+            _rb = GetComponent<Rigidbody2D>();
+        }
+
         private void OnEnable()
         {
-            StartCoroutine(StartLifeTimer());
+            _rb.linearVelocity = Vector2.zero;
+
+            if (_lifeCoroutine != null)
+                StopCoroutine(_lifeCoroutine);
+
+            _lifeCoroutine = StartCoroutine(StartLifeTimer());
         }
 
         private IEnumerator StartLifeTimer()
         {
             yield return new WaitForSeconds(_bulletLifeTime);
+
             Deactivate();
         }
 
@@ -29,15 +43,19 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
         public void Launch(Vector3 direction)
         {
             direction.Normalize();
+
             transform.up = direction;
-            GetComponent<Rigidbody2D>().linearVelocity = direction * _speed;
+
+            _rb.linearVelocity = direction * _speed;
         }
 
         private void Deactivate()
         {
+            _rb.linearVelocity = Vector2.zero;
+
             gameObject.SetActive(false);
         }
-        
+
         public class Pool : MonoMemoryPool<Bullet>
         {
             protected override void OnSpawned(Bullet item)

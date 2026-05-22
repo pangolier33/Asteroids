@@ -1,25 +1,26 @@
 ﻿using System;
 using _Project.Scripts.Creatures.Player.SpaceShipWeapon;
 using _Project.Scripts.Services.ScoreSystem;
+using Cysharp.Threading.Tasks;
 
 namespace _Project.Scripts.Services
 {
     public class AnalyticsController : IDisposable
     {
-        private const string UFO_NAME = "Ufo";
-        private const string ASTEROID_NAME = "Asteroid";
-        private const string GUN_NAME = "Gun";
-        private const string LASER_NAME = "Laser";
-        
+        private const string UfoName = "Ufo";
+        private const string AsteroidName = "Asteroid";
+        private const string GunName = "Gun";
+        private const string LaserName = "Laser";
+
         private readonly IAnalyticsService _analyticsService;
         private readonly ScoreController _scoreController;
         private readonly GameOverController _gameOverController;
         private readonly SpaceShipGun _spaceShipGun;
         private readonly SpaceShipLaser _spaceShipLaser;
-        
-        private int _numberOfClicksLaser;
-        private int _numberOfClicksGun;
-        
+
+        private int _laserUsageCount;
+        private int _gunUsageCount;
+
         public AnalyticsController(
             IAnalyticsService analyticsService,
             GameOverController gameOverController,
@@ -32,69 +33,72 @@ namespace _Project.Scripts.Services
             _scoreController = scoreController;
             _spaceShipGun = spaceShipGun;
             _spaceShipLaser = spaceShipLaser;
-            
+        }
+
+        public void Initialize()
+        {
+            InitializeAnalyticsAsync().Forget();
+
             SubscribeToEvents();
         }
         
-        public async void Initialize()
+        public void Dispose()
+        {
+            UnsubscribeFromEvents();
+        }
+
+        private async UniTaskVoid InitializeAnalyticsAsync()
         {
             await _analyticsService.Initialize();
+
             _analyticsService.LogGameStart();
         }
 
         private void SubscribeToEvents()
         {
-            _gameOverController.GameOverEvent += LogEvents;
-            
-            if (_spaceShipGun != null)
-            {
-                _spaceShipGun.clickShoot += CalculateGunUsed;
-            }
-            
-            if (_spaceShipLaser != null)
-            {
-                _spaceShipLaser.clickLaser += CalculateLaser;
-            }
+            _gameOverController.GameOverEvent += OnGameOver;
+            _spaceShipGun.ClickShoot += OnGunShot;
+            _spaceShipLaser.ClickLaser += OnLaserUsed;
         }
 
         private void UnsubscribeFromEvents()
         {
-            _gameOverController.GameOverEvent -= LogEvents;
-            
-            if (_spaceShipGun != null)
+            _gameOverController.GameOverEvent -= OnGameOver;
+            _spaceShipGun.ClickShoot -= OnGunShot;
+            _spaceShipLaser.ClickLaser -= OnLaserUsed;
+        }
+
+        private void OnGameOver()
+        {
+            LogKilledEnemies();
+            LogWeaponsUsage();
+        }
+
+        private void LogKilledEnemies()
+        {
+            _analyticsService.LogEnemyKilled(UfoName, _scoreController.UfoKilledScore);
+            _analyticsService.LogEnemyKilled(AsteroidName, _scoreController.AsteroidsKilledScore);
+        }
+
+        private void LogWeaponsUsage()
+        {
+            if (_laserUsageCount > 0)
             {
-                _spaceShipGun.clickShoot -= CalculateGunUsed;
+                _analyticsService.LogIsWeaponUsed(LaserName);
             }
-            
-            if (_spaceShipLaser != null)
-            {
-                _spaceShipLaser.clickLaser -= CalculateLaser;
-            }
+
+            _analyticsService.LogWeaponUsedCount(LaserName, _laserUsageCount);
+            _analyticsService.LogWeaponUsedCount(GunName, _gunUsageCount);
         }
 
-        private void LogEvents()
+        private void OnLaserUsed()
         {
-            _analyticsService.LogEnemyKilled(UFO_NAME, _scoreController.UfoKilledScore);
-            _analyticsService.LogEnemyKilled(ASTEROID_NAME, _scoreController.AsteroidsKilledScore);
-            if (_numberOfClicksLaser >= 1) 
-                _analyticsService.LogIsWeaponUsed(LASER_NAME);
-            _analyticsService.LogWeaponUsedCount(LASER_NAME, _numberOfClicksLaser);
-            _analyticsService.LogWeaponUsedCount(GUN_NAME, _numberOfClicksGun);
+            _laserUsageCount++;
         }
 
-        private void CalculateLaser()
+        private void OnGunShot()
         {
-            _numberOfClicksLaser++;
-        }
-
-        private void CalculateGunUsed()
-        {
-            _numberOfClicksGun++;
-        }
-
-        public void Dispose()
-        {
-            UnsubscribeFromEvents();
+            _gunUsageCount++;
         }
     }
 }

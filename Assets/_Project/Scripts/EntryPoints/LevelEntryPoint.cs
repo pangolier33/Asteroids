@@ -6,6 +6,7 @@ using _Project.Scripts.Services;
 using _Project.Scripts.Services.ScoreSystem;
 using _Project.Scripts.Spawners;
 using _Project.Scripts.UI;
+using _Project.Scripts.UI.HUD;
 using Cysharp.Threading.Tasks;
 using Zenject;
 
@@ -13,8 +14,7 @@ namespace _Project.Scripts.EntryPoints
 {
     public class LevelEntryPoint : IInitializable, IDisposable
     {
-        private readonly SpaceShipMovement _spaceShip;
-        private readonly HUDView _hud;
+        private SpaceShipMovement _spaceShip;
 
         private readonly UfoSpawner _ufoSpawner;
         private readonly AsteroidSpawner _asteroidSpawner;
@@ -31,7 +31,6 @@ namespace _Project.Scripts.EntryPoints
         [Inject]
         public LevelEntryPoint(
             SpaceShipMovement spaceShip,
-            HUDView hud,
             UfoSpawner ufoSpawner,
             AsteroidSpawner asteroidSpawner,
             GameOverController gameOverController,
@@ -39,7 +38,6 @@ namespace _Project.Scripts.EntryPoints
             IAnalyticsService analyticsService)
         {
             _spaceShip = spaceShip;
-            _hud = hud;
 
             _ufoSpawner = ufoSpawner;
             _asteroidSpawner = asteroidSpawner;
@@ -58,14 +56,11 @@ namespace _Project.Scripts.EntryPoints
 
         private void BindGameplayObjects()
         {
-            SpaceShipDied spaceShipDied =
-                _spaceShip.GetComponent<SpaceShipDied>();
+            SpaceShipDied spaceShipDied = _spaceShip.GetComponent<SpaceShipDied>();
 
-            SpaceShipGun spaceShipGun =
-                _spaceShip.GetComponent<SpaceShipGun>();
+            SpaceShipGun spaceShipGun = _spaceShip.GetComponent<SpaceShipGun>();
 
-            _spaceShipLaser =
-                _spaceShip.GetComponent<SpaceShipLaser>();
+            _spaceShipLaser = _spaceShip.GetComponent<SpaceShipLaser>();
 
             spaceShipDied.Initialize(_gameOverController);
 
@@ -77,13 +72,6 @@ namespace _Project.Scripts.EntryPoints
                 _spaceShipLaser);
 
             _analyticsController.Initialize();
-
-            InitializeHud();
-        }
-
-        private void InitializeHud()
-        {
-            _hud.Initialize(_spaceShip, _spaceShipLaser);
         }
 
         private async UniTaskVoid RunSpawners()

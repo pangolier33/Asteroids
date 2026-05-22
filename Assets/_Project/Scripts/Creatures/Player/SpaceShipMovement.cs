@@ -1,10 +1,8 @@
-using _Project.Scripts.Creatures.Player.SpaceShipWeapon;
 using UnityEngine;
 
 namespace _Project.Scripts.Creatures.Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    [RequireComponent(typeof(SpaceShipLaser))]
     public class SpaceShipMovement : MonoBehaviour
     {
         public Rigidbody2D ShipRigidbody { get; private set; }

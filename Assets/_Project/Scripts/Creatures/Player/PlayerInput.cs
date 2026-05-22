@@ -43,16 +43,13 @@ namespace _Project.Scripts.Creatures.Player
         
         private void OnDisable()
         {
-            if (_inputSystem == null) return;
-            
-            _inputSystem.Player.Shoot.performed -= OnShootPerformed;
-            _inputSystem.Player.Laser.performed -= OnLaserPerformed;
-            
             _inputSystem.Disable();
         }
 
         private void OnDestroy()
         {
+            _inputSystem.Player.Shoot.performed -= OnShootPerformed;
+            _inputSystem.Player.Laser.performed -= OnLaserPerformed;
             if (_inputSystem != null)
             {
                 _inputSystem.Dispose();

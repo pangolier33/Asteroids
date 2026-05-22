@@ -7,7 +7,7 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
 {
     public class SpaceShipGun : MonoBehaviour
     {
-        public event Action clickShoot;
+        public event Action ClickShoot;
 
         [SerializeField] private Transform _firePoint;
         [SerializeField] private float _delayBullet = 0.25f;
@@ -26,7 +26,7 @@ namespace _Project.Scripts.Creatures.Player.SpaceShipWeapon
             if (!IsCooldownReady(_nextFireTime))
                 return;
 
-            clickShoot?.Invoke();
+            ClickShoot?.Invoke();
 
             ShootBullet();
 

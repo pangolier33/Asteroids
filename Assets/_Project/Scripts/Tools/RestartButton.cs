@@ -1,4 +1,5 @@
 using _Project.Scripts.Services;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -32,7 +33,12 @@ namespace _Project.Scripts.Tools
             _button.onClick.RemoveListener(OnRestartClick);
         }
 
-        private async void OnRestartClick()
+        private void OnRestartClick()
+        {
+            RestartAsync().Forget();
+        }
+
+        private async UniTask RestartAsync()
         {
             await _sceneLoader.LoadLevelScene();
         }

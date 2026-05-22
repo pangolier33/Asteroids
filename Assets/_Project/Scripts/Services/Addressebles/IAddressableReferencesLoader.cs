@@ -2,6 +2,8 @@
 using _Project.Scripts.Creatures.Player;
 using _Project.Scripts.Creatures.Player.SpaceShipWeapon;
 using _Project.Scripts.UI;
+using _Project.Scripts.UI.HUD;
+using _Project.Scripts.UI.RestartPanel;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -15,10 +17,10 @@ namespace _Project.Scripts.Services.Addressebles
         UniTask<SpaceShipMovement> CreateSpaceShip();
         void ReleaseSpaceShip();
         
-        UniTask<Enemy> CreateUFO();
+        UniTask<UFO> CreateUFO();
         void ReleaseUFO();
 
-        UniTask<Enemy> CreateAsteroid();
+        UniTask<Asteroid> CreateAsteroid();
         void ReleaseAsteroid();
 
         UniTask<Canvas> CreateLoadingScreen();
