@@ -25,6 +25,7 @@ namespace _Project.Scripts.EntryPoints
 
         private AnalyticsController _analyticsController;
         private SpaceShipLaser _spaceShipLaser;
+        private IInstantiator _instantiator;
 
         private readonly CancellationTokenSource _cts = new CancellationTokenSource();
 
@@ -35,7 +36,8 @@ namespace _Project.Scripts.EntryPoints
             AsteroidSpawner asteroidSpawner,
             GameOverController gameOverController,
             ScoreController scoreController,
-            IAnalyticsService analyticsService)
+            IAnalyticsService analyticsService,
+            IInstantiator instantiator)
         {
             _spaceShip = spaceShip;
 
@@ -45,6 +47,7 @@ namespace _Project.Scripts.EntryPoints
             _gameOverController = gameOverController;
             _scoreController = scoreController;
             _analyticsService = analyticsService;
+            _instantiator = instantiator;
         }
 
         public void Initialize()
