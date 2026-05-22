@@ -13,8 +13,9 @@ namespace _Project.Scripts.Installers
             Container.BindInterfacesAndSelfTo<AnalyticsService>().AsSingle();
             Container.BindInterfacesAndSelfTo<AddressableReferencesLoader>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneLoaderService>().AsSingle();
-            Container.BindInterfacesAndSelfTo<BootstrapEntryPoint>().AsSingle();
             Container.Bind<SaveData>().AsSingle();
+            Container.Bind<LevelAssetsStorage>().AsSingle();
+            Container.BindInterfacesAndSelfTo<BootstrapEntryPoint>().AsSingle();
         }
     }
 }

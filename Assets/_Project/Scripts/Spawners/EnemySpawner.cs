@@ -18,6 +18,7 @@ namespace _Project.Scripts.Spawners
         protected readonly Camera _mainCamera;
         protected readonly GameOverController _gameOverController;
         protected readonly ScoreController _scoreController;
+        protected TEnemy _enemy;
 
         protected readonly float _spawnInterval;
         protected readonly float _spawnOffset;
@@ -56,9 +57,9 @@ namespace _Project.Scripts.Spawners
 
         protected virtual void SpawnEnemy()
         {
-            TEnemy enemy = _pool.Spawn();
-            enemy.transform.position = CalculateCoordinatesBehindTheScreen();
-            enemy.OnDied += HandleEnemyDied;
+            _enemy = _pool.Spawn();
+            _enemy.transform.position = CalculateCoordinatesBehindTheScreen();
+            _enemy.OnDied += HandleEnemyDied;
         }
 
         protected virtual void HandleEnemyDied(Enemy enemy)

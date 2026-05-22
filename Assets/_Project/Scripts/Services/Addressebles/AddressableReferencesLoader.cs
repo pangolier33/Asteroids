@@ -3,6 +3,8 @@ using _Project.Scripts.Creatures.Player;
 using _Project.Scripts.Creatures.Player.SpaceShipWeapon;
 using _Project.Scripts.Enums;
 using _Project.Scripts.UI;
+using _Project.Scripts.UI.HUD;
+using _Project.Scripts.UI.RestartPanel;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -16,10 +18,10 @@ namespace _Project.Scripts.Services.Addressebles
         public UniTask<SpaceShipMovement> CreateSpaceShip() => LoadAssetComponent<SpaceShipMovement>(AddreseblesIDs.SpaceShip.ToString());
         public void ReleaseSpaceShip() => ReleaseAsset(AddreseblesIDs.SpaceShip.ToString());
         
-        public UniTask<Enemy> CreateUFO() => LoadAssetComponent<Enemy>(AddreseblesIDs.UFO.ToString());
+        public UniTask<UFO> CreateUFO() => LoadAssetComponent<UFO>(AddreseblesIDs.UFO.ToString());
         public void ReleaseUFO() => ReleaseAsset(AddreseblesIDs.UFO.ToString());
         
-        public UniTask<Enemy> CreateAsteroid() => LoadAssetComponent<Enemy>(AddreseblesIDs.Asteroid.ToString());
+        public UniTask<Asteroid> CreateAsteroid() => LoadAssetComponent<Asteroid>(AddreseblesIDs.Asteroid.ToString());
         public void ReleaseAsteroid() => ReleaseAsset(AddreseblesIDs.Asteroid.ToString());
         
         public UniTask<Canvas> CreateLoadingScreen() => LoadAssetComponent<Canvas>(AddreseblesIDs.LoadingScreen.ToString());
